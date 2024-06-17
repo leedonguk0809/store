@@ -1,12 +1,11 @@
 package com.example.store.domain;
 
+import lombok.Builder;
+import lombok.Getter;
 
-import lombok.Data;
-
-
+@Getter
 public class User {
-
-    private Long userId;
+    private Long id;
     private String name;
     private String email;
     private String password;
@@ -14,4 +13,16 @@ public class User {
     private String zipcode;
     private String mainAddress;
     private String detailAddress;
+
+    @Builder
+    public User(Long id, String name, String email, String password, String telNumber, String zipcode, String mainAddress, String detailAddress) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.telNumber = telNumber;
+        this.zipcode = zipcode;
+        this.mainAddress = mainAddress;
+        this.detailAddress = detailAddress;
+    }
 }
