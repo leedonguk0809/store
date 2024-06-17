@@ -5,6 +5,7 @@ import com.example.store.repository.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -24,6 +25,16 @@ public class UserRepositoryImpl implements UserRepository{
     @Override
     public Optional<User> findByEmailAndPassword(String email, String password) {
         return userMapper.findByEmailAndPassword(email,password);
+    }
+
+    @Override
+    public List<String> findRoleByUserId(Long userId) {
+        return userMapper.findRoleByUserId(userId);
+    }
+
+    @Override
+    public void saveUserRole(Long userId, String role) {
+        userMapper.saveUserRole(userId,role);
     }
 
     @Override
