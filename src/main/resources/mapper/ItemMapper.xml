@@ -5,7 +5,7 @@
 <mapper namespace="com.example.store.repository.mapper.ItemMapper">
 
     <!-- 상품 정보를 담는 resultMap -->
-    <resultMap id="itemResultMap" type="com.example.demo.domain.Item">
+    <resultMap id="itemResultMap" type="com.example.store.domain.Item">
         <id property="itemId" column="item_id" />
         <result property="name" column="name" />
         <result property="price" column="price" />
@@ -38,6 +38,10 @@
     <!-- 특정 ID의 상품을 삭제하는 SQL -->
     <delete id="deleteItem">
         DELETE FROM item WHERE item_id = #{itemId}
+    </delete>
+
+    <delete id="deleteAll">
+        DELETE FROM item
     </delete>
 
 
