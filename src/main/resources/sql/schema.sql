@@ -19,9 +19,17 @@ CREATE TABLE item
     item_id BIGINT      NOT NULL AUTO_INCREMENT  ,
     name    VARCHAR(50) NOT NULL  ,
     price   BIGINT      NOT NULL  ,
-    stock   BIGINT      NOT NULL  ,
     info    TEXT        NULL      ,
     PRIMARY KEY (item_id)
+)  ;
+
+
+CREATE TABLE stock
+(
+    stock_id BIGINT     NOT NULL AUTO_INCREMENT  ,
+    item_id  BIGINT     NOT NULL  ,
+    stock   BIGINT      NOT NULL  ,
+    PRIMARY KEY (stock_id)
 )  ;
 
 CREATE TABLE orders
@@ -102,5 +110,10 @@ ALTER TABLE payment
     ADD CONSTRAINT FK_order_TO_payment
         FOREIGN KEY (order_id)
             REFERENCES orders (order_id);
+
+ALTER TABLE stock
+    ADD CONSTRAINT FK_item_TO_stock
+        FOREIGN KEY (item_id)
+            REFERENCES item (item_id);
 
 
