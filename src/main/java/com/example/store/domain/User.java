@@ -13,9 +13,10 @@ public class User {
     private String zipcode;
     private String mainAddress;
     private String detailAddress;
+    private String userStatus;
 
     @Builder
-    public User(Long id, String name, String email, String password, String telNumber, String zipcode, String mainAddress, String detailAddress) {
+    public User(Long id, String name, String email, String password, String telNumber, String zipcode, String mainAddress, String detailAddress, String userStatus) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -24,5 +25,6 @@ public class User {
         this.zipcode = zipcode;
         this.mainAddress = mainAddress;
         this.detailAddress = detailAddress;
+        this.userStatus = userStatus;
     }
 }
