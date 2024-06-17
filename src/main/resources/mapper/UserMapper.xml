@@ -13,6 +13,7 @@
         <result property="zipcode" column="zipcode"/>
         <result property="mainAddress" column="main_address"/>
         <result property="detailAddress" column="detail_address"/>
+        <collection property="roles" ofType="string" column="user_id" select="findRoleByUserId"/>
     </resultMap>
 
     <select id="findById" parameterType="java.lang.Long" resultMap="userMap">
@@ -23,14 +24,22 @@
         SELECT * FROM user WHERE email = #{email}
     </select>
 
-
     <select id="findByEmailAndPassword" parameterType="java.lang.String" resultMap="userMap">
         SELECT * FROM user WHERE email = #{email} AND password = #{password}
+    </select>
+
+    <select id="findRoleByUserId" resultType="string">
+        SELECT role FROM user_roles WHERE user_id = #{userId}
     </select>
 
     <insert id="save" parameterType="User" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO user(email,password,name,tel_number,zipcode,main_address,detail_address)
         VALUES(#{email}, #{password}, #{name}, #{telNumber}, #{zipcode}, #{mainAddress}, #{detailAddress})
+    </insert>
+
+    <insert id="saveUserRole">
+        INSERT INTO user_roles (user_id, role)
+        VALUES (#{userId}, #{role})
     </insert>
 
     <update id="update" parameterType="User">
@@ -39,7 +48,7 @@
             tel_number=#{telNumber},
             zipcode=#{zipcode},
             main_address=#{mainAddress},
-            detail_address=#{detailAddress},
+            detail_address=#{detailAddress}
         WHERE user_id = #{id}
     </update>
 
