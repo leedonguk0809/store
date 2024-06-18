@@ -1,6 +1,8 @@
 package com.example.store.controller;
 
+import com.example.store.domain.User;
 import com.example.store.request.user.UserLogin;
+import com.example.store.response.UserResponse;
 import com.example.store.service.user.UserService;
 
 import lombok.RequiredArgsConstructor;
@@ -15,6 +17,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -33,35 +36,12 @@ public class AuthController {
                 .ok()
                 .body(null);
     }
-
-    @GetMapping("/main")
-    @PreAuthorize("hasRole('USER')")
-    public ResponseEntity<Object> test(){
-        log.info("요청");
-        return ResponseEntity
-                .ok()
-                .body("메인");
-    }
-
-    @GetMapping("/current-user")
-    public ResponseEntity<String> getCurrentUser() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication != null && authentication.getPrincipal() instanceof UserDetails) {
-            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-            String username = userDetails.getUsername();
-            Collection<? extends GrantedAuthority> authorities = userDetails.getAuthorities();
-            // 사용자의 권한 출력
-            userDetails.getAuthorities().forEach(authority -> {
-                System.out.println(authority.getAuthority());
-            });
-            return ResponseEntity.ok("현재 사용자: " + username);
-        } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("인증되지 않은 사용자입니다.");
-        }
-    }
-
     @GetMapping("/my-page")
-    public ResponseEntity<Object> myPage(@AuthenticationPrincipal UserDetails currentUser) {
-        return ResponseEntity.ok("현재 사용자: " + currentUser.getUsername());
+    @PreAuthorize("hasRole('USER')")
+    public String myPage(@AuthenticationPrincipal UserDetails currentUser, Model model){
+        User user = userService.get(currentUser.getUsername(), currentUser.getPassword());
+        UserResponse userResponse = UserResponse.fromEntity(user);
+        model.addAttribute(userResponse);
+        return "mypage";
     }
 }
