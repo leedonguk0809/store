@@ -16,4 +16,13 @@ public class Item {
     private String name;
     private Long price;
     private String info;
+
+public Item(String name, Long price, String info) {
+        this.name = name;
+        this.price = price;
+        this.info = info;
+    }
+
 }
+
+
