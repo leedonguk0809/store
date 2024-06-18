@@ -4,13 +4,23 @@ import com.example.store.domain.User;
 import com.example.store.repository.mapper.UserMapper;
 import com.example.store.request.user.UserCreate;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
+
+import javax.sql.DataSource;
+
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -19,6 +29,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class UserControllerTest {
 
     @Autowired
@@ -29,6 +40,15 @@ class UserControllerTest {
 
     @Autowired
     private UserMapper userMapper;
+    private static JdbcTemplate jdbcTemplate;
+    @BeforeAll
+    static void setup(@Autowired DataSource dataSource) throws Exception {
+        // schema.sql 파일을 읽어와서 데이터베이스 초기화
+        String schemaSql = new String(Files.readAllBytes(Paths.get("src/test/resources/schema.sql")));
+
+        jdbcTemplate = new JdbcTemplate(dataSource);
+        jdbcTemplate.execute(schemaSql);
+    }
     @Test
     @DisplayName("사용자 로그인 요청으로 로그인 가능")
     void test1() throws Exception {
