@@ -26,7 +26,7 @@ class ItemRepositoryTest {
 
     @BeforeEach
     void setUp() {
-        itemMapper.deleteAll();  // 테스트 시작 전 모든 데이터를 삭제합니다. 이 메서드는 XML 매퍼 파일에 정의해야 합니다.
+        itemMapper.deleteAll();
     }
 
     @Test
