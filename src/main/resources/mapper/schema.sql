@@ -1,4 +1,4 @@
-CREATE TABLE cart
+CREATE TABLE carts
 (
     cart_id     BIGINT NOT NULL AUTO_INCREMENT,
     user_id     BIGINT NOT NULL   ,
@@ -101,10 +101,10 @@ ALTER TABLE cart_item
 ALTER TABLE cart_item
     ADD CONSTRAINT FK_cart_TO_cart_item
         FOREIGN KEY (cart_id)
-            REFERENCES cart (cart_id);
+            REFERENCES carts (cart_id);
 
-ALTER TABLE cart
-    ADD CONSTRAINT FK_user_TO_cart
+ALTER TABLE carts
+    ADD CONSTRAINT FK_user_TO_carts
         FOREIGN KEY (user_id)
             REFERENCES user (user_id);
 
