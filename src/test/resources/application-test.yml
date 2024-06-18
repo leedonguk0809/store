@@ -8,3 +8,4 @@ spring:
     init:
       schema-locations: classpath:schema.sql # schema.sql 파일만 실행
       data-locations: # data.sql 파일은 실행되지 않음
+      mode: never
