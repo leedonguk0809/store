@@ -12,6 +12,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -22,6 +23,9 @@ class UserServiceImplTest{
 
     @Autowired
     private UserMapper userMapper;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @BeforeEach
     public void clean(){
@@ -47,7 +51,7 @@ class UserServiceImplTest{
         User result = userMapper.findById(savedId).orElseThrow(UserNotFound::new);
         //then
         assertEquals("kimdodo@naver.com",result.getEmail());
-        assertEquals("1234", result.getPassword());
+        assertNotNull(passwordEncoder.matches("1234",result.getPassword()));
         assertEquals("김도도",result.getName());
         assertEquals("123-123",result.getZipcode());
         assertEquals("부산광역시",result.getMainAddress());
