@@ -18,15 +18,13 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/signup")
-    public ResponseEntity<Object> signup(@ModelAttribute @Valid UserCreate userCreate){
+    public String signup(@ModelAttribute @Valid UserCreate userCreate){
         String email = userCreate.getEmail();
         if (userService.validateDuplicate(email)){
             throw new AlreadyExistsEmail();
         }
 
         Long userId = userService.signup(userCreate);
-        return ResponseEntity
-                .ok()
-                .body(null);
+        return "redirect:/login-form";
     }
 }
