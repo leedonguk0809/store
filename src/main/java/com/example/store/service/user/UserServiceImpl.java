@@ -2,11 +2,13 @@ package com.example.store.service.user;
 
 import com.example.store.domain.User;
 import com.example.store.domain.UserStatus;
+import com.example.store.exception.InvalidPassword;
 import com.example.store.exception.UserNotFound;
 import com.example.store.repository.UserRepository;
 import com.example.store.request.user.UserCreate;
 import com.example.store.request.user.UserEdit;
 import lombok.RequiredArgsConstructor;
+import org.bouncycastle.util.StoreException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,6 +35,16 @@ public class UserServiceImpl implements UserService {
         return email1.isPresent();
     }
 
+    @Override
+    public User get(String email, String password) {
+        User user = userRepository.findByEmail(email).orElseThrow(UserNotFound::new);
+        if (passwordEncoder.matches(password, user.getPassword())){
+            return user;
+        }
+        else{
+            throw new InvalidPassword();
+        }
+    }
     @Override
     public Long edit(Long userId,UserEdit userEdit) {
         User user = userRepository.findById(userId).orElseThrow(UserNotFound::new);
