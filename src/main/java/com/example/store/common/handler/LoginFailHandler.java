@@ -29,9 +29,7 @@ public class LoginFailHandler implements AuthenticationFailureHandler {
                 .code("400")
                 .message("아이디/비밀번호가 올바르지 않습니다.").build();
 
-        response.setContentType(APPLICATION_JSON_VALUE);
-        response.setCharacterEncoding(UTF_8.name());
-        response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-        objectMapper.writeValue(response.getWriter(),errorResponse);
+        String redirectUrl = "/login?error";
+        response.sendRedirect(redirectUrl);
     }
 }
