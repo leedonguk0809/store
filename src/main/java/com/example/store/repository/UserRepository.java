@@ -13,6 +13,8 @@ public interface UserRepository {
     List<String> findRoleByUserId(Long userId);
     void saveUserRole(Long userId, String role);
     User save(User user);
-    User update(User user);
+    Long update(User user);
+
+    Long updateUserStatus(User user);
     void delete(Long id);
 }

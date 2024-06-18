@@ -44,9 +44,15 @@ public class UserRepositoryImpl implements UserRepository{
     }
 
     @Override
-    public User update(User user) {
+    public Long update(User user) {
         userMapper.update(user);
-        return user;
+        return user.getId();
+    }
+
+    @Override
+    public Long updateUserStatus(User user) {
+        userMapper.updateUserStatus(user);
+        return user.getId();
     }
 
     @Override
