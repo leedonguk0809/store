@@ -1,5 +1,7 @@
 package com.example.store.controller;
 
+import com.example.store.domain.User;
+import com.example.store.repository.mapper.UserMapper;
 import com.example.store.request.user.UserCreate;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.DisplayName;
@@ -18,15 +20,15 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 class UserControllerTest {
-    @Autowired
-    private UserController userController;
 
     @Autowired
     private MockMvc mockMvc;
 
     @Autowired
     private ObjectMapper objectMapper;
-    
+
+    @Autowired
+    private UserMapper userMapper;
     @Test
     @DisplayName("사용자 로그인 요청으로 로그인 가능")
     void test1() throws Exception {
@@ -43,9 +45,57 @@ class UserControllerTest {
 
         String json = objectMapper.writeValueAsString(userCreate);
         //when
-        mockMvc.perform(post("/signup").contentType(MediaType.APPLICATION_FORM_URLENCODED)
-                .content(json))
+        mockMvc.perform(post("/signup")
+                        .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                        .param("email", userCreate.getEmail())
+                        .param("password", userCreate.getPassword())
+                        .param("name", userCreate.getName())
+                        .param("zipcode", userCreate.getZipcode())
+                        .param("mainAddress", userCreate.getMainAddress())
+                        .param("detailAddress", userCreate.getDetailAddress())
+                        .param("telNumber", userCreate.getTelNumber()))
                 .andExpect(status().isOk())
+                .andDo(print());
+    }
+
+    @Test
+    @DisplayName("중복된 이메일로 요청시 400 응답")
+    void test2() throws Exception {
+        //given
+        User user = User.builder()
+                .email("kimdodo@naver.com")
+                .password("1234")
+                .name("김도도")
+                .zipcode("123-123")
+                .mainAddress("부산광역시")
+                .detailAddress("스파로스")
+                .telNumber("01012341234")
+                .userStatus("BRONZE")
+                .build();
+        userMapper.save(user);
+
+        UserCreate userCreate = UserCreate.builder()
+                .email("kimdodo@naver.com")
+                .password("1234")
+                .name("김도도")
+                .zipcode("123-123")
+                .mainAddress("부산광역시")
+                .detailAddress("스파로스")
+                .telNumber("01012341234")
+                .build();
+
+        String json = objectMapper.writeValueAsString(userCreate);
+        //when
+        mockMvc.perform(post("/signup")
+                        .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                        .param("email", userCreate.getEmail())
+                        .param("password", userCreate.getPassword())
+                        .param("name", userCreate.getName())
+                        .param("zipcode", userCreate.getZipcode())
+                        .param("mainAddress", userCreate.getMainAddress())
+                        .param("detailAddress", userCreate.getDetailAddress())
+                        .param("telNumber", userCreate.getTelNumber()))
+                .andExpect(status().isBadRequest())
                 .andDo(print());
     }
 }
