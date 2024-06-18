@@ -4,40 +4,47 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.store.repository.mapper.UserMapper">
-    <resultMap id="userMap" type="User">
-        <id property="id" column="user_id"/>
-        <result property="email" column="email"/>
-        <result property="password" column="password"/>
-        <result property="name" column="name"/>
-        <result property="telNumber" column="tel_number" />
-        <result property="zipcode" column="zipcode"/>
-        <result property="mainAddress" column="main_address"/>
-        <result property="detailAddress" column="detail_address"/>
-        <collection property="roles" ofType="string" column="user_id" select="findRoleByUserId"/>
-    </resultMap>
+        <resultMap id="userMap" type="User">
+            <id property="id" column="user_id"/>
+            <result property="email" column="email"/>
+            <result property="password" column="password"/>
+            <result property="name" column="name"/>
+            <result property="telNumber" column="tel_number" />
+            <result property="zipcode" column="zipcode"/>
+            <result property="mainAddress" column="main_address"/>
+            <result property="detailAddress" column="detail_address"/>
+            <result property="userStatus" column="user_status"/>
+            <result property="userRole" column="user_role"/>
+        </resultMap>
 
     <select id="findById" parameterType="java.lang.Long" resultMap="userMap">
-        SELECT * FROM user WHERE user_id=#{id}
+        SELECT u.user_id,  u.email, u.password,u.name, u.tel_number, u.zipcode, u.main_address, u.detail_address,u.user_status, ur.role
+        FROM user u LEFT JOIN user_roles ur ON u.user_id = ur.user_id
+        WHERE u.user_id = #{userId}
     </select>
 
     <select id="findByEmail" parameterType="java.lang.String" resultMap="userMap">
-        SELECT * FROM user WHERE email = #{email}
+        SELECT u.user_id,  u.email, u.password,u.name, u.tel_number, u.zipcode, u.main_address, u.detail_address,u.user_status, ur.role
+        FROM user u LEFT JOIN user_roles ur ON u.user_id = ur.user_id
+        WHERE u.email = #{email}
     </select>
 
     <select id="findByEmailAndPassword" parameterType="java.lang.String" resultMap="userMap">
-        SELECT * FROM user WHERE email = #{email} AND password = #{password}
+        SELECT u.user_id,  u.email, u.password,u.name, u.tel_number, u.zipcode, u.main_address, u.detail_address,u.user_status, ur.role
+        FROM user u LEFT JOIN user_roles ur ON u.user_id = ur.user_id
+        WHERE u.email = #{email} AND u.password=#{password}
     </select>
 
-    <select id="findRoleByUserId" resultType="string">
+    <select id="findRoleByUserId" parameterType="java.lang.Long" resultType="java.lang.String">
         SELECT role FROM user_roles WHERE user_id = #{userId}
     </select>
 
     <insert id="save" parameterType="User" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO user(email,password,name,tel_number,zipcode,main_address,detail_address)
-        VALUES(#{email}, #{password}, #{name}, #{telNumber}, #{zipcode}, #{mainAddress}, #{detailAddress})
+        INSERT INTO user(email,password,name,tel_number,zipcode,main_address,detail_address, user_status)
+        VALUES(#{email}, #{password}, #{name}, #{telNumber}, #{zipcode}, #{mainAddress}, #{detailAddress},#{userStatus})
     </insert>
 
-    <insert id="saveUserRole">
+    <insert id="saveUserRole" parameterType="map">
         INSERT INTO user_roles (user_id, role)
         VALUES (#{userId}, #{role})
     </insert>
@@ -51,6 +58,13 @@
             detail_address=#{detailAddress}
         WHERE user_id = #{id}
     </update>
+
+    <update id="updateUserStatus" parameterType="User">
+        UPDATE user
+        SET user_status = #{userStatus}
+        WHERE user_id = #{id}
+    </update>
+
 
     <delete id="delete" parameterType="java.lang.Long">
         DELETE from user
