@@ -27,14 +27,12 @@ public class Http403Handler implements AccessDeniedHandler {
 
     @Override
     public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException) throws IOException, ServletException {
-        log.error("[인증 오류] 401");
-        ErrorResponse errorResponse = ErrorResponse.builder()
-                .code("401")
-                .message("유효한 인증이 아닙니다.").build();
+        log.error("[인증오류] 403");
 
-        response.setContentType(APPLICATION_JSON_VALUE);
-        response.setCharacterEncoding(UTF_8.name());
-        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-        objectMapper.writeValue(response.getWriter(),errorResponse);
+        ErrorResponse errorResponse = ErrorResponse.builder()
+                .code("403")
+                .message("접근할 수 없습니다.")
+                .build();
+        response.sendRedirect("/");
     }
 }
