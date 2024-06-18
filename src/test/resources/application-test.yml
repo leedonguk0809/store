@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:test;NON_KEYWORDS=USER;TIME ZONE=UTC
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+  sql:
+    init:
+      schema-locations: classpath:schema.sql # schema.sql 파일만 실행
+      data-locations: # data.sql 파일은 실행되지 않음
