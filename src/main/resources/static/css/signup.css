@@ -1,0 +1,123 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    text-decoration: none;
+}
+
+.sign-up-container {
+    display: flex;
+    justify-content: center;
+}
+
+.sign-up-wrapper {
+    max-width: 760px;
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: center; /* 화면 전체의 높이를 차지하도록 수정 */
+}
+
+.main-title {
+    width: 100%;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 140%;
+    color: rgba(185, 185, 185, 0.966);
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.wrapper .logreg-box {
+    width: 100%;
+    background-color: transparent;
+}
+
+.sign-up-form-box {
+    box-sizing: border-box;
+    width: 70%;
+    outline: none;
+    margin: 0;
+    border: 0;
+}
+
+.sign-up-form-box .input-label {
+    font-size: 14px;
+    font-weight: 550;
+    color: rgba(0, 0, 0, 0.5);
+    padding-bottom: 5px;
+}
+
+.sign-up-form-box .input-box {
+    position: relative;
+    width: 100%;
+    height: 60px;
+    margin: 35px 0;
+}
+
+.input-box .password-check-label {
+    font-size: 12px;
+    color: red;
+    padding: 5px;
+    display: none;
+}
+
+.input-box input {
+    width: 100%;
+    box-sizing: border-box;
+    height: 70%;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.05);
+    color: #a09d9d;
+    font-size: 14px;
+    font-weight: 400;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.input-box select {
+    width: 100%;
+    height: 80%;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.05);
+    border: none;
+    outline: none;
+    color: #a09d9d;
+    font-size: 14px;
+    font-weight: 400;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.address-box {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: space-between;
+    padding: 6px 0;
+}
+
+.address-box .search-address-btn {
+    height: 100%;
+    background-color: #1570ff;
+    color: rgba(255, 255, 255);
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.signup-btn {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    width: 100%;
+    background-color: #1570ff;
+    color: rgba(255, 255, 255);
+    height: 45px;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
