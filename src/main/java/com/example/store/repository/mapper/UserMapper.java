@@ -13,6 +13,8 @@ public interface UserMapper {
     Optional<User> findByEmail(String email);
     Optional<User> findByEmailAndPassword(String email,String password);
     List<String> findRoleByUserId(Long userId);
+
+    Boolean existEmail(String email);
     Long save(User user);
     void saveUserRole(@Param("userId") Long userId, @Param("role") String role);
     void update(User user);
