@@ -1,8 +1,10 @@
 package com.example.store.domain;
 
-import com.example.store.request.UserCreate;
+import com.example.store.request.user.UserCreate;
+import com.example.store.request.user.UserEdit;
 import lombok.Builder;
 import lombok.Getter;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.List;
 
@@ -17,10 +19,10 @@ public class User {
     private String mainAddress;
     private String detailAddress;
     private String userStatus;
-    private List<String> roles;
+    private String roles;
 
     @Builder
-    public User(Long id, String name, String email, String password, String telNumber, String zipcode, String mainAddress, String detailAddress, String userStatus, List<String> roles) {
+    public User(Long id, String name, String email, String password, String telNumber, String zipcode, String mainAddress, String detailAddress, String userStatus, String roles) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -33,16 +35,28 @@ public class User {
         this.roles = roles;
     }
 
-    public static User from(UserCreate userCreate){
+    public static User from(UserCreate userCreate, PasswordEncoder passwordEncoder){
         return User.builder()
                 .name(userCreate.getName())
                 .email(userCreate.getEmail())
-                .password(userCreate.getPassword())
+                .password(passwordEncoder.encode(userCreate.getPassword()))
                 .telNumber(userCreate.getTelNumber())
                 .zipcode(userCreate.getZipcode())
                 .mainAddress(userCreate.getMainAddress())
                 .detailAddress(userCreate.getDetailAddress())
                 .userStatus("BRONZE")
                 .build();
+    }
+
+    public void edit(UserEdit userEdit){
+            password = userEdit.getPassword()!=null ? userEdit.getPassword() : password;
+            telNumber = userEdit.getTelNNumber();
+            zipcode = userEdit.getZipcode();
+            mainAddress = userEdit.getMainAddress();
+            detailAddress = userEdit.getDetailAddress();
+    }
+
+    public void editStatus(String status){
+        this.userStatus = status;
     }
 }
