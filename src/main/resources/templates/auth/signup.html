@@ -3,59 +3,73 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/css/signup.css" />
+    <link rel="stylesheet" th:href="@{/css/signup.css}" />
+
     <title>Document</title>
 </head>
 <body>
 <div class="sign-up-container">
     <div class="sign-up-wrapper">
         <div class="sign-up-form-box">
-            <p class="main-title">스파로스 아카데미</p>
-            <form action="" method="post">
+            <div class="main-logo-box">
+                <a href="/" methods="get">
+                    <img class="main-logo" src="/assets/spa.png">
+                </a>
+            </div>
+            <p class="main-title">회원가입</p>
+            <form th:action="@{/signup}" th:object="${userCreate}" method="post">
                 <div class="input-box">
                     <div class="input-label">이름</div>
-                    <input type="text" placeholder="이름" />
+                    <input type="text" th:field="${userCreate.name}" placeholder="이름" />
                 </div>
                 <div class="input-box">
                     <div class="input-label">이메일</div>
-                    <input type="email" placeholder="이메일을 입력하세요" />
+                    <div class="email-box">
+                        <input type="email" th:field="${userCreate.email}" placeholder="이메일을 입력하세요" />
+                        <input class="validate-btn" type="button" onclick="" value="중복 체크">
+                    </div>
                 </div>
 
                 <div class="input-box">
                     <div class="input-label">비밀번호</div>
-                    <input type="text" placeholder="비밀번호를 입력하세요" />
+                    <input type="password" id="password" placeholder="비밀번호를 입력하세요" />
                 </div>
 
                 <div class="input-box">
                     <div class="input-label">비밀번호 확인</div>
-                    <input type="text" placeholder="비밀번호를 재입력 하세요 " />
-                    <div class="password-check-label">
+                    <input type="password" id="passwordRetry" th:field="${userCreate.password}" placeholder="비밀번호를 재입력 하세요 " />
+                    <div class="password-check-label" id="passwordError">
                         비밀번호가 일치하지 않습니다
                     </div>
                 </div>
 
                 <div class="input-box">
                     <div class="input-label">전화번호</div>
-                    <input type="tel" placeholder="01012341234" />
+                    <input id="telNumber" type="tel" th:field="${userCreate.telNumber}"  placeholder="01012341234" />
+                    <div class="tel-check-label" id="telNumberError">
+                        전화번호 형식이 틀렸습니다
+                    </div>
                 </div>
                 <div class="input-box">
                     <div class="input-label">주소</div>
                     <div class="address-box">
-                        <input class="zipcode" type="text" placeholder="우편번호" />
+                        <input class="zipcode" id="zipcode" th:field="${userCreate.zipcode}" type="text" placeholder="우편번호" />
                         <input
                                 class="search-address-btn"
                                 type="button"
-                                onclick="test()"
+                                onclick="findAddr()"
                                 value="우편번호 찾기"
                         />
                     </div>
                     <div class="address-box">
-                        <input type="text" class="main-address" placeholder="주소" />
+                        <input type="text" id="main-address" th:field="${userCreate.mainAddress}" class="main-address" placeholder="주소" />
                     </div>
                     <div class="address-box">
                         <input
                                 type="text"
+                                id="detail-address"
                                 class="detail-address"
+                                th:field="${userCreate.detailAddress}"
                                 placeholder="상세주소"
                         />
                     </div>
@@ -66,4 +80,42 @@
     </div>
 </div>
 </body>
+
+<script type="text/javascript" th:src="@{/js/ValidateSignup.js}"></script>
+<script>
+    function findAddr() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+
+                var addr = ''; // 주소 변수
+                var extraAddr = ''; // 참고항목 변수
+
+                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                    addr = data.roadAddress;
+                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                    addr = data.jibunAddress;
+                }
+
+                if(data.userSelectedType === 'R'){
+                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                        extraAddr += data.bname;
+                    }
+                    if(data.buildingName !== '' && data.apartment === 'Y'){
+                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                    }
+                    if(extraAddr !== ''){
+                        extraAddr = ' (' + extraAddr + ')';
+                    }
+                    document.getElementById("detail-address").value = extraAddr;
+                } else {
+                    document.getElementById("detail-address").value = '';
+                }
+                document.getElementById('zipcode').value = data.zonecode;
+                document.getElementById("main-address").value = addr;
+                document.getElementById("detail-address").focus();
+            }
+        }).open();
+    }
+</script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </html>
