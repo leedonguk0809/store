@@ -31,8 +31,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Boolean validateDuplicate(String email) {
-        Optional<User> email1 = userRepository.findByEmail(email);
-        return email1.isPresent();
+        return userRepository.existsEmail(email);
     }
 
     @Override
