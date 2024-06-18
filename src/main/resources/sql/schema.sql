@@ -76,6 +76,13 @@ CREATE TABLE user
     PRIMARY KEY (user_id)
 ) ;
 
+CREATE TABLE user_roles (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    user_id BIGINT NOT NULL,
+    role VARCHAR(50) NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
 ALTER TABLE order_item
     ADD CONSTRAINT FK_order_TO_order_item
         FOREIGN KEY (order_id)
