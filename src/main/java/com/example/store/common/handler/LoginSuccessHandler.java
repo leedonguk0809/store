@@ -23,9 +23,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
         UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
         log.info("[인증 성공] user = {}",userPrincipal.getUsername());
-
-        response.setContentType(APPLICATION_JSON_VALUE);
-        response.setCharacterEncoding(UTF_8.name());
-        response.setStatus(HttpServletResponse.SC_OK);
+        String redirectUrl = "/";
+        response.sendRedirect(redirectUrl);
     }
 }
