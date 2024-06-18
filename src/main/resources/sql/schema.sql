@@ -68,19 +68,19 @@ CREATE TABLE user
     user_id        BIGINT      NOT NULL AUTO_INCREMENT  ,
     name           VARCHAR(30) NOT NULL  ,
     email          VARCHAR(30) NOT NULL  ,
-    password       VARCHAR(50) NOT NULL  ,
+    password       VARCHAR(200) NOT NULL  ,
     tel_number     VARCHAR(20) NOT NULL  ,
     zipcode        VARCHAR(50) NULL      ,
     main_address   VARCHAR(50) NULL      ,
     detail_address VARCHAR(50) NULL      ,
+    user_status VARCHAR(50) NOT NULL,
     PRIMARY KEY (user_id)
 ) ;
 
 CREATE TABLE user_roles (
     id BIGINT PRIMARY KEY AUTO_INCREMENT,
     user_id BIGINT NOT NULL,
-    role VARCHAR(50) NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES users(user_id)
+    role VARCHAR(50) NOT NULL
 );
 
 ALTER TABLE order_item
@@ -124,3 +124,7 @@ ALTER TABLE stock
             REFERENCES item (item_id);
 
 
+ALTER TABLE user_roles
+    ADD CONSTRAINT FK_user_TO_user_roles
+        FOREIGN KEY (user_id) REFERENCES user(user_id)
+            ON DELETE CASCADE;
