@@ -7,13 +7,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class UserViewController {
-    @GetMapping("/")
-    public ResponseEntity<Object> getLoginView(){
-        return ResponseEntity.ok().body("로그아웃");
+    @GetMapping("/login-form")
+    public String getLoginView(){
+        return "auth/login";
     }
 
-    @PostMapping("/")
-    public String getView(){
-        return "login";
+    @GetMapping("/signup")
+    public String getSignUpView(){
+        return "auth/signup";
     }
 }
