@@ -28,20 +28,19 @@ import java.util.Collection;
 @RequiredArgsConstructor
 public class AuthController {
     private final UserService userService;
-
-    @PostMapping("/login")
-    public ResponseEntity<Object> login(@ModelAttribute UserLogin login){
-        log.info("{}",login);
-        return ResponseEntity
-                .ok()
-                .body(null);
-    }
-    @GetMapping("/my-page")
-    @PreAuthorize("hasRole('USER')")
-    public String myPage(@AuthenticationPrincipal UserDetails currentUser, Model model){
-        User user = userService.get(currentUser.getUsername(), currentUser.getPassword());
-        UserResponse userResponse = UserResponse.fromEntity(user);
-        model.addAttribute(userResponse);
-        return "mypage";
-    }
+//    @PostMapping("/login")
+//    public ResponseEntity<Object> login(@ModelAttribute UserLogin login){
+//        log.info("{}",login);
+//        return ResponseEntity
+//                .ok()
+//                .body(null);
+//    }
+//    @GetMapping("/my-page")
+//    @PreAuthorize("hasRole('USER')")
+//    public String myPage(@AuthenticationPrincipal UserDetails currentUser, Model model){
+//        User user = userService.get(currentUser.getUsername(), currentUser.getPassword());
+//        UserResponse userResponse = UserResponse.fromEntity(user);
+//        model.addAttribute(userResponse);
+//        return "mypage";
+//    }
 }
