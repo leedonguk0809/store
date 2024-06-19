@@ -60,11 +60,9 @@ public class MainController {
         List<ItemResponse> pageList = itemService.getList(itemSearch);
 
         int totalPages = (int) Math.ceil((double) itemService.getAllItems().size() / itemSearch.getSize());
-        int startPage = Math.max(1, itemSearch.getPage()-2);
-        int endPage = Math.min(totalPages, itemSearch.getPage()+2);
-        model.addAttribute("startPage", startPage);
-        model.addAttribute("endPage", endPage);
-        model.addAttribute("totalPage", totalPages);
+        Paging paging = new Paging(page,totalPages);
+
+        model.addAttribute("paging",paging);
         model.addAttribute("itemSearch", itemSearch);
         model.addAttribute("Items", pageList);
         return "main";
