@@ -48,19 +48,19 @@ public class ExceptionController {
                 .body(body);
     }
 
-    @ResponseBody
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<ErrorResponse> exception(Exception e) {
-        log.error("예외발생", e);
-
-        ErrorResponse body = ErrorResponse.builder()
-                .code("500")
-                .message(e.getMessage())
-                .build();
-
-        ResponseEntity<ErrorResponse> response = ResponseEntity.status(500)
-                .body(body);
-
-        return response;
-    }
+//    @ResponseBody
+//    @ExceptionHandler(Exception.class)
+//    public ResponseEntity<ErrorResponse> exception(Exception e) {
+//        log.error("예외발생", e);
+//
+//        ErrorResponse body = ErrorResponse.builder()
+//                .code("500")
+//                .message(e.getMessage())
+//                .build();
+//
+//        ResponseEntity<ErrorResponse> response = ResponseEntity.status(500)
+//                .body(body);
+//
+//        return response;
+//    }
 }
