@@ -22,7 +22,7 @@ public class UserServiceImpl implements UserService {
     public Long signup(UserCreate userCreate) {
         User user = User.from(userCreate,passwordEncoder);
         userRepository.save(user);
-        userRepository.saveUserRole(user.getId(),"USER");
+        userRepository.saveUserRole(user.getId(),"COMMON");
         return user.getId();
     }
 
