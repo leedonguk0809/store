@@ -1,6 +1,7 @@
 package com.example.store.common.handler;
 
 import com.example.store.common.config.UserPrincipal;
+import com.example.store.response.SuccessResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,7 +24,12 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
         UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
         log.info("[인증 성공] user = {}",userPrincipal.getUsername());
-        String redirectUrl = "/";
-        response.sendRedirect(redirectUrl);
+
+        SuccessResponse successResponse = new SuccessResponse("200","로그인 성공");
+        response.setContentType(APPLICATION_JSON_VALUE);
+        response.setCharacterEncoding(UTF_8.name());
+
+        response.setStatus(HttpServletResponse.SC_OK);
+        objectMapper.writeValue(response.getWriter(),successResponse);
     }
 }
