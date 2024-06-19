@@ -1,15 +1,85 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/detail.css" />
 </head>
 <body>
+<div class="item-detail-container">
     <div th:replace="fragment/header :: headerFragment"></div>
-    <div>
-        <div class="name" th:text="${item.name}"></div>
-        <div class="price" th:text="${item.price}"></div>
-        <div class="description" th:text="${item.info}"></div>
+    <div class="top-name-box">
+        <h2>스파로스 아카데미 부산 캠퍼스</h2>
+        <div class="item-top-name">스파로스 아카데미 부산</div>
     </div>
+    <div class="item-detail-box">
+        <div class="item-image-box">
+            <img src="" alt="" />
+        </div>
+        <div class="item-short-box">
+            <div class="detail-box item-name-box">
+                <div class="label-box">모델명</div>
+                <div class="value-box item-name-label">스파로스 아카데미 부산</div>
+            </div>
+            <div class="detail-box item-price-box">
+                <div class="label-box">판매가</div>
+                <div class="value-box price-label">279,000 <span>원</span></div>
+            </div>
+            <div class="detail-box event-box">
+                <div class="label-box">추가혜택</div>
+                <div class="value-box">
+                    <div class="option-label">최대 6개월 무이자</div>
+                    <div class="option-label">SSG 포인트 적립</div>
+                </div>
+            </div>
+            <div class="detail-box delivery-box">
+                <div class="label-box">배송방법</div>
+                <div class="value-box delivery-box">
+                    <div>무료 배송</div>
+                    <div class="delivery-notice">
+                        * 일부 상품의 경우 상품별, 지역별 보유량에 따라 배송 지연이 될
+                        수 있습니다.
+                    </div>
+                    <div class="delivery-notice">
+                        * 도서산간(제주 포함) 의 경우 추가 배송비가 발생할 수 있습니다.
+                    </div>
+                </div>
+            </div>
+            <div class="order-box">
+                <div class="label-box">주문 수량</div>
+                <div class="value-box order-count-box">
+                    <button class="order-btn" type="button">+</button>
+                    <div class="order-count">1</div>
+                    <button class="order-btn">-</button>
+                </div>
+            </div>
+            <div class="button-box">
+                <button class="buy-btn">바로 구매</button>
+                <button class="cart-btn">장바 구니</button>
+            </div>
+        </div>
+    </div>
+    <div class="item-description">
+        <div class="description-box">
+            <div class="description-label">
+                <div class="description-tag">상품 설명</div>
+                <div class="description-tag">상품 정보</div>
+                <div class="description-tag">상품평</div>
+                <div class="description-tag">상품 Q&A</div>
+                <div class="description-tag">배송/교환/반품/환불</div>
+            </div>
+            <div class="description">
+                안뇽하세요 이건 내용 입니다. 안뇽하세요 이건 내용 입니다. 안뇽하세요
+                이건 내용 입니다. 안뇽하세요 이건 내용 입니다. 안뇽하세요 이건 내용
+                입니다. 안뇽하세요 이건 내용 입니다. 안뇽하세요 이건 내용 입니다.
+                안뇽하세요 이건 내용 입니다. 안뇽하세요 이건 내용 입니다. 안뇽하세요
+                이건 내용 입니다. 안뇽하세요 이건 내용 입니다. 안뇽하세요 이건 내용
+                입니다.
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
