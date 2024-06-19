@@ -1,0 +1,171 @@
+@font-face {
+  font-family: "GmarketSansMedium";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+* {
+  font-family: "GmarketSansMedium";
+  margin: 0 auto;
+  text-decoration: none;
+}
+
+.item-detail-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.top-name-box {
+  margin-top: 50px;
+  width: 70%;
+  justify-content: left;
+}
+
+.top-name-box h2 {
+  margin-bottom: 10px;
+}
+
+.item-top-name {
+  font-size: 16px;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.8);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.8); /* 아래 선 추가 */
+  padding-bottom: 20px;
+}
+
+.item-detail-box {
+  width: 70%;
+  margin-bottom: 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.item-image-box {
+  width: 100%;
+  display: flex;
+  justify-content: center; /* 중앙 정렬을 위해 추가 */
+}
+
+.item-image-box img {
+  max-width: 100%; /* 이미지를 박스 크기에 맞게 조정 */
+  max-width: 60%; /* 가로 세로 비율을 유지 */
+}
+
+.item-short-box {
+  margin-top: 30px;
+  width: 70%; /* 박스의 전체 너비 설정 */
+}
+
+.detail-box {
+  align-items: center;
+  display: flex;
+  width: 100%;
+  margin-top: 5px;
+  padding-bottom: 10px;
+  border-bottom: 0.6px solid rgba(0, 0, 0, 0.6);
+}
+
+.label-box {
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.label-box,
+.value-box {
+  flex: 1;
+  text-align: left;
+  padding: 5px;
+}
+
+.value-box {
+  font-size: 13px;
+}
+
+.price-label {
+  font-weight: 600;
+}
+
+.delivery-notice {
+  font-size: 11px;
+  padding-top: 10px;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.order-box,
+.button-box {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.order-count-box {
+  display: flex;
+  align-items: center;
+}
+
+.order-btn {
+  width: 100%;
+  border: none;
+  background-color: transparent;
+  margin: 0 5px;
+  padding: 5px 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.button-box {
+  width: 100%;
+  height: 50px;
+  gap: 30px;
+}
+
+.button-box button {
+  width: 100%;
+  height: 100%;
+}
+
+.buy-btn {
+  border: none;
+  font-size: 16px;
+  height: 100%;
+  color: rgba(255, 255, 255, 1);
+  background-color: #f9bb00;
+}
+
+.cart-btn {
+  border: none;
+  font-size: 16px;
+  height: 100%;
+  color: rgba(255, 255, 255, 1);
+  background-color: #000;
+}
+
+.desciption-box {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+}
+
+.desciprtion-label {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  font-size: 16px;
+  font-weight: 400;
+  border-top: 3px solid rgba(0, 0, 0, 1);
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.5);
+}
+
+.desciption {
+  margin-top: 30px;
+  width: 100%;
+  font-size: 16px;
+}
