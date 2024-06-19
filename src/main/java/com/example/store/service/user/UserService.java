@@ -9,6 +9,7 @@ public interface UserService {
     Long signup(UserCreate userCreate);
     Boolean validateDuplicate(String email);
     User get(String email, String password);
+    User get(Long userId);
     Long edit(Long userId,UserEdit postEdit);
     Long editUserStatus(Long id, UserStatus userStatus);
     void delete(Long userId);

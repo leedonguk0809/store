@@ -8,7 +8,6 @@ import com.example.store.repository.user.UserRepository;
 import com.example.store.request.user.UserCreate;
 import com.example.store.request.user.UserEdit;
 import lombok.RequiredArgsConstructor;
-import org.bouncycastle.util.StoreException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -42,6 +41,12 @@ public class UserServiceImpl implements UserService {
             throw new InvalidPassword();
         }
     }
+
+    @Override
+    public User get(Long userId) {
+        return userRepository.findById(userId).orElseThrow(UserNotFound::new);
+    }
+
     @Override
     public Long edit(Long userId,UserEdit userEdit) {
         User user = userRepository.findById(userId).orElseThrow(UserNotFound::new);
