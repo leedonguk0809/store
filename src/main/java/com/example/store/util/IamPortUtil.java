@@ -23,6 +23,8 @@ public class IamPortUtil {
     @Value("${iamport.api.key}")
     public static final String apiKey = "8186311043120653";
 
+
+
     @Value("${iamport.api.secret}")
     public static final String apiSecret = "NSVJ3wfmIToVeiaMnpd8HUqW4UqhRJYk7DWfWvZlQto0dd5OFsuYuo6tIkgensAH6OoQBERrnHBc9dUc";
 
