@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="headerFragment">
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <div class="top">
+        <div class="top-menu">
+            <div class="top-menu-box">
+                <div class="menu">
+                    <div>
+                        <a href="/login-form">로그인</a>
+                    </div>
+                    <div><a href="/signup">회원 가입</a></div>
+                    <div><a href="/admin">관리자 페이지</a></div>
+                </div>
+            </div>
+        </div>
+        <div class="nav">
+            <div class="logo-box">
+                <a href="/"><img class="main-logo" src="/assets/spa.png" alt="" /></a>
+            </div>
+            <div class="search-box">
+                <div class="search-input-box">
+                    <label>
+                        <input class="search-input" type="text" />
+                    </label>
+                    <button class="search-btn"></button>
+                </div>
+            </div>
+            <div class="nav-menu-box">
+                <div class="cart-box">
+                    <a href="/cart">
+                        <img class="menu-logo" src="/assets/cart.png" alt="" />
+                    </a>
+                    <p>장바구니</p>
+                </div>
+                <div class="mypage-box">
+                    <a href="/mypage">
+                        <img class="menu-logo" src="/assets/mypage.png" alt="" />
+                    </a>
+                    <p>마이 페이지</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</th:block>
+</html>

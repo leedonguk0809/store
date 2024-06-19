@@ -1,0 +1,171 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    text-decoration: none;
+}
+
+.sign-up-container {
+    display: flex;
+    justify-content: center;
+}
+
+.sign-up-wrapper {
+    max-width: 760px;
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: center; /* 화면 전체의 높이를 차지하도록 수정 */
+}
+
+.main-logo-box{
+    display: flex; /* 인라인 블록 요소로 설정하여 텍스트 크기에 맞춤 */
+    text-align: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.main-logo {
+    width: 200px;
+}
+
+.main-logo img {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.main-title {
+    width: 100%;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 140%;
+    color: rgba(185, 185, 185, 0.966);
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.wrapper .logreg-box {
+    width: 100%;
+    background-color: transparent;
+}
+
+.sign-up-form-box {
+    box-sizing: border-box;
+    width: 70%;
+    outline: none;
+    margin: 0;
+    border: 0;
+}
+
+.sign-up-form-box .input-label {
+    font-size: 14px;
+    font-weight: 550;
+    color: rgba(0, 0, 0, 0.5);
+    padding-bottom: 5px;
+}
+
+.sign-up-form-box .input-box {
+    position: relative;
+    width: 100%;
+    height: 60px;
+    margin: 35px 0;
+}
+
+.email-box {
+    display: flex;
+    width: 100%;
+}
+
+.email-box input[type="email"] {
+    flex: 1; /* 남은 공간을 모두 차지하도록 설정 */
+    padding: 10px; /* 예시로 입력 필드에 패딩 추가 */
+    box-sizing: border-box; /* 내부 패딩을 너비에 포함시킴 */
+}
+
+.email-box .validate-btn {
+    width: 20%; /* 버튼의 너비를 전체의 20%로 설정 */
+    box-sizing: border-box; /* 너비에 패딩과 테두리를 포함시킴 */
+    padding: 10px; /* 예시로 버튼에 패딩 추가 */
+    margin-left: 10px; /* 버튼 사이의 간격을 주기 위한 마진 */
+    cursor: pointer; /* 마우스 커서를 포인터로 변경 */
+    background-color: #f9bb00;
+    color: rgba(255, 255, 255);
+    font-weight: 600;
+    font-size: 12px;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-box .password-check-label {
+    font-size: 12px;
+    color: red;
+    padding: 5px;
+    display: none;
+}
+
+.tel-check-label {
+    font-size: 12px;
+    color: red;
+    padding: 5px;
+    display: none;
+}
+
+.input-box input {
+    width: 100%;
+    box-sizing: border-box;
+    height: 70%;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.05);
+    color: #a09d9d;
+    font-size: 14px;
+    font-weight: 400;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.input-box select {
+    width: 100%;
+    height: 80%;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.05);
+    border: none;
+    outline: none;
+    color: #a09d9d;
+    font-size: 14px;
+    font-weight: 400;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.address-box {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: space-between;
+    padding: 6px 0;
+}
+
+.address-box .search-address-btn {
+    height: 100%;
+    background-color: #f9bb00;
+    color: rgba(255, 255, 255);
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.signup-btn {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    width: 100%;
+    background-color: #f9bb00;
+    color: rgba(255, 255, 255);
+    height: 45px;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
