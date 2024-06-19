@@ -10,12 +10,13 @@
         <result property="name" column="name" />
         <result property="price" column="price" />
         <result property="info" column="info" />
+        <result property="itemImage" column="item_image" />
     </resultMap>
 
     <!-- 새로운 상품을 삽입하는 SQL -->
     <insert id="insertItem" useGeneratedKeys="true" keyProperty="itemId">
-        INSERT INTO item (name, price, info)
-        VALUES (#{name}, #{price}, #{info})
+        INSERT INTO item (name, price, info,item_image)
+        VALUES (#{name}, #{price}, #{info}, #{itemImage})
     </insert>
 
     <!-- 특정 ID의 상품을 조회하는 SQL -->
@@ -28,10 +29,34 @@
         SELECT * FROM item
     </select>
 
+    <select id="findByPage" resultMap="itemResultMap">
+        SELECT *
+        FROM item
+        WHERE 1=1
+        <!-- keyword에 따른 조건 추가 -->
+        <if test="keyword != null and keyword != ''">
+            AND (
+            name LIKE CONCAT('%', #{keyword}, '%')
+            OR info LIKE CONCAT('%', #{keyword}, '%')
+            )
+        </if>
+        ORDER BY item_id
+        <choose>
+            <when test="asc">
+                ASC
+            </when>
+            <otherwise>
+                DESC
+            </otherwise>
+        </choose>
+        LIMIT #{size} OFFSET #{offset}
+    </select>
+
+
     <!-- 특정 ID의 상품을 업데이트하는 SQL -->
     <update id="updateItem">
         UPDATE item
-        SET name = #{name}, price = #{price}, info = #{info}
+        SET name = #{name}, price = #{price}, info = #{info}, item_image = #{itemImage}
         WHERE item_id = #{itemId}
     </update>
 
