@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Payment</title>
+</head>
+<body>
+<h1>Payment Test</h1>
+<button onclick="requestPay()">Pay</button>
+
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>
+<script type="text/javascript">
+    function requestPay() {
+        var IMP = window.IMP;
+        IMP.init('INIpayTest'); // 부여받은 "가맹점 식별코드"를 사용
+
+        IMP.request_pay({
+            pg: "html5_inicis",
+            pay_method: "card",
+            merchant_uid: "order_" + new Date().getTime(),
+            name: "Test Payment",
+            amount: 1000,
+            buyer_email: "buyer@example.com",
+            buyer_name: "Buyer",
+            buyer_tel: "010-1234-5678",
+            buyer_addr: "Seoul, Korea",
+            buyer_postcode: "123-456"
+        }, function (rsp) {
+            if (rsp.success) {
+                $.ajax({
+                    url: "/payments/complete",
+                    method: "POST",
+                    data: {
+                        imp_uid: rsp.imp_uid,
+                        merchant_uid: rsp.merchant_uid,
+                        paid_amount: rsp.paid_amount,
+                        status: rsp.status
+                    },
+                    success: function (data) {
+                        alert(data.message);
+                    }
+                });
+            } else {
+                alert("Payment failed: " + rsp.error_msg);
+            }
+        });
+    }
+</script>
+</body>
+</html>
