@@ -2,6 +2,7 @@ package com.example.store.repository.item;
 
 import com.example.store.domain.Item;
 import com.example.store.repository.mapper.ItemMapper;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,12 @@ class ItemRepositoryImplTest {
 
     @Autowired
     private ItemRepository itemRepository;
-    
+
+    @BeforeEach
+    public void clean(){
+        mapper.deleteAll();
+    }
+
     @Test
     @DisplayName("사이즈, Offset, keyword 를 통해서 정한 크기와 오프셋에 맞는 아이템을 조회 가능하다.")
     void test1() throws Exception {
@@ -66,7 +72,7 @@ class ItemRepositoryImplTest {
         //when
         List<Item> result = itemRepository.findByPage(size, offset, false,keyword);
         //then
-        assertEquals(result.size(),10);
+        assertEquals(10,result.size());
         assertEquals("제목100",result.get(0).getName());
         assertEquals("제목10",result.get(9).getName());
     }
