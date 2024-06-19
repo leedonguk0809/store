@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <div th:replace="fragment/header :: headerFragment"></div>
+  <div>마이 페이지</div>
+  <div class="name" th:text="${user.name}"></div>
+  <div class="price" th:text="${user.email}"></div>
+  <div class="description" th:text="${user.telNumber}"></div>
+  <div class="description" th:text="${user.zipcode}"></div>
+  <div class="description" th:text="${user.mainAddress}"></div>
+  <div class="description" th:text="${user.userStatus}"></div>
+</body>
+</html>
