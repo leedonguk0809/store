@@ -8,10 +8,10 @@ CREATE TABLE carts
 
 CREATE TABLE cart_item
 (
-    cart_item_id BIGINT NOT NULL AUTO_INCREMENT  ,
-    item_id      BIGINT NOT NULL  ,
-    cart_id      BIGINT NOT NULL   ,
-    PRIMARY KEY (cart_item_id)
+    item_id      BIGINT NOT NULL ,
+    cart_id      BIGINT NOT NULL ,
+    item_count   BIGINT NOT NULL,
+    PRIMARY KEY (item_id,cart_id)
 )  ;
 
 CREATE TABLE item
@@ -20,9 +20,9 @@ CREATE TABLE item
     name    VARCHAR(50) NOT NULL  ,
     price   BIGINT      NOT NULL  ,
     info    TEXT        NULL      ,
+    item_image VARCHAR(300) NULL,
     PRIMARY KEY (item_id)
 )  ;
-
 
 CREATE TABLE stock
 (
@@ -68,12 +68,12 @@ CREATE TABLE user
     user_id        BIGINT      NOT NULL AUTO_INCREMENT  ,
     name           VARCHAR(30) NOT NULL  ,
     email          VARCHAR(30) NOT NULL  ,
-    password       VARCHAR(200) NOT NULL  ,
+    password       TEXT  NOT NULL  ,
     tel_number     VARCHAR(20) NOT NULL  ,
     zipcode        VARCHAR(50) NULL      ,
     main_address   VARCHAR(50) NULL      ,
     detail_address VARCHAR(50) NULL      ,
-    user_status VARCHAR(50) NOT NULL,
+    user_status VARCHAR(50)     NULL,
     PRIMARY KEY (user_id)
 ) ;
 
