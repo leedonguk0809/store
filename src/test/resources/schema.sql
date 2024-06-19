@@ -1,4 +1,4 @@
-CREATE TABLE carts
+CREATE TABLE IF NOT EXISTS carts
 (
     cart_id     BIGINT NOT NULL AUTO_INCREMENT,
     user_id     BIGINT NOT NULL   ,
@@ -6,7 +6,7 @@ CREATE TABLE carts
     PRIMARY KEY (cart_id)
 ) ;
 
-CREATE TABLE cart_item
+CREATE TABLE  IF NOT EXISTS cart_item
 (
     item_id      BIGINT NOT NULL ,
     cart_id      BIGINT NOT NULL ,
@@ -14,7 +14,7 @@ CREATE TABLE cart_item
     PRIMARY KEY (item_id,cart_id)
 )  ;
 
-CREATE TABLE item
+CREATE TABLE IF NOT EXISTS item
 (
     item_id BIGINT      NOT NULL AUTO_INCREMENT  ,
     name    VARCHAR(50) NOT NULL  ,
@@ -24,7 +24,7 @@ CREATE TABLE item
     PRIMARY KEY (item_id)
 )  ;
 
-CREATE TABLE stock
+CREATE TABLE IF NOT EXISTS stock
 (
     stock_id BIGINT     NOT NULL AUTO_INCREMENT  ,
     item_id  BIGINT     NOT NULL  ,
@@ -32,7 +32,7 @@ CREATE TABLE stock
     PRIMARY KEY (stock_id)
 )  ;
 
-CREATE TABLE orders
+CREATE TABLE IF NOT EXISTS orders
 (
     order_id       BIGINT      NOT NULL AUTO_INCREMENT  ,
     user_id        BIGINT      NOT NULL  ,
@@ -45,7 +45,7 @@ CREATE TABLE orders
     PRIMARY KEY (order_id)
 )  ;
 
-CREATE TABLE order_item
+CREATE TABLE IF NOT EXISTS order_item
 (
     order_item_id BIGINT NOT NULL AUTO_INCREMENT  ,
     order_id      BIGINT NOT NULL  ,
@@ -53,7 +53,7 @@ CREATE TABLE order_item
     PRIMARY KEY (order_item_id)
 )  ;
 
-CREATE TABLE payment
+CREATE TABLE IF NOT EXISTS payment
 (
     payment_id    BIGINT      NOT NULL AUTO_INCREMENT  ,
     order_id      BIGINT      NOT NULL  ,
@@ -63,7 +63,7 @@ CREATE TABLE payment
     PRIMARY KEY (payment_id)
 )  ;
 
-CREATE TABLE user
+CREATE TABLE IF NOT EXISTS user
 (
     user_id        BIGINT      NOT NULL AUTO_INCREMENT  ,
     name           VARCHAR(30) NOT NULL  ,
@@ -77,54 +77,54 @@ CREATE TABLE user
     PRIMARY KEY (user_id)
 ) ;
 
-CREATE TABLE user_roles (
+CREATE TABLE IF NOT EXISTS user_roles (
                             id BIGINT PRIMARY KEY AUTO_INCREMENT,
                             user_id BIGINT NOT NULL,
                             role VARCHAR(50) NOT NULL
 );
 
-ALTER TABLE order_item
-    ADD CONSTRAINT FK_order_TO_order_item
-        FOREIGN KEY (order_id)
-            REFERENCES orders (order_id);
-
-ALTER TABLE order_item
-    ADD CONSTRAINT FK_item_TO_order_item
-        FOREIGN KEY (item_id)
-            REFERENCES item (item_id);
-
-ALTER TABLE cart_item
-    ADD CONSTRAINT FK_item_TO_cart_item
-        FOREIGN KEY (item_id)
-            REFERENCES item (item_id);
-
-ALTER TABLE cart_item
-    ADD CONSTRAINT FK_cart_TO_cart_item
-        FOREIGN KEY (cart_id)
-            REFERENCES carts (cart_id);
-
-ALTER TABLE carts
-    ADD CONSTRAINT FK_user_TO_carts
-        FOREIGN KEY (user_id)
-            REFERENCES user (user_id);
-
-ALTER TABLE orders
-    ADD CONSTRAINT FK_user_TO_order
-        FOREIGN KEY (user_id)
-            REFERENCES user (user_id);
-
-ALTER TABLE payment
-    ADD CONSTRAINT FK_order_TO_payment
-        FOREIGN KEY (order_id)
-            REFERENCES orders (order_id);
-
-ALTER TABLE stock
-    ADD CONSTRAINT FK_item_TO_stock
-        FOREIGN KEY (item_id)
-            REFERENCES item (item_id);
-
-
-ALTER TABLE user_roles
-    ADD CONSTRAINT FK_user_TO_user_roles
-        FOREIGN KEY (user_id) REFERENCES user(user_id)
-            ON DELETE CASCADE;
+-- ALTER TABLE order_item
+--     ADD CONSTRAINT FK_order_TO_order_item
+--         FOREIGN KEY (order_id)
+--             REFERENCES orders (order_id);
+--
+-- ALTER TABLE order_item
+--     ADD CONSTRAINT FK_item_TO_order_item
+--         FOREIGN KEY (item_id)
+--             REFERENCES item (item_id);
+--
+-- ALTER TABLE cart_item
+--     ADD CONSTRAINT FK_item_TO_cart_item
+--         FOREIGN KEY (item_id)
+--             REFERENCES item (item_id);
+--
+-- ALTER TABLE cart_item
+--     ADD CONSTRAINT FK_cart_TO_cart_item
+--         FOREIGN KEY (cart_id)
+--             REFERENCES carts (cart_id);
+--
+-- ALTER TABLE carts
+--     ADD CONSTRAINT FK_user_TO_carts
+--         FOREIGN KEY (user_id)
+--             REFERENCES user (user_id);
+--
+-- ALTER TABLE orders
+--     ADD CONSTRAINT FK_user_TO_order
+--         FOREIGN KEY (user_id)
+--             REFERENCES user (user_id);
+--
+-- ALTER TABLE payment
+--     ADD CONSTRAINT FK_order_TO_payment
+--         FOREIGN KEY (order_id)
+--             REFERENCES orders (order_id);
+--
+-- ALTER TABLE stock
+--     ADD CONSTRAINT FK_item_TO_stock
+--         FOREIGN KEY (item_id)
+--             REFERENCES item (item_id);
+--
+--
+-- ALTER TABLE user_roles
+--     ADD CONSTRAINT FK_user_TO_user_roles
+--         FOREIGN KEY (user_id) REFERENCES user(user_id)
+--             ON DELETE CASCADE;
