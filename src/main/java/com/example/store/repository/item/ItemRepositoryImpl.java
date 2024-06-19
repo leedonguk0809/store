@@ -1,8 +1,7 @@
-package com.example.store.repository;
+package com.example.store.repository.item;
 
 import com.example.store.domain.Item;
 import com.example.store.repository.mapper.ItemMapper;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

@@ -1,8 +1,8 @@
 package com.example.store.controller;
 
 import com.example.store.dto.ItemDTO;
-import com.example.store.request.ItemCreate;
-import com.example.store.service.ItemService;
+import com.example.store.request.item.ItemCreate;
+import com.example.store.service.item.ItemService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

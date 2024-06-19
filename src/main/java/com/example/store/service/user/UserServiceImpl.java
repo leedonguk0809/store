@@ -2,9 +2,9 @@ package com.example.store.service.user;
 
 import com.example.store.domain.User;
 import com.example.store.domain.UserStatus;
-import com.example.store.exception.InvalidPassword;
-import com.example.store.exception.UserNotFound;
-import com.example.store.repository.UserRepository;
+import com.example.store.exception.user.InvalidPassword;
+import com.example.store.exception.user.UserNotFound;
+import com.example.store.repository.user.UserRepository;
 import com.example.store.request.user.UserCreate;
 import com.example.store.request.user.UserEdit;
 import lombok.RequiredArgsConstructor;
@@ -12,8 +12,6 @@ import org.bouncycastle.util.StoreException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor

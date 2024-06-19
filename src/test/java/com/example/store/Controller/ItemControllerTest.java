@@ -5,8 +5,8 @@ import com.example.store.dto.ItemDTO;
 import com.example.store.exception.item.InvalidItemException;
 import com.example.store.exception.item.ItemNotFound;
 
-import com.example.store.request.ItemCreate;
-import com.example.store.service.ItemService;
+import com.example.store.request.item.ItemCreate;
+import com.example.store.service.item.ItemService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

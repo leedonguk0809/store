@@ -2,8 +2,7 @@ package com.example.store.service.user;
 
 import com.example.store.domain.User;
 import com.example.store.domain.UserStatus;
-import com.example.store.exception.UserNotFound;
-import com.example.store.repository.UserRepository;
+import com.example.store.exception.user.UserNotFound;
 import com.example.store.repository.mapper.UserMapper;
 import com.example.store.request.user.UserCreate;
 import com.example.store.request.user.UserEdit;

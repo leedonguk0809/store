@@ -1,4 +1,4 @@
-package com.example.store.request;
+package com.example.store.request.item;
 
 import lombok.Getter;
 import lombok.Setter;

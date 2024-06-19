@@ -6,7 +6,7 @@ import com.example.store.common.handler.Http403Handler;
 import com.example.store.common.handler.LoginFailHandler;
 import com.example.store.common.handler.LoginSuccessHandler;
 import com.example.store.domain.User;
-import com.example.store.repository.UserRepository;
+import com.example.store.repository.user.UserRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

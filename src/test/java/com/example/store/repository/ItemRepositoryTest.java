@@ -1,6 +1,8 @@
 package com.example.store.repository;
 
 import com.example.store.domain.Item;
+import com.example.store.repository.item.ItemRepository;
+import com.example.store.repository.item.ItemRepositoryImpl;
 import com.example.store.repository.mapper.ItemMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

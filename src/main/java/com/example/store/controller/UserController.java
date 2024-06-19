@@ -1,14 +1,12 @@
 package com.example.store.controller;
 
-import com.example.store.exception.AlreadyExistsEmail;
+import com.example.store.exception.user.AlreadyExistsEmail;
 import com.example.store.request.user.UserCreate;
 import com.example.store.service.user.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.validation.Valid;
 

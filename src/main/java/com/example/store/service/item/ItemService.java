@@ -1,11 +1,11 @@
-package com.example.store.service;
+package com.example.store.service.item;
 
 import com.example.store.domain.Item;
 import com.example.store.dto.ItemDTO;
 import com.example.store.exception.item.InvalidItemException;
 import com.example.store.exception.item.ItemNotFound;
-import com.example.store.repository.ItemRepository;
-import com.example.store.request.ItemCreate;
+import com.example.store.repository.item.ItemRepository;
+import com.example.store.request.item.ItemCreate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

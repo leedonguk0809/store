@@ -1,4 +1,4 @@
-package com.example.store.repository;
+package com.example.store.repository.user;
 
 import com.example.store.domain.User;
 import org.apache.ibatis.annotations.Param;

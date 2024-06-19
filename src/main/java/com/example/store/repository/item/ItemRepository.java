@@ -1,4 +1,4 @@
-package com.example.store.repository;
+package com.example.store.repository.item;
 
 import com.example.store.domain.Item;
 import java.util.List;

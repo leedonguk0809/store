@@ -1,6 +1,8 @@
-package com.example.store.exception;
+package com.example.store.exception.user;
 
-public class AlreadyExistsEmail extends StoreException{
+import com.example.store.exception.StoreException;
+
+public class AlreadyExistsEmail extends StoreException {
     private static String MESSAGE = "이미 사용하는 이메일 입니다.";
 
     public AlreadyExistsEmail() {

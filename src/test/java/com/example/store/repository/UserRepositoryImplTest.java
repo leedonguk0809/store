@@ -1,14 +1,14 @@
 package com.example.store.repository;
 
 import com.example.store.domain.User;
-import com.example.store.exception.UserNotFound;
+import com.example.store.exception.user.UserNotFound;
 import com.example.store.repository.mapper.UserMapper;
+import com.example.store.repository.user.UserRepository;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
