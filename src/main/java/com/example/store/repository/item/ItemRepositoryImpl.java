@@ -32,6 +32,11 @@ public class ItemRepositoryImpl implements ItemRepository {
     }
 
     @Override
+    public List<Item> findByPage(int size, long offset, boolean asc, String keyword) {
+        return itemMapper.findByPage(size,offset,asc,keyword);
+    }
+
+    @Override
     public void update(Item item) {
         itemMapper.updateItem(item);
     }
