@@ -27,12 +27,15 @@ function handleCheckResult(result) {
     if (result.use === 'disable') {
         statusElement.textContent = '중복된 이메일입니다.';
         statusElement.style.color = 'red';
+        statusElement.style.display = 'block';
     } else if (result.use === 'available') {
         statusElement.textContent = '사용 가능한 이메일입니다.';
         statusElement.style.color = 'green';
+        statusElement.style.display = 'block';
     } else {
         statusElement.textContent = '이메일 확인 중 오류가 발생했습니다.';
         statusElement.style.color = 'orange';
+        statusElement.style.display = 'block';
     }
 }
 
