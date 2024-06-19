@@ -8,18 +8,18 @@
 </head>
 <body>
     <div th:replace="fragment/header :: headerFragment"></div>
-    <div>메인화면</div>
-    <div class="item-wrapper">
-        <div th:each="item : ${Items}" class="item">
-            <div>
-                <a th:href="@{|/item/${item.id}|}">
-                    이동
-                </a>
+
+    <div class="grid-container">
+        <div th:each="item : ${Items}" class="grid-item">
+            <div class="item-image">
+                <a th:href="@{|/item/${item.id}|}"><img src="/assets/item.png" alt="" /></a>
             </div>
-            sn../
+            <div class="item-details">
+                <div class="item-name" th:text="${item.name}">테스트 상품</div>
+                <div class="item-price" th:text="${item.price}">90000원</div>
+            </div>
         </div>
-    </div>
-    <div>
+    <div class="page-box">
         <ul class="pagination">
             <li th:class="${itemSearch.page == 1} ? 'disabled' : ''">
                 <a th:if="${itemSearch.page > 1}"
