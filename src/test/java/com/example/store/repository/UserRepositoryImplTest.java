@@ -7,6 +7,7 @@ import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -58,11 +59,10 @@ class UserRepositoryImplTest {
                 .telNumber("01012341234")
                 .userStatus("BRONZE")
                 .build();
-        userMapper.save(user);
+        Long saved = userMapper.save(user);
 
         //when
-        User result = userRepository.findById(1L).orElseThrow(UserNotFound::new);
-
+        User result = userRepository.findById(user.getId()).orElseThrow(UserNotFound::new);
         //then
         assertEquals("kimdodo@naver.com",result.getEmail());
         assertEquals("1234", result.getPassword());
@@ -71,6 +71,7 @@ class UserRepositoryImplTest {
         assertEquals("부산광역시",result.getMainAddress());
         assertEquals("스파로스",result.getDetailAddress());
         assertEquals("01012341234",result.getTelNumber());
+        
     }
 
     @Test
@@ -149,7 +150,7 @@ class UserRepositoryImplTest {
         userMapper.save(user);
 
         user = User.builder()
-                .id(1L)
+                .id(user.getId())
                 .email("kimdodo@naver.com")
                 .password("5678")
                 .name("김도도")
@@ -161,8 +162,8 @@ class UserRepositoryImplTest {
                 .build();
 
         //when
-        User result = userRepository.update(user);
-
+        userRepository.update(user);
+        User result = userMapper.findById(user.getId()).orElseThrow(UserNotFound::new);
         //then
         assertEquals("kimdodo@naver.com",result.getEmail());
         assertEquals("5678", result.getPassword());
@@ -171,5 +172,74 @@ class UserRepositoryImplTest {
         assertEquals("서울특별시",result.getMainAddress());
         assertEquals("종로구",result.getDetailAddress());
         assertEquals("01056785678",result.getTelNumber());
+    }
+
+    @Test
+    @DisplayName("User Id 를 통해서 사용자 권한 정보 조회가 가능하다")
+    void test6() throws Exception {
+        //given
+        User user = User.builder()
+                .id(1L)
+                .email("kimdodo@naver.com")
+                .password("1234")
+                .name("김도도")
+                .zipcode("123-123")
+                .mainAddress("부산광역시")
+                .detailAddress("스파로스")
+                .telNumber("01012341234")
+                .userStatus("BRONZE")
+                .build();
+
+        userMapper.save(user);
+        userMapper.saveUserRole(user.getId(),"USER");
+
+        //when
+        List<String> roles = userRepository.findRoleByUserId(user.getId());
+
+        //then
+        assertEquals(1,roles.size());
+        assertEquals("USER",roles.get(0));
+    }
+
+    @Test
+    @DisplayName("User 객체를 통해서 사용자 등급만 수정 가능하다")
+    void test7() throws Exception {
+        //given
+        User user = User.builder()
+                .email("kimdodo@naver.com")
+                .password("1234")
+                .name("김도도")
+                .zipcode("123-123")
+                .mainAddress("부산광역시")
+                .detailAddress("스파로스")
+                .telNumber("01012341234")
+                .userStatus("BRONZE")
+                .build();
+        userMapper.save(user);
+
+        user = User.builder()
+                .id(user.getId())
+                .email("kimdodo@naver.com")
+                .password("5678")
+                .name("김도도")
+                .zipcode("123-234")
+                .mainAddress("부산광역시")
+                .detailAddress("스파로스")
+                .telNumber("01012341234")
+                .userStatus("SILVER")
+                .build();
+
+        //when
+        userRepository.updateUserStatus(user);
+        User result = userMapper.findById(user.getId()).orElseThrow(UserNotFound::new);
+        //then
+        assertEquals("kimdodo@naver.com",result.getEmail());
+        assertEquals("1234", result.getPassword());
+        assertEquals("김도도",result.getName());
+        assertEquals("123-123",result.getZipcode());
+        assertEquals("부산광역시",result.getMainAddress());
+        assertEquals("스파로스",result.getDetailAddress());
+        assertEquals("01012341234",result.getTelNumber());
+        assertEquals("SILVER",result.getUserStatus());
     }
 }

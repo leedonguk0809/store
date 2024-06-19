@@ -11,8 +11,12 @@ public interface UserRepository {
     Optional<User> findByEmail(String email);
     Optional<User> findByEmailAndPassword(String email,String password);
     List<String> findRoleByUserId(Long userId);
+
+    Boolean existsEmail(String email);
     void saveUserRole(Long userId, String role);
     User save(User user);
-    User update(User user);
+    Long update(User user);
+
+    Long updateUserStatus(User user);
     void delete(Long id);
 }

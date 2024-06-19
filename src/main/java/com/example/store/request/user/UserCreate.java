@@ -1,4 +1,4 @@
-package com.example.store.request;
+package com.example.store.request.user;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -36,7 +36,7 @@ public class UserCreate {
         this.detailAddress = detailAddress;
     }
 
-    public void validate(){
-
+    public void encryptPassword(String encryptedPassword){
+        this.password = encryptedPassword;
     }
 }

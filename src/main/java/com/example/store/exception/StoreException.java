@@ -1,8 +1,11 @@
 package com.example.store.exception;
 
+import lombok.Getter;
+
 import java.util.HashMap;
 import java.util.Map;
 
+@Getter
 public abstract class StoreException extends RuntimeException{
     public final Map<String, String> validation = new HashMap<>();
 

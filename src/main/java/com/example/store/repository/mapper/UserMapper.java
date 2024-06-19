@@ -9,13 +9,16 @@ import java.util.Optional;
 
 @Mapper
 public interface UserMapper {
-    Optional<User> findById(Long id);
+    Optional<User> findById(Long userId);
     Optional<User> findByEmail(String email);
     Optional<User> findByEmailAndPassword(String email,String password);
     List<String> findRoleByUserId(Long userId);
+
+    Boolean existEmail(String email);
     Long save(User user);
     void saveUserRole(@Param("userId") Long userId, @Param("role") String role);
     void update(User user);
+    void updateUserStatus(User user);
     void delete(Long id);
     void deleteAll();
 }

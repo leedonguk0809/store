@@ -22,6 +22,7 @@ public class UserRepositoryImpl implements UserRepository{
         return userMapper.findByEmail(email);
     }
 
+
     @Override
     public Optional<User> findByEmailAndPassword(String email, String password) {
         return userMapper.findByEmailAndPassword(email,password);
@@ -30,6 +31,11 @@ public class UserRepositoryImpl implements UserRepository{
     @Override
     public List<String> findRoleByUserId(Long userId) {
         return userMapper.findRoleByUserId(userId);
+    }
+
+    @Override
+    public Boolean existsEmail(String email) {
+        return userMapper.existEmail(email);
     }
 
     @Override
@@ -44,9 +50,15 @@ public class UserRepositoryImpl implements UserRepository{
     }
 
     @Override
-    public User update(User user) {
+    public Long update(User user) {
         userMapper.update(user);
-        return user;
+        return user.getId();
+    }
+
+    @Override
+    public Long updateUserStatus(User user) {
+        userMapper.updateUserStatus(user);
+        return user.getId();
     }
 
     @Override
