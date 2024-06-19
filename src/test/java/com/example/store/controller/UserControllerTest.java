@@ -74,7 +74,7 @@ class UserControllerTest {
                         .param("mainAddress", userCreate.getMainAddress())
                         .param("detailAddress", userCreate.getDetailAddress())
                         .param("telNumber", userCreate.getTelNumber()))
-                .andExpect(status().isOk())
+                .andExpect(status().is3xxRedirection())
                 .andDo(print());
     }
 
