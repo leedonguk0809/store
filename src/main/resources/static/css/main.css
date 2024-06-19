@@ -1,0 +1,98 @@
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    flex-direction: row; /* 기본값이지만 명시적으로 지정 */
+}
+
+.item {
+    width: calc(25% - 20px); /* 한 줄에 4개씩 배치, 간격은 20px */
+    margin-bottom: 20px;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.item img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.item .name {
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.item .description {
+    font-size: 14px;
+    color: #666666;
+}
+
+@media (max-width: 1200px) {
+    .item {
+        width: calc(25% - 20px); /* 한 줄에 4개씩 배치, 간격은 20px */
+    }
+}
+
+@media (max-width: 992px) {
+    .item {
+        width: calc(33.33% - 20px); /* 한 줄에 3개씩 배치, 간격은 20px */
+    }
+}
+
+@media (max-width: 768px) {
+    .item {
+        width: calc(50% - 20px); /* 한 줄에 2개씩 배치, 간격은 20px */
+    }
+}
+
+@media (max-width: 576px) {
+    .item {
+        width: 100%; /* 한 줄에 1개씩 배치 */
+    }
+}
+
+
+.pagination {
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+    justify-content: center;
+}
+
+.pagination li {
+    margin: 0 5px;
+}
+
+.pagination a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #333;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    transition: background-color 0.3s ease;
+}
+
+.pagination a:hover {
+    background-color: #f0f0f0;
+}
+
+.pagination .active a {
+    font-weight: bold;
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
