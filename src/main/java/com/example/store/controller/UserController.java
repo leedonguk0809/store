@@ -23,6 +23,6 @@ public class UserController {
         }
 
         Long userId = userService.signup(userCreate);
-        return "redirect:/login-form";
+        return "redirect:/";
     }
 }
