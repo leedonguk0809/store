@@ -30,9 +30,6 @@ public class Http401Handler implements AuthenticationEntryPoint {
                 .code("401")
                 .message("유효한 인증이 아닙니다.").build();
 
-        response.setContentType(APPLICATION_JSON_VALUE);
-        response.setCharacterEncoding(UTF_8.name());
-        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-        objectMapper.writeValue(response.getWriter(),errorResponse);
+        request.getRequestDispatcher("/").forward(request, response);
     }
 }

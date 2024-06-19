@@ -33,6 +33,6 @@ public class Http403Handler implements AccessDeniedHandler {
                 .code("403")
                 .message("접근할 수 없습니다.")
                 .build();
-        response.sendRedirect("/");
+        request.getRequestDispatcher("/").forward(request, response);
     }
 }
