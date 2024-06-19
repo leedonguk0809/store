@@ -24,9 +24,11 @@
                 <div class="input-box">
                     <div class="input-label">이메일</div>
                     <div class="email-box">
-                        <input type="email" id="email-input" th:field="${userCreate.email}" placeholder="이메일을 입력하세요" />
-                        <input class="validate-btn" id="email-valid-btn" type="button" onclick="" value="중복 체크">
-                        <div class="email-error-label" id="emailError">
+                        <div class="email-box-wrapper">
+                            <input type="email" id="email-input" th:field="${userCreate.email}" placeholder="이메일을 입력하세요" />
+                            <input class="validate-btn" id="email-valid-btn" type="button" onclick="" value="중복 체크">
+                        </div>
+                        <div class="email-check-label" id="emailError">
                             중복된 이메일 입니다.
                         </div>
                     </div>
