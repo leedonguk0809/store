@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="/css/login.css">
+    <link type="text/css" rel="stylesheet" th:href="@{/css/login.css}">
+    <script type="text/javascript" th:src="@{/js/loginHandler.js}"></script>
 </head>
 <body>
 <section class="section">
@@ -12,7 +13,7 @@
             <!-- 로그인 영역 -->
             <div class="form-box login">
                 <div class="logreg-title">
-                    <a href="/"><img src="../resources/img/main.png" alt=""></a>
+                    <a href="/"><img src="/assets/spa.png" alt=""></a>
                     <p>스파로스 아카데미</p>
                 </div>
                 <form action="">
@@ -20,23 +21,23 @@
                 <span class="icon"
                 ><i class='bx bxs-envelope'></i></box-icon
                         ></span>
-                        <input type="email" />
-                        <label for="">이메일</label>
+                        <input id="email" type="email" />
+                        <label>이메일</label>
                     </div>
                     <div class="input-box">
                 <span class="icon"
                 ><i class='bx bxs-lock-alt'></i></box-icon
                         ></span>
-                        <input type="password" />
-                        <label for="">비밀번호</label>
+                        <input id="password" type="password" />
+                        <label>비밀번호</label>
                     </div>
 
                     <div class="remember-forgot">
                         <label>
-                            <input type="checkbox">자동 로그인</label>
+                            <input type="checkbox"  id="rememberMe" name="rememberMe">자동 로그인</label>
                         <a href="">이메일/비밀번호 찾기</a>
                     </div>
-                    <button type="submit" class="btn">로그인</button>
+                    <button type="button" class="btn" onclick="login()">로그인</button>
 
                     <div class="logreg-link">
                         <p>회원이 아니신가요?
