@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS  cart
+CREATE TABLE carts
 (
     cart_id     BIGINT NOT NULL AUTO_INCREMENT,
     user_id     BIGINT NOT NULL   ,
@@ -6,25 +6,25 @@ CREATE TABLE IF NOT EXISTS  cart
     PRIMARY KEY (cart_id)
 ) ;
 
-CREATE TABLE  IF NOT EXISTS cart_item
+CREATE TABLE cart_item
 (
-    cart_item_id BIGINT NOT NULL AUTO_INCREMENT  ,
-    item_id      BIGINT NOT NULL  ,
-    cart_id      BIGINT NOT NULL   ,
-    PRIMARY KEY (cart_item_id)
+    item_id      BIGINT NOT NULL ,
+    cart_id      BIGINT NOT NULL ,
+    item_count   BIGINT NOT NULL,
+    PRIMARY KEY (item_id,cart_id)
 )  ;
 
-CREATE TABLE IF NOT EXISTS  item
+CREATE TABLE item
 (
     item_id BIGINT      NOT NULL AUTO_INCREMENT  ,
     name    VARCHAR(50) NOT NULL  ,
     price   BIGINT      NOT NULL  ,
     info    TEXT        NULL      ,
+    item_image VARCHAR(300) NULL,
     PRIMARY KEY (item_id)
 )  ;
 
-
-CREATE TABLE IF NOT EXISTS  stock
+CREATE TABLE stock
 (
     stock_id BIGINT     NOT NULL AUTO_INCREMENT  ,
     item_id  BIGINT     NOT NULL  ,
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS  stock
     PRIMARY KEY (stock_id)
 )  ;
 
-CREATE TABLE IF NOT EXISTS  orders
+CREATE TABLE orders
 (
     order_id       BIGINT      NOT NULL AUTO_INCREMENT  ,
     user_id        BIGINT      NOT NULL  ,
@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS  orders
     PRIMARY KEY (order_id)
 )  ;
 
-CREATE TABLE IF NOT EXISTS  order_item
+CREATE TABLE order_item
 (
     order_item_id BIGINT NOT NULL AUTO_INCREMENT  ,
     order_id      BIGINT NOT NULL  ,
@@ -53,7 +53,7 @@ CREATE TABLE IF NOT EXISTS  order_item
     PRIMARY KEY (order_item_id)
 )  ;
 
-CREATE TABLE IF NOT EXISTS  payment
+CREATE TABLE payment
 (
     payment_id    BIGINT      NOT NULL AUTO_INCREMENT  ,
     order_id      BIGINT      NOT NULL  ,
@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS  payment
     PRIMARY KEY (payment_id)
 )  ;
 
-CREATE TABLE IF NOT EXISTS user
+CREATE TABLE user
 (
     user_id        BIGINT      NOT NULL AUTO_INCREMENT  ,
     name           VARCHAR(30) NOT NULL  ,
@@ -77,10 +77,10 @@ CREATE TABLE IF NOT EXISTS user
     PRIMARY KEY (user_id)
 ) ;
 
-CREATE TABLE  IF NOT EXISTS  user_roles (
-    id BIGINT PRIMARY KEY AUTO_INCREMENT,
-    user_id BIGINT NOT NULL,
-    role VARCHAR(50) NOT NULL
+CREATE TABLE user_roles (
+                            id BIGINT PRIMARY KEY AUTO_INCREMENT,
+                            user_id BIGINT NOT NULL,
+                            role VARCHAR(50) NOT NULL
 );
 
 ALTER TABLE order_item
@@ -101,9 +101,9 @@ ALTER TABLE cart_item
 ALTER TABLE cart_item
     ADD CONSTRAINT FK_cart_TO_cart_item
         FOREIGN KEY (cart_id)
-            REFERENCES cart (cart_id);
+            REFERENCES carts (cart_id);
 
-ALTER TABLE cart
+ALTER TABLE carts
     ADD CONSTRAINT FK_user_TO_carts
         FOREIGN KEY (user_id)
             REFERENCES user (user_id);
