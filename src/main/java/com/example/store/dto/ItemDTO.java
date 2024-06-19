@@ -1,4 +1,4 @@
-package com.example.store.domain;
+package com.example.store.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,18 +11,9 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Item {
+public class ItemDTO {
     private Long itemId;
     private String name;
     private Long price;
     private String info;
-
-public Item(String name, Long price, String info) {
-        this.name = name;
-        this.price = price;
-        this.info = info;
-    }
-
 }
-
-
