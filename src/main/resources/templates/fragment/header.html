@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <th:block th:fragment="headerFragment">
-    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link type="text/css" rel="stylesheet" th:href="@{/css/header.css}">
     <div class="top">
         <div class="top-menu">
             <div class="top-menu-box">
                 <div class="menu">
-                    <div>
+                    <div th:if="${isLoggedIn}">
+                        <a href="/auth/logout" methods="post">로그아웃</a>
+                    </div>
+                    <div th:unless="${isLoggedIn}">
                         <a href="/login-form">로그인</a>
                     </div>
                     <div><a href="/signup">회원 가입</a></div>
