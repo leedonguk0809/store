@@ -4,9 +4,37 @@
 <head>
     <meta charset="UTF-8">
     <title>스파로스 아카데미</title>
+    <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
     <div th:replace="fragment/header :: headerFragment"></div>
     <div>메인화면</div>
+    <div class="item-wrapper">
+        <div th:each="item : ${Items}" class="item">
+            <div>
+                <a th:href="@{|/item/${item.id}|}">
+                    이동
+                </a>
+            </div>
+            sn../
+        </div>
+    </div>
+    <div>
+        <ul class="pagination">
+            <li th:class="${itemSearch.page == 1} ? 'disabled' : ''">
+                <a th:if="${itemSearch.page > 1}"
+                   th:href="@{|/item/paged?page=${itemSearch.page - 1}&size=${itemSearch.size}|}">이전</a>
+            </li>
+            <li th:each="pageNumber : ${#numbers.sequence(paging.startPage, paging.endPage)}">
+                <a th:href="@{|/item/paged?page=${pageNumber}&size=${itemSearch.size}|}" th:text="${pageNumber}"
+                   th:class="${pageNumber == itemSearch.page} ? 'active'"></a>
+            </li>
+            <li th:class="${itemSearch.page == paging.totalPage} ? 'disabled' : ''">
+                <a th:if="${itemSearch.page < paging.totalPage}"
+                   th:href="@{|/item/paged?page=${itemSearch.page + 1}&size=${itemSearch.size}|}">다음</a>
+            </li>
+        </ul>
+    </div>
+
 </body>
 </html>
