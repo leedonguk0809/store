@@ -2,12 +2,12 @@ package com.example.store.repository.item;
 
 import com.example.store.domain.Item;
 import com.example.store.repository.mapper.ItemMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-
 public class ItemRepositoryImpl implements ItemRepository {
 
     private final ItemMapper itemMapper;
