@@ -23,6 +23,7 @@ public class StoreApplication {
 
     @Autowired
     private UserMapper userMapper;
+
     public static void main(String[] args) {
         SpringApplication.run(StoreApplication.class, args);
     }
@@ -40,5 +41,6 @@ public class StoreApplication {
                 .roles("ADMIN")
                 .build();
         userMapper.save(user);
+        userMapper.saveUserRole(user.getId(),"ADMIN");
     }
 }
