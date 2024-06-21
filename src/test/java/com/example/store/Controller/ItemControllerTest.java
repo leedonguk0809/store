@@ -45,7 +45,7 @@ class ItemControllerTest {
         itemDTO = ItemDTO.builder()
                     .itemId(1L)
                     .name("Test Item")
-                    .price(100L)
+                    .price(100)
                     .info("Test Info")
                     .build();
     }
@@ -54,7 +54,7 @@ class ItemControllerTest {
     void addItem_shouldAddItemSuccessfully() throws Exception {
         ItemCreate itemCreate = new ItemCreate();
         itemCreate.setName("Test Item");
-        itemCreate.setPrice(100L);
+        itemCreate.setPrice(100);
         itemCreate.setInfo("Test Info");
 
         mockMvc.perform(post("/items")
@@ -69,7 +69,7 @@ class ItemControllerTest {
     void addItem_shouldThrowInvalidItemException_WhenNameIsNull() throws Exception {
         ItemCreate itemCreate = new ItemCreate();
         itemCreate.setName(null);
-        itemCreate.setPrice(100L);
+        itemCreate.setPrice(100);
         itemCreate.setInfo("Test Info");
 
         InvalidItemException invalidItemException = new InvalidItemException("Invalid item data");
@@ -128,7 +128,7 @@ class ItemControllerTest {
     void updateItem_shouldUpdateItemSuccessfully() throws Exception {
         ItemCreate itemCreate = new ItemCreate();
         itemCreate.setName("Updated Item");
-        itemCreate.setPrice(150L);
+        itemCreate.setPrice(150);
         itemCreate.setInfo("Updated Info");
 
         mockMvc.perform(patch("/items/{itemId}", 1L)
@@ -143,7 +143,7 @@ class ItemControllerTest {
     void updateItem_shouldThrowItemNotFoundException_WhenItemDoesNotExist() throws Exception {
         ItemCreate itemCreate = new ItemCreate();
         itemCreate.setName("Updated Item");
-        itemCreate.setPrice(150L);
+        itemCreate.setPrice(150);
         itemCreate.setInfo("Updated Info");
 
         doThrow(new ItemNotFound(1L)).when(itemService).updateItem(anyLong(), any(ItemCreate.class));

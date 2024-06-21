@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.store.repository.mapper.CartItemMapper">
+    <resultMap id="cartItemResultMap" type="com.example.store.domain.CartItem">
+        <id property="id" column="cart_item_id"/>
+        <result property="cartId" column="cart_id"/>
+        <result property="itemCount" column="item_count"/>
+        <association property="item" javaType="Item">
+            <id property="itemId" column="item_id"/>
+            <result property="name" column="name"/>
+            <result property="price" column="price"/>
+            <result property="info" column="info"/>
+            <result property="itemImage" column="item_image"/>
+        </association>
+    </resultMap>
+
+    <select id="findByCartIdAndItemId" resultMap="cartItemResultMap">
+        SELECT c.cart_item_id, c.cart_id,c.item_count,i.item_id,i.name,i.price,i.info,i.item_image
+        FROM cart_item as c LEFT JOIN item as i ON c.item_id = i.item_id
+        WHERE c.cart_id = #{cartId} AND i.item_id = #{itemId}
+    </select>
+
+    <insert id="save">
+        INSERT INTO cart_item (cart_id,item_id,item_count)
+        VALUES (#{cartId},#{itemId},#{itemCount})
+    </insert>
+
+    <update id="updateItemQuantity">
+        UPDATE cart_item
+        SET item_count =  #{itemCount}
+        WHERE cart_item_id = #{cartItemId}
+    </update>
+
+    <delete id="deleteById" >
+        DELETE FROM cart_item
+        WHERE cart_item_id = #{cartItemId}
+    </delete>
+
+    <delete id="deleteByItemId" >
+        DELETE FROM cart_item
+        WHERE cart_id = #{cartId} AND item_id = #{itemId}
+    </delete>
+
+
+    <delete id="deleteCartItem" >
+        DELETE cart_item
+        WHERE cart_id = #{cartId}
+    </delete>
+</mapper>

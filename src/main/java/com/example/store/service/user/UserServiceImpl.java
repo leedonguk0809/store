@@ -1,9 +1,11 @@
 package com.example.store.service.user;
 
+import com.example.store.domain.Cart;
 import com.example.store.domain.User;
 import com.example.store.domain.UserStatus;
 import com.example.store.exception.user.InvalidPassword;
 import com.example.store.exception.user.UserNotFound;
+import com.example.store.repository.mapper.CartMapper;
 import com.example.store.repository.user.UserRepository;
 import com.example.store.request.user.UserCreate;
 import com.example.store.request.user.UserEdit;
@@ -17,12 +19,17 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final CartMapper cartMapper;
     @Transactional
     @Override
     public Long signup(UserCreate userCreate) {
         User user = User.from(userCreate,passwordEncoder);
         userRepository.save(user);
         userRepository.saveUserRole(user.getId(),"COMMON");
+
+        Cart cart = Cart.builder()
+                .userId(user.getId()).build();
+        cartMapper.save(cart);
         return user.getId();
     }
 
