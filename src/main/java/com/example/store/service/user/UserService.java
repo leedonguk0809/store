@@ -13,4 +13,7 @@ public interface UserService {
     Long edit(Long userId,UserEdit postEdit);
     Long editUserStatus(Long id, UserStatus userStatus);
     void delete(Long userId);
+    User getByUsername(String username);
+
+
 }
