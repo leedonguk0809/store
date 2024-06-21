@@ -1,0 +1,101 @@
+@font-face {
+    font-family: "GmarketSansMedium";
+    src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff")
+    format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    font-family: "GmarketSansMedium";
+    margin: 0 auto;
+    text-decoration: none;
+}
+
+.approve-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-family: "GmarketSansMedium";
+    margin: 0 auto;
+    text-decoration: none;
+}
+
+.succes-box {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 50px auto; /* 화면 중앙으로 이동 */
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.succes-message-box {
+    width: 100%;
+    background-color: #f0f0f0;
+    padding: 20px;
+    box-sizing: border-box;
+}
+.approve-box {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.item-box {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Changed alignment */
+    margin-bottom:20px;
+    padding-bottom: 10px;
+    border-bottom: 0.2px solid rgba(0,0,0,0.7);
+}
+
+.label {
+    font-weight: bold;
+    color: rgba(0,0,0,0.7);
+    width: 200px; /* Fixed width for labels */
+    margin-right: 10px;
+    align-items: center;
+    height: 100%
+}
+
+.value {
+    flex: 1;
+    font-size: 14px;
+    text-align: right;
+    align-items: center;
+    height: 100%;
+}
+
+.button-box {
+    margin-right: 10px;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 20px;
+}
+
+.button-box button{
+    width: 100%;
+    cursor: pointer;
+    height: 30px;
+}
+
+.main{
+    background-color: black;
+    color:white;
+    border: none;
+}
+
+.orders {
+    background-color: #f9bb00;
+    color:white;
+    border: none;
+}
+
