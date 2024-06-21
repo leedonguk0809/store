@@ -12,7 +12,7 @@ public interface OrdersMapper {
     List<Orders> findAll();
     Orders findById(@Param("orderId") Long orderId);
     void insertOrder(Orders order);
-    void insertOrderItem(@Param("orderId") Long orderId, @Param("itemId") Long itemId, @Param("itemCount") int itemCount, @Param("totalItemPrice") Long totalItemPrice);
+    void insertOrderItem(@Param("orderId") Long orderId, @Param("itemId") Long itemId, @Param("itemCount") int itemCount, @Param("totalItemPrice") Integer totalItemPrice);
     void updateOrder(Orders order);
     void deleteOrder(@Param("orderId") Long orderId);
     void updateOrderStatus(@Param("orderId") Long orderId, @Param("status") String status);

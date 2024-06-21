@@ -34,7 +34,7 @@ VALUES (4,1,1);
 INSERT INTO orders (user_id, total_price, order_enroll, zipcode, main_address, detail_address, tid, order_status)
 VALUES (1, 60000,'2024-06-21 14:30:00', '12345', '123 Main St', 'Apt 101', NULL, 'READY');
 
-INSERT INTO order_item (order_id, item_id,count)
+INSERT INTO order_item (order_id, item_id,item_count)
 VALUES (1, 1,1), (1, 2,1), (1, 3,1);
 
 --

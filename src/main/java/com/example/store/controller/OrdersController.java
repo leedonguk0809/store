@@ -50,7 +50,7 @@ public class OrdersController {
 
     // 바로구매 버튼 클릭 시 처리
     @PostMapping("/buy/now")
-    public String buyNow(@RequestParam("itemId") Long itemId, @RequestParam("price") Long price, Model model, @RequestParam(value = "quantity", required = false, defaultValue = "1") int quantity) {
+    public String buyNow(@RequestParam("itemId") Long itemId, @RequestParam("price") Integer price, Model model, @RequestParam(value = "quantity", required = false, defaultValue = "1") int quantity) {
         // 현재 사용자 정보 가져오기
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();

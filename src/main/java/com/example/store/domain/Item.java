@@ -14,11 +14,11 @@ import lombok.Setter;
 public class Item {
     private Long itemId;
     private String name;
-    private Long price;
+    private Integer price;
     private String info;
     private String itemImage;
 
-    public Item(String name, Long price, String info,String itemImage) {
+    public Item(String name, Integer price, String info,String itemImage) {
         this.name = name;
         this.price = price;
         this.info = info;
