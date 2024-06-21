@@ -20,7 +20,6 @@ public class ItemSearch {
     @Builder.Default
     private String keyword = "";
 
-    int blockLimit = 3;
     public long getOffset(){
         return (long)(Math.max(1,page)-1)*Math.min(size,MAX_SIZE);
     }
