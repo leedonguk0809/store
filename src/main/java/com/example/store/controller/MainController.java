@@ -74,8 +74,8 @@ public class MainController {
         return "payment/payment";
     }
 
-    @GetMapping("/approve-view")
+    @GetMapping("/admin-view")
     public String getApprove(){
-        return "payment/approve";
+        return "admin/itemAdmin";
     }
 }
