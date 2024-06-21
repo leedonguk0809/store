@@ -5,13 +5,11 @@ import lombok.Getter;
 
 @Getter
 public class CartEdit {
-    private Long userId;
     private Long itemId;
     private Integer quantity;
 
     @Builder
-    public CartEdit(Long userId, Long itemId, Integer quantity) {
-        this.userId = userId;
+    public CartEdit(Long itemId, Integer quantity) {
         this.itemId = itemId;
         this.quantity = quantity;
     }
