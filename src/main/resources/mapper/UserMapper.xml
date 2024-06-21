@@ -81,5 +81,11 @@
         DELETE from user
     </delete>
 
+    <select id="findByUsername" parameterType="string" resultType="com.example.store.domain.User">
+        SELECT u.user_id,  u.email, u.password,u.name, u.tel_number, u.zipcode, u.main_address, u.detail_address,u.user_status, ur.role
+        FROM user u LEFT JOIN user_roles ur ON u.user_id = ur.user_id
+        WHERE u.email = #{email}
+    </select>
+
 
 </mapper>
