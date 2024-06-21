@@ -78,11 +78,10 @@ class CartServiceImplTest {
         CartEdit cartEdit = CartEdit.builder()
                 .itemId(4L)
                 .quantity(10)
-                .userId(1L)
                 .build();
 
         //when
-        cartService.addCart(cartEdit);
+        cartService.addCart(1L,cartEdit);
         Set<CartItem> cartItems = cartService.findByUserId(1L).getCartItems();
         //then
         CartItem result = cartItems.stream().
@@ -102,11 +101,10 @@ class CartServiceImplTest {
         CartEdit cartEdit = CartEdit.builder()
                 .itemId(1L)
                 .quantity(20)
-                .userId(1L)
                 .build();
 
         //when
-        cartService.addCart(cartEdit);
+        cartService.addCart(1L,cartEdit);
         Set<CartItem> cartItems = cartService.findByUserId(1L).getCartItems();
         //then
         CartItem result = cartItems.stream().
@@ -126,11 +124,10 @@ class CartServiceImplTest {
         CartEdit cartEdit = CartEdit.builder()
                 .itemId(1L)
                 .quantity(20)
-                .userId(1L)
                 .build();
 
         //when
-        cartService.editQuantity(cartEdit);
+        cartService.editQuantity(1L,cartEdit);
         Set<CartItem> cartItems = cartService.findByUserId(1L).getCartItems();
         //then
         CartItem result = cartItems.stream().
@@ -150,11 +147,10 @@ class CartServiceImplTest {
         CartEdit cartEdit = CartEdit.builder()
                 .itemId(1L)
                 .quantity(0)
-                .userId(1L)
                 .build();
 
         //when
-        cartService.editQuantity(cartEdit);
+        cartService.editQuantity(1L,cartEdit);
         Set<CartItem> cartItems = cartService.findByUserId(1L).getCartItems();
         //expcet
         assertThrows(CartNotFoundException.class,() -> {
