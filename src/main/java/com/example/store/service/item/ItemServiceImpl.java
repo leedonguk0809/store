@@ -8,18 +8,16 @@ import com.example.store.repository.item.ItemRepository;
 import com.example.store.request.item.ItemCreate;
 import com.example.store.request.item.ItemSearch;
 import com.example.store.response.ItemResponse;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class ItemServiceImpl implements ItemService {
     private final ItemRepository itemRepository;
-
-    public ItemServiceImpl(ItemRepository itemRepository) {
-        this.itemRepository = itemRepository;
-    }
 
     public void addItem(ItemCreate itemCreate) {
         validateItemCreate(itemCreate);
@@ -36,13 +34,13 @@ public class ItemServiceImpl implements ItemService {
         if (item == null) {
             throw new ItemNotFound(itemId);
         }
-        return new ItemDTO(item.getItemId(), item.getName(), item.getPrice(), item.getInfo());
+        return ItemDTO.fromEntity(item);
     }
 
     public List<ItemDTO> getAllItems() {
         List<Item> items = itemRepository.findAll();
         return items.stream()
-                .map(item -> new ItemDTO(item.getItemId(), item.getName(), item.getPrice(), item.getInfo()))
+                .map(ItemDTO::fromEntity)
                 .collect(Collectors.toList());
     }
 
