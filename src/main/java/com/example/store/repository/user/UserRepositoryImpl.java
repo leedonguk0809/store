@@ -65,4 +65,10 @@ public class UserRepositoryImpl implements UserRepository{
     public void delete(Long id) {
         userMapper.delete(id);
     }
+
+    @Override
+    public Optional<User> findByUsername(String username) {
+        // 유저네임으로 유저를 조회하는 메서드 구현
+        return userMapper.findByUsername(username);
+    }
 }
