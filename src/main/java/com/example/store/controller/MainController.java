@@ -46,6 +46,7 @@ public class MainController {
         model.addAttribute("Items",page);
         return "main";
     }
+
     @GetMapping("/item/paged")
     public String getPageV2(@RequestParam(name = "page") int page,
                             @RequestParam(name = "size") int size,
@@ -68,12 +69,13 @@ public class MainController {
         return "main";
     }
 
-    @GetMapping("/item/{itemId}")
-    public String getItemDetail(@PathVariable Long itemId,
-                            Model model) {
+    @GetMapping("/pay-view")
+    public String getPayView(){
+        return "payment/payment";
+    }
 
-        ItemDTO item = itemService.getItem(itemId);
-        model.addAttribute("item", item);
-        return "item/itemDetail";
+    @GetMapping("/approve-view")
+    public String getApprove(){
+        return "payment/approve";
     }
 }
