@@ -19,4 +19,5 @@ public interface UserRepository {
 
     Long updateUserStatus(User user);
     void delete(Long id);
+    Optional<User> findByUsername(String username);
 }
