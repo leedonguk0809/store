@@ -56,6 +56,9 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain  securityFilterChain(HttpSecurity http) throws Exception {
         return http
+                .headers()
+                .frameOptions().sameOrigin()
+                .and()
                 .authorizeRequests()
                 .anyRequest().permitAll()
                 .and()
@@ -67,13 +70,13 @@ public class SecurityConfig {
                 .logoutUrl("/auth/logout")
                 .logoutSuccessUrl("/") // 메인 화면의 URL로 설정
                 .invalidateHttpSession(true)
-                .deleteCookies("JSESSIONID")
+                .deleteCookies("JSESSIONID","remember-me")
                 .logoutSuccessHandler((request, response, authentication) -> {
                     response.sendRedirect("/"); // 추가적인 로그아웃 성공 핸들러 설정
                 })
                 .and()
                 .rememberMe((rememberMe) -> rememberMe
-                        .rememberMeParameter("rememberMe")
+                        .rememberMeParameter("remember-me")
                         .alwaysRemember(false)
                         .tokenValiditySeconds(2592000)
                 )
@@ -95,7 +98,7 @@ public class SecurityConfig {
 
     @Bean
     public TokenBasedRememberMeServices rememberMeServices() {
-        TokenBasedRememberMeServices rememberMeServices = new TokenBasedRememberMeServices("remember-me-key", userDetailsService(userRepository));
+        TokenBasedRememberMeServices rememberMeServices = new TokenBasedRememberMeServices("remember-me", userDetailsService(userRepository));
         rememberMeServices.setAlwaysRemember(false);
         rememberMeServices.setTokenValiditySeconds(2592000);
         return rememberMeServices;
