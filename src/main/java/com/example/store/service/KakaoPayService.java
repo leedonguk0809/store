@@ -39,10 +39,10 @@ public class KakaoPayService {
     @Value("${kakaopay.api.secret.key}")
     private String kakaopaySecretKey;
 
-    @Value("${cid}")
+    @Value("${kakaopay.api.cid}")
     private String cid;
 
-    @Value("${sample.host}")
+    @Value("${application.host}")
     private String applicationHost;
     private static int TAX_FREE_AMOUNT = 0;
 

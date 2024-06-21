@@ -2,39 +2,38 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.store.repository.mapper.OrderItemMapper">
-
     <!-- OrderItem을 삽입하는 SQL -->
-    <insert id="insertOrderItem" parameterType="com.example.store.domain.OrderItem">
-        INSERT INTO order_item (order_id, item_id, item_count, total_item_price)
-        VALUES (#{orderId}, #{itemId}, #{itemCount}, #{totalItemPrice})
-    </insert>
+<!--    <insert id="insertOrderItem" parameterType="com.example.store.domain.OrderItem">-->
+<!--        INSERT INTO order_item (order_id, item_id, item_count, total_item_price)-->
+<!--        VALUES (#{orderId}, #{itemId}, #{itemCount}, #{totalItemPrice})-->
+<!--    </insert>-->
 
-    <!-- OrderItem을 업데이트하는 SQL -->
-    <update id="updateOrderItem" parameterType="com.example.store.domain.OrderItem">
-        UPDATE order_item
-        SET item_count = #{itemCount}, total_item_price = #{totalItemPrice}
-        WHERE order_item_id = #{orderItemId}
-    </update>
+<!--    &lt;!&ndash; OrderItem을 업데이트하는 SQL &ndash;&gt;-->
+<!--    <update id="updateOrderItem" parameterType="com.example.store.domain.OrderItem">-->
+<!--        UPDATE order_item-->
+<!--        SET item_count = #{itemCount}, total_item_price = #{totalItemPrice}-->
+<!--        WHERE order_item_id = #{orderItemId}-->
+<!--    </update>-->
 
-    <!-- OrderItem을 삭제하는 SQL -->
-    <delete id="deleteOrderItem" parameterType="long">
-        DELETE FROM order_item WHERE order_item_id = #{orderItemId}
-    </delete>
+<!--    &lt;!&ndash; OrderItem을 삭제하는 SQL &ndash;&gt;-->
+<!--    <delete id="deleteOrderItem" parameterType="long">-->
+<!--        DELETE FROM order_item WHERE order_item_id = #{orderItemId}-->
+<!--    </delete>-->
 
-    <!-- 특정 OrderItem을 조회하는 SQL -->
-    <select id="selectOrderItemById" parameterType="long" resultType="com.example.store.domain.OrderItem">
-        SELECT * FROM order_item WHERE order_item_id = #{orderItemId}
-    </select>
+<!--    &lt;!&ndash; 특정 OrderItem을 조회하는 SQL &ndash;&gt;-->
+<!--    <select id="selectOrderItemById" parameterType="long" resultType="com.example.store.domain.OrderItem">-->
+<!--        SELECT * FROM order_item WHERE order_item_id = #{orderItemId}-->
+<!--    </select>-->
 
-    <!-- 모든 OrderItem을 조회하는 SQL -->
-    <select id="selectAllOrderItems" resultType="com.example.store.domain.OrderItem">
-        SELECT * FROM order_item
-    </select>
+<!--    &lt;!&ndash; 모든 OrderItem을 조회하는 SQL &ndash;&gt;-->
+<!--    <select id="selectAllOrderItems" resultType="com.example.store.domain.OrderItem">-->
+<!--        SELECT * FROM order_item-->
+<!--    </select>-->
 
-    <!-- OrderItem 수량을 업데이트하는 SQL -->
-    <update id="updateOrderItemQuantity" parameterType="map">
-        UPDATE order_item
-        SET item_count = #{itemCount}
-        WHERE order_item_id = #{orderItemId}
-    </update>
+<!--    &lt;!&ndash; OrderItem 수량을 업데이트하는 SQL &ndash;&gt;-->
+<!--    <update id="updateOrderItemQuantity" parameterType="map">-->
+<!--        UPDATE order_item-->
+<!--        SET item_count = #{itemCount}-->
+<!--        WHERE order_item_id = #{orderItemId}-->
+<!--    </update>-->
 </mapper>
