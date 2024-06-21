@@ -1,5 +1,5 @@
 INSERT INTO user (name, email, password, tel_number, zipcode, main_address, detail_address, user_status)
-VALUES ('김도도', 'kimdodo@naver.com' ,'1234', '123456789', '12345', '123 Main St', 'Apt 101', 'BRONZE');
+VALUES ('김도도', 'kimdodo@naver.com' ,'$40801$hp4FSxjhYrtVWmskT95AX6SJVkPY/UJIGZBzPRgCh5cusDWyjy0NFmVrFVwlDDeZ6s1zQdIBtCR6lScV6rtlOg==$Is/ZLlx6Gkj3nr05Ko+uVgMC5OAMq4aLFw8lnonMdhU=	', '123456789', '12345', '123 Main St', 'Apt 101', 'BRONZE');
 
 INSERT INTO user_roles (user_id,role)
 VALUES (1,'COMMON');

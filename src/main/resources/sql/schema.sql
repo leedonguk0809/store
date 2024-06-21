@@ -79,7 +79,7 @@ CREATE TABLE IF NOT EXISTS user
     user_id        BIGINT      NOT NULL AUTO_INCREMENT  ,
     name           VARCHAR(30) NOT NULL  ,
     email          VARCHAR(30) NOT NULL  ,
-    password       VARCHAR(200) NOT NULL  ,
+    password       TEXT NOT NULL  ,
     tel_number     VARCHAR(20) NOT NULL  ,
     zipcode        VARCHAR(50) NULL      ,
     main_address   VARCHAR(50) NULL      ,
