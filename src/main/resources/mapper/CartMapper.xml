@@ -12,7 +12,7 @@
             <id property="id" column="cart_item_id"/>
             <result property="cartId" column="cart_id"/>
             <result property="itemCount" column="item_count"/>
-            <association property="item" javaType="javaType">
+            <association property="item" javaType="Item">
                 <id property="itemId" column="item_id"/>
                 <result property="name" column="name"/>
                 <result property="price" column="price"/>
