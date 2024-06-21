@@ -16,7 +16,7 @@ import javax.validation.Valid;
 import java.util.TimeZone;
 
 @SpringBootApplication
-public class StoreApplication implements CommandLineRunner {
+public class StoreApplication {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -29,11 +29,6 @@ public class StoreApplication implements CommandLineRunner {
     @PostConstruct
     public void init() {
         TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
-    }
-
-    @Transactional
-    @Override
-    public void run(String... args) throws Exception {
         String adminEmail = "admin@ssgfresh.com";
         String pw = passwordEncoder.encode("1234");
         User user = User.builder()

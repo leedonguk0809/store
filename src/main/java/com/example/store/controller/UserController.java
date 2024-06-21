@@ -38,7 +38,7 @@ public class UserController {
     }
 
     @GetMapping("/my-page")
-    @PreAuthorize("hasRole('COMMON')")
+    @PreAuthorize("hasRole('COMMON') and hasRole('ADMIN')")
     public String myPage(@AuthenticationPrincipal UserDetails currentUser, Model model){
         User user = userService.get(currentUser.getUsername(), currentUser.getPassword());
         UserResponse userResponse = UserResponse.fromEntity(user);
