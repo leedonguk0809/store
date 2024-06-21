@@ -68,4 +68,12 @@ public class UserServiceImpl implements UserService {
     public void delete(Long userId) {
         userRepository.delete(userId);
     }
+
+    @Override
+    public User getByUsername(String email) {
+        // 유저네임으로 유저를 조회하는 메서드 구현
+        return userRepository.findByUsername(email).orElseThrow(UserNotFound::new);
+    }
+
+
 }
