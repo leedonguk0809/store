@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf-extras-springsecurity5">
 <th:block th:fragment="headerFragment">
     <link type="text/css" rel="stylesheet" th:href="@{/css/header.css}">
     <div class="top">
         <div class="top-menu">
             <div class="top-menu-box">
                 <div class="menu">
-                    <div th:if="${isLoggedIn}">
+                    <div th:block sec:authorize="isAuthenticated()">
                         <a href="/auth/logout" methods="post">로그아웃</a>
                     </div>
-                    <div th:unless="${isLoggedIn}">
+                    <div th:block sec:authorize="isAnonymous()">
                         <a href="/login-form">로그인</a>
                     </div>
                     <div><a href="/signup">회원 가입</a></div>
