@@ -6,6 +6,7 @@
     <title>상품 상세</title>
     <link rel="stylesheet" href="/css/detail.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/js/itemDetailHandler.js" defer></script>
     <style>
         .order-actions {
             display: flex;
@@ -102,11 +103,9 @@
                     <input type="hidden" name="quantity" value="1" class="quantity-input">
                     <button class="order-btn" type="submit">바로 구매</button>
                 </form>
-                <form action="/cart/add" method="post" class="inline-form">
-                    <input type="hidden" name="itemId" th:value="${item.itemId}">
-                    <input type="hidden" name="quantity" value="1" class="quantity-input">
-                    <button class="cart-btn" type="submit">장바구니</button>
-                </form>
+                <input type="hidden" name="itemId" id="cartItemId" th:value="${item.itemId}">
+                <input type="hidden" name="quantity" id="cartQuantity" value="1" class="quantity-input">
+                <button class="cart-btn" onclick="addCart()" type="submit">장바구니</button>
             </div>
         </div>
     </div>
