@@ -37,10 +37,11 @@ CREATE TABLE IF NOT EXISTS orders
     order_id       BIGINT      NOT NULL AUTO_INCREMENT  ,
     user_id        BIGINT      NOT NULL  ,
     total_price    BIGINT      NOT NULL  ,
-    order_enroll   DATE        NULL      ,
+    order_enroll   DATETIME        NULL      ,
     zipcode        VARCHAR(20) NOT NULL  ,
     main_address   VARCHAR(50) NOT NULL  ,
     detail_address VARCHAR(50) NOT NULL  ,
+    tid             VARCHAR(255) NULL ,
     order_status   VARCHAR(50) NOT NULL  ,
     PRIMARY KEY (order_id)
     )  ;
@@ -50,18 +51,26 @@ CREATE TABLE IF NOT EXISTS order_item
     order_item_id BIGINT NOT NULL AUTO_INCREMENT  ,
     order_id      BIGINT NOT NULL  ,
     item_id       BIGINT NOT NULL   ,
+    count           INT NOT NULL,
     PRIMARY KEY (order_item_id)
     )  ;
 
 CREATE TABLE IF NOT EXISTS payment
 (
-    payment_id    BIGINT      NOT NULL AUTO_INCREMENT  ,
-    order_id      BIGINT      NOT NULL  ,
-    payment_price BIGINT      NOT NULL  ,
-    payment_date  DATE        NOT NULL  ,
-    bank          VARCHAR(50) NULL      ,
+    payment_id     BIGINT      NOT NULL AUTO_INCREMENT COMMENT '결제 ID',
+    order_id       BIGINT      NOT NULL COMMENT '주문 ID',
+    user_id        BIGINT      NULL     COMMENT '사용자 ID',
+    item_name VARCHAR(255) NOT NULL,
+    tid            VARCHAR(50)        NULL     COMMENT '결제 준비 UUID',
+    aid            VARCHAR(50)        NULL     COMMENT '결제 UUID',
+    total_amount   BIGINT      NULL     COMMENT '총결제 금액',
+    quantity       BIGINT      NULL     COMMENT '총 구매 fid',
+    vat            INT         NULL     COMMENT '세금액',
+    payment_method VARCHAR(50) NULL     COMMENT '결제 방법',
+    created_at     DATETIME        NULL     COMMENT '결제 신청 시간',
+    approved_at    DATETIME        NULL     COMMENT '결제 완료 시간',
     PRIMARY KEY (payment_id)
-    )  ;
+    ) ;
 
 CREATE TABLE IF NOT EXISTS user
 (
