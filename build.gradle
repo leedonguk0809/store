@@ -37,6 +37,9 @@ dependencies {
     implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
     implementation 'org.bouncycastle:bcprov-jdk15on:1.70'
     implementation("commons-codec:commons-codec:1.10")
+    // https://mvnrepository.com/artifact/org.thymeleaf.extras/thymeleaf-extras-springsecurity5
+    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5:3.0.4.RELEASE'
+
     implementation group: 'com.github.iamport', name: 'iamport-rest-client-java', version: '0.2.22'
     // https://mvnrepository.com/artifact/com.squareup.retrofit2/adapter-rxjava2
     implementation group: 'com.squareup.retrofit2', name: 'adapter-rxjava2', version: '2.9.0'
