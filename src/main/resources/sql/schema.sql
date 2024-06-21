@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS carts
     user_id     BIGINT NOT NULL   ,
     total_price BIGINT NOT NULL,
     PRIMARY KEY (cart_id)
-) ;
+);
 
 CREATE TABLE  IF NOT EXISTS cart_item
 (
