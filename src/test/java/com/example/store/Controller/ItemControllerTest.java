@@ -42,7 +42,12 @@ class ItemControllerTest {
 
     @BeforeEach
     void setUp() {
-        itemDTO = new ItemDTO(1L, "Test Item", 100L, "Test Info");
+        itemDTO = ItemDTO.builder()
+                    .itemId(1L)
+                    .name("Test Item")
+                    .price(100L)
+                    .info("Test Info")
+                    .build();
     }
 
     @Test

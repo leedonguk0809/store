@@ -9,3 +9,9 @@ spring:
       schema-locations: classpath:schema.sql # schema.sql 파일만 실행
       data-locations: # data.sql 파일은 실행되지 않음
       mode: always
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.example.store.domain
+  configuration:
+    map-underscore-to-camel-case: true
