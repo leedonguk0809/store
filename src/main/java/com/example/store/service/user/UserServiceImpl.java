@@ -47,6 +47,7 @@ public class UserServiceImpl implements UserService {
         return userRepository.findById(userId).orElseThrow(UserNotFound::new);
     }
 
+    @Transactional
     @Override
     public Long edit(Long userId,UserEdit userEdit) {
         User user = userRepository.findById(userId).orElseThrow(UserNotFound::new);
@@ -54,6 +55,7 @@ public class UserServiceImpl implements UserService {
         return userRepository.update(user);
     }
 
+    @Transactional
     @Override
     public Long editUserStatus(Long id, UserStatus userStatus) {
         User user = userRepository.findById(id).orElseThrow(UserNotFound::new);
