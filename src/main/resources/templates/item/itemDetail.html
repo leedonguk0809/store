@@ -11,7 +11,7 @@
 <div class="item-detail-container">
     <div th:replace="fragment/header :: headerFragment"></div>
     <div class="top-name-box">
-        <h2>스파로스 아카데미 부산 캠퍼스</h2>
+        <h2 th:text="${item.name}">스파로스 아카데미 부산 캠퍼스</h2>
         <div class="item-top-name">스파로스 아카데미 부산</div>
     </div>
     <div class="item-detail-box">
@@ -21,11 +21,11 @@
         <div class="item-short-box">
             <div class="detail-box item-name-box">
                 <div class="label-box">모델명</div>
-                <div class="value-box item-name-label">스파로스 아카데미 부산</div>
+                <div class="value-box item-name-label" th:text="${item.name}">스파로스 아카데미 부산</div>
             </div>
             <div class="detail-box item-price-box">
                 <div class="label-box">판매가</div>
-                <div class="value-box price-label">279,000 <span>원</span></div>
+                <div class="value-box price-label" th:text="${item.price}">279,000 <span>원</span></div>
             </div>
             <div class="detail-box event-box">
                 <div class="label-box">추가혜택</div>
@@ -70,7 +70,7 @@
                 <div class="description-tag">상품 Q&A</div>
                 <div class="description-tag">배송/교환/반품/환불</div>
             </div>
-            <div class="description">
+            <div class="description" th:text="${item.info}">
                 안뇽하세요 이건 내용 입니다. 안뇽하세요 이건 내용 입니다. 안뇽하세요
                 이건 내용 입니다. 안뇽하세요 이건 내용 입니다. 안뇽하세요 이건 내용
                 입니다. 안뇽하세요 이건 내용 입니다. 안뇽하세요 이건 내용 입니다.
