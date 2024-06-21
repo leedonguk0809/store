@@ -12,7 +12,7 @@
     <div class="grid-container">
         <div th:each="item : ${Items}" class="grid-item">
             <div class="item-image">
-                <a th:href="@{|/item/${item.id}|}"><img src="/assets/item.png" alt="" /></a>
+                <a th:href="@{|/item/detail/${item.id}|}"><img src="/assets/item.png" alt="" /></a>
             </div>
             <div class="item-details">
                 <div class="item-name" th:text="${item.name}">테스트 상품</div>
@@ -34,6 +34,9 @@
                    th:href="@{|/item/paged?page=${itemSearch.page + 1}&size=${itemSearch.size}|}">다음</a>
             </li>
         </ul>
+        <form action="/payment/requestPayment" method="post">
+            <button type="submit">컨트롤러 호출</button>
+        </form>
     </div>
 
 </body>
