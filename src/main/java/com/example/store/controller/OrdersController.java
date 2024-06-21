@@ -102,6 +102,8 @@ public class OrdersController {
             log.error("JSON 처리 중 오류 발생", e);
             return "error"; // 에러 페이지로 리다이렉트 또는 다른 처리
         }
+        // 어딘지 모르겠는데 쿼리스트링이 있어야 할 것
+        //
     }
 
     // 주문 생성 폼 보기
