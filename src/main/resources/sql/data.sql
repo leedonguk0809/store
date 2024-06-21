@@ -24,7 +24,7 @@ VALUES (1,0);
 INSERT INTO cart_item (item_id,cart_id,item_count)
 VALUES (1,1,1);
 INSERT INTO cart_item (item_id,cart_id,item_count)
-VALUES (2,,1);
+VALUES (2,1,1);
 INSERT INTO cart_item (item_id,cart_id,item_count)
 VALUES (3,1,1);
 INSERT INTO cart_item (item_id,cart_id,item_count)
