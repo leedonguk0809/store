@@ -36,7 +36,7 @@ public class ItemServicePageTest {
         for (int i = 1; i <= 100; i++) {
             Item item = Item.builder()
                     .name("제목" + i)
-                    .price(i*100L)
+                    .price(i*100)
                     .info("내용" + i)
                     .build();
             itemMapper.insertItem(item);
@@ -62,7 +62,7 @@ public class ItemServicePageTest {
         for (int i = 1; i <= 100; i++) {
             Item item = Item.builder()
                     .name("제목" + i)
-                    .price(i*100L)
+                    .price(i*100)
                     .info("내용" + i)
                     .build();
             itemMapper.insertItem(item);
