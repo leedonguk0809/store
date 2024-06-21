@@ -152,6 +152,10 @@
     background-color: #000;
 }
 
+.item-description{
+    width: 100%;
+}
+
 .description-box {
     width: 70%;
     display: flex;
@@ -177,4 +181,8 @@
     margin-top: 30px;
     width: 100%;
     font-size: 16px;
+    overflow-wrap: break-word; /* 글자가 박스를 넘어갈 경우 줄 바꿈 처리 */
+    word-wrap: break-word; /* 오래된 브라우저 지원을 위한 속성 */
+    word-break: break-word; /* 글자 내 단어 단위 줄 바꿈 처리 */
+    white-space: pre-wrap; /* 공백 유지 처리 */
 }
