@@ -23,27 +23,29 @@ public class CartController {
 
     @GetMapping("/cart")
     public String cartList(@AuthenticationPrincipal UserDetails currentUser, Model model){
-        User user = userService.get(currentUser.getUsername(), currentUser.getPassword());
+        User user = userService.getByUsername(currentUser.getUsername());
         Cart cart = cartService.findByUserId(user.getId());
         model.addAttribute("cart",cart);
         return "cart/cartview";
     }
 
     @ResponseBody
-    @PostMapping("/cart/edit/{cartItemId}")
-    public String cartItemEdit(@RequestBody CartEdit cartEdit,Model model){
-        cartService.editQuantity(cartEdit);
-        Cart cart = cartService.findByUserId(cartEdit.getUserId());
+    @PostMapping("/cart/edit")
+    public String cartItemEdit(@AuthenticationPrincipal UserDetails currentUser,@RequestBody CartEdit cartEdit,Model model){
+        User user = userService.get(currentUser.getUsername(), currentUser.getPassword());
+        cartService.editQuantity(user.getId(),cartEdit);
+        Cart cart = cartService.findByUserId(user.getId());
         model.addAttribute("cart",cart);
         return "redirect:/cart/cartView";
         //응답 정상이면 응답 기반해서 다시 리로드
     }
 
     @ResponseBody
-    @PostMapping("/cart/add/{cartItemId}")
-    public ResponseEntity<Cart> addCartItem(@RequestBody CartEdit cartEdit){
-        cartService.addCart(cartEdit);
-        Cart cart = cartService.findByUserId(cartEdit.getUserId());
+    @PostMapping("/cart/add")
+    public ResponseEntity<Cart> addCartItem(@AuthenticationPrincipal UserDetails currentUser, @RequestBody CartEdit cartEdit){
+        User user = userService.getByUsername(currentUser.getUsername());
+        cartService.addCart(user.getId(),cartEdit);
+        Cart cart = cartService.findByUserId(user.getId());
         return ResponseEntity.ok(cart);
         //응답이 정상이면 모달 창 뛰워서 현재 페이지에 있을지 갈지 여부 파악
     }

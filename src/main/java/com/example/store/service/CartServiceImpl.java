@@ -32,8 +32,8 @@ public class CartServiceImpl implements CartService{
 
     @Transactional
     @Override
-    public void addCart(CartEdit cartEdit) {
-        Cart cart = cartMapper.findByUserId(cartEdit.getUserId()).orElseThrow(CartNotFoundException::new);
+    public void addCart(Long userId,CartEdit cartEdit) {
+        Cart cart = cartMapper.findByUserId(userId).orElseThrow(CartNotFoundException::new);
         Optional<CartItem> cartItem = cartItemMapper.findByCartIdAndItemId(cart.getId(), cartEdit.getItemId());
 
         if (cartItem.isPresent()){
@@ -48,8 +48,8 @@ public class CartServiceImpl implements CartService{
 
     @Transactional
     @Override
-    public void editQuantity(CartEdit cartEdit) {
-        Cart cart = cartMapper.findByUserId(cartEdit.getUserId())
+    public void editQuantity(Long userId,CartEdit cartEdit) {
+        Cart cart = cartMapper.findByUserId(userId)
                 .orElseThrow(CartNotFoundException::new);
 
         CartItem cartItem = cartItemMapper.findByCartIdAndItemId(cart.getId(), cartEdit.getItemId())
