@@ -21,6 +21,11 @@ public class OrdersServiceImpl implements OrdersService {
     }
 
     @Override
+    public List<Orders> getOrdersByUserId(Long userId) {
+        return ordersMapper.findByUserId(userId);
+    }
+
+    @Override
     public Orders getOrderById(Long orderId) {
         return ordersMapper.findById(orderId);
     }

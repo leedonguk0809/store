@@ -1,11 +1,47 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>상품 상세</title>
     <link rel="stylesheet" href="/css/detail.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .order-actions {
+            display: flex;
+            justify-content: space-between;
+        }
+        .order-actions .inline-form {
+            display: inline-block;
+        }
+        .order-btn {
+            width: 200px;
+            height: 50px;
+            background-color: #f0c14b;
+            border: 1px solid #a88734;
+            text-align: center;
+            line-height: 50px;
+            font-weight: bold;
+        }
+        .cart-btn {
+            width: 200px;
+            height: 50px;
+            background-color: #000;
+            color: #fff;
+            border: 1px solid #a88734;
+            text-align: center;
+            line-height: 50px;
+            font-weight: bold;
+        }
+        .button-box {
+            display: flex;
+            align-items: center;
+        }
+        .order-count {
+            width: 50px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
 <div class="item-detail-container">
@@ -39,8 +75,7 @@
                 <div class="value-box delivery-box">
                     <div>무료 배송</div>
                     <div class="delivery-notice">
-                        * 일부 상품의 경우 상품별, 지역별 보유량에 따라 배송 지연이 될
-                        수 있습니다.
+                        * 일부 상품의 경우 상품별, 지역별 보유량에 따라 배송 지연이 될 수 있습니다.
                     </div>
                     <div class="delivery-notice">
                         * 도서산간(제주 포함) 의 경우 추가 배송비가 발생할 수 있습니다.
@@ -50,14 +85,28 @@
             <div class="order-box">
                 <div class="label-box">주문 수량</div>
                 <div class="value-box order-count-box">
-                    <button class="order-btn" type="button">+</button>
-                    <div class="order-count">1</div>
-                    <button class="order-btn">-</button>
+                    <div class="button-box">
+                        <button class="order-btn" type="button" id="decrease-quantity">-</button>
+                        <input type="text" id="quantity" class="order-count" value="1" readonly>
+                        <button class="order-btn" type="button" id="increase-quantity">+</button>
+                    </div>
+                    <div class="total-price-box">
+                        <span id="total-price" th:text="${item.price}">10000</span> 원
+                    </div>
                 </div>
             </div>
-            <div class="button-box">
-                <button class="buy-btn">바로 구매</button>
-                <button class="cart-btn">장바 구니</button>
+            <div class="order-actions">
+                <form action="/orders/buy/now" method="post" class="inline-form">
+                    <input type="hidden" name="itemId" th:value="${item.itemId}">
+                    <input type="hidden" name="price" th:value="${item.price}">
+                    <input type="hidden" name="quantity" value="1" class="quantity-input">
+                    <button class="order-btn" type="submit">바로 구매</button>
+                </form>
+                <form action="/cart/add" method="post" class="inline-form">
+                    <input type="hidden" name="itemId" th:value="${item.itemId}">
+                    <input type="hidden" name="quantity" value="1" class="quantity-input">
+                    <button class="cart-btn" type="submit">장바구니</button>
+                </form>
             </div>
         </div>
     </div>
@@ -71,15 +120,43 @@
                 <div class="description-tag">배송/교환/반품/환불</div>
             </div>
             <div class="description" th:text="${item.info}">
-                안뇽하세요 이건 내용 입니다. 안뇽하세요 이건 내용 입니다. 안뇽하세요
-                이건 내용 입니다. 안뇽하세요 이건 내용 입니다. 안뇽하세요 이건 내용
-                입니다. 안뇽하세요 이건 내용 입니다. 안뇽하세요 이건 내용 입니다.
-                안뇽하세요 이건 내용 입니다. 안뇽하세요 이건 내용 입니다. 안뇽하세요
-                이건 내용 입니다. 안뇽하세요 이건 내용 입니다. 안뇽하세요 이건 내용
+                안녕하세요 이건 내용 입니다. 안녕하세요 이건 내용 입니다. 안녕하세요
+                이건 내용 입니다. 안녕하세요 이건 내용 입니다. 안녕하세요 이건 내용
+                입니다. 안녕하세요 이건 내용 입니다. 안녕하세요 이건 내용 입니다.
+                안녕하세요 이건 내용 입니다. 안녕하세요 이건 내용 입니다. 안녕하세요
+                이건 내용 입니다. 안녕하세요 이건 내용 입니다. 안녕하세요 이건 내용
                 입니다.
             </div>
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        const price = parseInt($(".price-label").text().replace(/[^0-9]/g, ''));
+
+        function updateTotalPrice() {
+            const quantity = parseInt($("#quantity").val());
+            const totalPrice = price * quantity;
+            $("#total-price").text(totalPrice.toLocaleString());
+            $(".quantity-input").val(quantity);
+        }
+
+        $("#decrease-quantity").click(function () {
+            let quantity = parseInt($("#quantity").val());
+            if (quantity > 1) {
+                $("#quantity").val(quantity - 1);
+                updateTotalPrice();
+            }
+        });
+
+        $("#increase-quantity").click(function () {
+            let quantity = parseInt($("#quantity").val());
+            $("#quantity").val(quantity + 1);
+            updateTotalPrice();
+        });
+
+        updateTotalPrice();
+    });
+</script>
 </body>
 </html>

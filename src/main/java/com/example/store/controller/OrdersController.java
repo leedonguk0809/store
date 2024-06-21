@@ -5,20 +5,15 @@ import com.example.store.domain.Orders;
 import com.example.store.domain.User;
 import com.example.store.service.orders.OrdersService;
 import com.example.store.service.user.UserService;
-
 import lombok.extern.log4j.Log4j2;
-
-import org.hibernate.criterion.Order;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
+import java.security.Principal;
 import java.util.List;
 
 @Log4j2
@@ -50,11 +45,12 @@ public class OrdersController {
 
     // 바로구매 버튼 클릭 시 처리
     @PostMapping("/buy/now")
-    public String buyNow(@RequestParam("itemId") Long itemId, @RequestParam("price") Integer price, Model model, @RequestParam(value = "quantity", required = false, defaultValue = "1") int quantity) {
+
+    public String buyNow(@RequestParam("itemId") Long itemId, @RequestParam("price") Long price, Model model, @RequestParam(value = "quantity", required = false, defaultValue = "1") int quantity, Principal principal) {
+
         // 현재 사용자 정보 가져오기
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-        User user = userService.get(userDetails.getUsername(), userDetails.getPassword());
+        String email = principal.getName();
+        User user = userService.getByUsername(email);
 
         // 아이템 생성
         Item item = Item.builder()
@@ -72,7 +68,7 @@ public class OrdersController {
         ordersService.createOrder(order);
 
         // 연동필요: 결제 페이지로 리다이렉트 또는 다른 처리
-        return "redirect:/orders/confirmation";
+        return "redirect:/payment";
     }
 
     // 주문 생성 폼 보기
@@ -84,15 +80,10 @@ public class OrdersController {
 
     // 주문 생성
     @PostMapping("/create")
-    public String createOrder(@ModelAttribute @Valid Orders order, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return "orders/create"; // 유효성 검사 실패 시 다시 입력 폼으로
-        }
-
+    public String createOrder(@ModelAttribute Orders order) {
         // 현재 사용자 정보 가져오기
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-        User user = userService.get(userDetails.getUsername(), userDetails.getPassword());
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userService.getByUsername(username);
 
         order.setUserId(user.getId());
         ordersService.createOrder(order);
@@ -109,11 +100,7 @@ public class OrdersController {
 
     // 주문 수정
     @PostMapping("/edit/{id}")
-    public String updateOrder(@PathVariable("id") Long id, @ModelAttribute @Valid Orders order, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return "orders/edit"; // 유효성 검사 실패 시 다시 입력 폼으로
-        }
-
+    public String updateOrder(@PathVariable("id") Long id, @ModelAttribute Orders order) {
         ordersService.updateOrder(id, order);
         return "redirect:/orders"; // 유효성 검사 통과 시 주문 수정 후 주문 목록 페이지로 리다이렉트
     }

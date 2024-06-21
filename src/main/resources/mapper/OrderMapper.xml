@@ -14,7 +14,6 @@
         <result property="orderEnroll" column="order_enroll"/>
         <result property="orderStatus" column="order_status"/>
         <result property="totalItemCount" column="total_item_count"/>
-        <result property="tid" column="tid"/>
         <collection property="items" ofType="com.example.store.domain.Item">
             <id property="itemId" column="item_id"/>
             <result property="name" column="name"/>
@@ -24,20 +23,30 @@
     </resultMap>
 
     <select id="findAll" resultMap="orderResultMap">
-        SELECT * FROM orders
-                          LEFT JOIN order_item ON orders.order_id = order_item.order_id
-                          LEFT JOIN item ON order_item.item_id = item.item_id
+        SELECT orders.*, item.*, order_item.item_count, order_item.total_item_price
+        FROM orders
+                 LEFT JOIN order_item ON orders.order_id = order_item.order_id
+                 LEFT JOIN item ON order_item.item_id = item.item_id
     </select>
 
     <select id="findById" parameterType="long" resultMap="orderResultMap">
-        SELECT * FROM orders
-                          LEFT JOIN order_item ON orders.order_id = order_item.order_id
-                          LEFT JOIN item ON order_item.item_id = item.item_id
+        SELECT orders.*, item.*, order_item.item_count, order_item.total_item_price
+        FROM orders
+                 LEFT JOIN order_item ON orders.order_id = order_item.order_id
+                 LEFT JOIN item ON order_item.item_id = item.item_id
         WHERE orders.order_id = #{orderId}
     </select>
 
+    <select id="findByUserId" parameterType="long" resultMap="orderResultMap">
+        SELECT orders.*, item.*, order_item.item_count, order_item.total_item_price
+        FROM orders
+                 LEFT JOIN order_item ON orders.order_id = order_item.order_id
+                 LEFT JOIN item ON order_item.item_id = item.item_id
+        WHERE orders.user_id = #{userId}
+    </select>
+
     <insert id="insertOrder" parameterType="com.example.store.domain.Orders">
-        INSERT INTO orders (user_id, order_price, zipcode, main_address, detail_address, order_enroll, order_status, total_item_count)
+        INSERT INTO orders (user_id, total_price, zipcode, main_address, detail_address, order_enroll, order_status, total_item_count)
         VALUES (#{userId}, #{orderPrice}, #{zipcode}, #{mainAddress}, #{detailAddress}, #{orderEnroll}, #{orderStatus}, #{totalItemCount})
     </insert>
 
