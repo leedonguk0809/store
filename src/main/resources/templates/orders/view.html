@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>주문 상세</title>
+    <link rel="stylesheet" href="/css/detail.css" />
+</head>
+<body>
+<div class="order-detail-container">
+    <div th:replace="fragment/header :: headerFragment"></div>
+    <div class="order-detail-box">
+        <h2>주문 상세 정보</h2>
+        <div class="detail-box">
+            <div class="label-box">주문 ID</div>
+            <div class="value-box" th:text="${order.orderId}">12345</div>
+        </div>
+        <div class="detail-box">
+            <div class="label-box">사용자 ID</div>
+            <div class="value-box" th:text="${order.userId}">12345</div>
+        </div>
+        <div class="detail-box">
+            <div class="label-box">총 금액</div>
+            <div class="value-box" th:text="${order.orderPrice}">10000</div>
+        </div>
+        <div class="detail-box">
+            <div class="label-box">총 수량</div>
+            <div class="value-box" th:text="${order.totalItemCount}">1</div>
+        </div>
+        <div class="order-actions">
+            <form action="/payment" method="post" class="inline-form">
+                <input type="hidden" name="orderId" th:value="${order.orderId}">
+                <input type="hidden" name="orderPrice" th:value="${order.orderPrice}">
+                <button class="order-btn" type="submit">결제하기</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
