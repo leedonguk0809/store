@@ -36,6 +36,7 @@ public class Orders {
     private String orderEnroll;
     private String orderStatus;
     private int totalItemCount;
+    private String tid;
 
     private List<Item> items;
 
