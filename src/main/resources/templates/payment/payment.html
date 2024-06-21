@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>결제 버튼 예제</title>
+</head>
+<body>
+
+<h1>결제 버튼 예제</h1>
+
+<button id="paymentButton">결제하기</button>
+
+<script>
+    document.getElementById('paymentButton').addEventListener('click', function() {
+        var paymentRequest = {
+            orderId: 1,
+            userId: 1,
+            itemName: "Sample Item", // 적절한 아이템 이름으로 변경해야 합니다.
+            quantity: 3,
+            totalAmount: 60000
+        };
+
+        // 쿼리 스트링 생성
+        var queryString = Object.keys(paymentRequest).map(function(key) {
+            return encodeURIComponent(key) + '=' + encodeURIComponent(paymentRequest[key]);
+        }).join('&');
+
+        // 최종 URL 생성
+        var finalUrl = '/ready?' + queryString;
+
+        // 현재 창에서 페이지 이동
+        window.location.href = finalUrl;
+    });
+</script>
+
+</body>
+</html>
