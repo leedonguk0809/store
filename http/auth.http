@@ -2,7 +2,7 @@
 POST http://localhost:8080/signup
 Content-Type: application/x-www-form-urlencoded
 
-email=kimdodo@naver.com&password=1234&name=kim&telNumber=01012341234&zipcode=123-123&mainAddress=Busan&detailAddress=spa
+email=ehddnr0481@naver.com&password=1234&name=kim&telNumber=01012341234&zipcode=123-123&mainAddress=Busan&detailAddress=spa
 
 ### 로그인
 # @no-redirect
