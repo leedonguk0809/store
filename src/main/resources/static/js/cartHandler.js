@@ -55,3 +55,21 @@ window.onclick = function (event) {
         closeModal();
     }
 };
+
+
+const createOrder = () => {
+    const selectedItems = [];
+    document.querySelectorAll('.cart-item-checkbox:checked').forEach(checkbox => {
+        let id = checkbox.getAttribute('data-item-id');
+        var quantityElement = document.getElementById('order-quantity-'+id);
+        var quantityValue = quantityElement.textContent.trim();
+        selectedItems.push({
+            itemId: id,
+            quantity: quantityValue,
+        });
+    });
+
+    // JSON으로 변환
+    const jsonData = JSON.stringify(selectedItems);
+    console.log(jsonData);
+}
