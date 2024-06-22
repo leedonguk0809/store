@@ -7,69 +7,72 @@
     <resultMap id="orderResultMap" type="com.example.store.domain.Orders">
         <id property="orderId" column="order_id"/>
         <result property="userId" column="user_id"/>
-        <result property="orderPrice" column="order_price"/>
+        <result property="orderPrice" column="total_price"/>
         <result property="zipcode" column="zipcode"/>
         <result property="mainAddress" column="main_address"/>
         <result property="detailAddress" column="detail_address"/>
         <result property="orderEnroll" column="order_enroll"/>
         <result property="orderStatus" column="order_status"/>
         <result property="totalItemCount" column="total_item_count"/>
+        <result property="tid" column="tid"/>
         <collection property="items" ofType="com.example.store.domain.Item">
             <id property="itemId" column="item_id"/>
             <result property="name" column="name"/>
             <result property="price" column="price"/>
             <result property="info" column="info"/>
+            <result property="itemCount" column="item_count"/>
+            <result property="totalItemPrice" column="total_item_price"/>
         </collection>
     </resultMap>
 
     <select id="findAll" resultMap="orderResultMap">
-        SELECT orders.*, item.*, order_item.item_count, order_item.total_item_price
-        FROM orders
-                 LEFT JOIN order_item ON orders.order_id = order_item.order_id
-                 LEFT JOIN item ON order_item.item_id = item.item_id
+        SELECT o.*, i.*, oi.item_count, oi.total_item_price
+        FROM orders o
+                 LEFT JOIN order_item oi ON o.order_id = oi.order_id
+                 LEFT JOIN item i ON oi.item_id = i.item_id
     </select>
 
     <select id="findById" parameterType="long" resultMap="orderResultMap">
-        SELECT orders.*, item.*, order_item.item_count, order_item.total_item_price
-        FROM orders
-                 LEFT JOIN order_item ON orders.order_id = order_item.order_id
-                 LEFT JOIN item ON order_item.item_id = item.item_id
-        WHERE orders.order_id = #{orderId}
+        SELECT o.*, i.*, oi.item_count, oi.total_item_price
+        FROM orders o
+                 LEFT JOIN order_item oi ON o.order_id = oi.order_id
+                 LEFT JOIN item i ON oi.item_id = i.item_id
+        WHERE o.order_id = #{orderId}
     </select>
 
     <select id="findByUserId" parameterType="long" resultMap="orderResultMap">
-        SELECT orders.*, item.*, order_item.item_count, order_item.total_item_price
-        FROM orders
-                 LEFT JOIN order_item ON orders.order_id = order_item.order_id
-                 LEFT JOIN item ON order_item.item_id = item.item_id
-        WHERE orders.user_id = #{userId}
+        SELECT o.*, i.*, oi.item_count, oi.total_item_price
+        FROM orders o
+                 LEFT JOIN order_item oi ON o.order_id = oi.order_id
+                 LEFT JOIN item i ON oi.item_id = i.item_id
+        WHERE o.user_id = #{userId}
     </select>
 
     <insert id="insertOrder" parameterType="com.example.store.domain.Orders">
-        INSERT INTO orders (user_id, total_price, zipcode, main_address, detail_address, order_enroll, order_status, total_item_count)
-        VALUES (#{userId}, #{orderPrice}, #{zipcode}, #{mainAddress}, #{detailAddress}, #{orderEnroll}, #{orderStatus}, #{totalItemCount})
+        INSERT INTO orders (user_id, total_price, zipcode, main_address, detail_address, order_enroll, order_status, total_item_count, tid)
+        VALUES (#{userId}, #{orderPrice}, #{zipcode}, #{mainAddress}, #{detailAddress}, NOW(), #{orderStatus}, #{totalItemCount}, #{tid})
     </insert>
 
-    <insert id="insertOrderItem" parameterType="com.example.store.domain.Item">
-        INSERT INTO order_item (order_id, item_id, item_count, total_item_price)
-        VALUES (#{orderId}, #{itemId}, #{itemCount}, #{totalItemPrice})
+    <insert id="insertOrderItem" parameterType="map">
+        INSERT INTO order_item (order_id, item_id, item_count, item_price, total_item_price)
+        VALUES (#{orderId}, #{itemId}, #{itemCount}, #{itemPrice}, #{totalItemPrice})
     </insert>
 
     <update id="updateOrder" parameterType="com.example.store.domain.Orders">
         UPDATE orders
-        SET user_id = #{userId}, order_price = #{orderPrice}, zipcode = #{zipcode}, main_address = #{mainAddress}, detail_address = #{detailAddress}, order_enroll = #{orderEnroll}, order_status = #{orderStatus}, total_item_count = #{totalItemCount}
+        SET user_id = #{userId}, total_price = #{orderPrice}, zipcode = #{zipcode}, main_address = #{mainAddress}, detail_address = #{detailAddress}, order_enroll = #{orderEnroll}, order_status = #{orderStatus}, total_item_count = #{totalItemCount}, tid = #{tid}
         WHERE order_id = #{orderId}
     </update>
 
     <update id="updateOrderStatus">
         UPDATE orders
-        SET order_status=#{status}
+        SET order_status = #{status}
         WHERE order_id = #{orderId}
     </update>
 
     <update id="updateOrderTid">
         UPDATE orders
-        SET tid=#{tid}
+        SET tid = #{tid}
         WHERE order_id = #{orderId}
     </update>
 
