@@ -32,6 +32,6 @@ public class Http401Handler implements AuthenticationEntryPoint {
                 .code("401")
                 .message("유효한 인증이 아닙니다.").build();
 
-        request.getRequestDispatcher("/").forward(request, response);
+        response.sendRedirect("/");
     }
 }
