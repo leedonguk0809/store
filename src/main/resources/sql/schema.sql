@@ -139,3 +139,5 @@ ALTER TABLE user_roles
     ADD CONSTRAINT FK_user_TO_user_roles
         FOREIGN KEY (user_id) REFERENCES user(user_id)
             ON DELETE CASCADE;
+
+ALTER TABLE orders ADD COLUMN total_item_count INT;
