@@ -1,23 +1,29 @@
 package com.example.store.service.orders;
 
-import com.example.store.domain.Item;
 import com.example.store.domain.Orders;
 import com.example.store.repository.mapper.OrdersMapper;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class OrdersServiceImpl implements OrdersService {
 
     private final OrdersMapper ordersMapper;
 
+    public OrdersServiceImpl(OrdersMapper ordersMapper) {
+        this.ordersMapper = ordersMapper;
+    }
+
     @Override
     public List<Orders> getAllOrders() {
         return ordersMapper.findAll();
+    }
+
+    @Override
+    public Orders getOrderById(Long id) {
+        return ordersMapper.findById(id);
     }
 
     @Override
@@ -26,29 +32,36 @@ public class OrdersServiceImpl implements OrdersService {
     }
 
     @Override
-    public Orders getOrderById(Long orderId) {
-        return ordersMapper.findById(orderId);
-    }
-
-    @Override
     @Transactional
     public void createOrder(Orders order) {
         ordersMapper.insertOrder(order);
-        for (Item item : order.getItems()) {
-            ordersMapper.insertOrderItem(order.getOrderId(), item.getItemId(), 1, item.getPrice());
-        }
+        order.getItems().forEach(item -> {
+            ordersMapper.insertOrderItem(order.getOrderId(), item.getItemId(), item.getItemCount(), item.getPrice(), item.getTotalItemPrice());
+        });
     }
 
     @Override
     @Transactional
-    public void updateOrder(Long orderId, Orders order) {
-        order.setOrderId(orderId);
+    public void updateOrder(Long id, Orders order) {
+        order.setOrderId(id);
         ordersMapper.updateOrder(order);
     }
 
     @Override
     @Transactional
-    public void deleteOrder(Long orderId) {
-        ordersMapper.deleteOrder(orderId);
+    public void deleteOrder(Long id) {
+        ordersMapper.deleteOrder(id);
+    }
+
+    @Override
+    @Transactional
+    public void updateOrderStatus(Long id, String status) {
+        ordersMapper.updateOrderStatus(id, status);
+    }
+
+    @Override
+    @Transactional
+    public void updateOrderTid(Long id, String tid) {
+        ordersMapper.updateOrderTid(id, tid);
     }
 }
