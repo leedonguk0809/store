@@ -17,12 +17,16 @@ public class Item {
     private Integer price;
     private String info;
     private String itemImage;
+    private Integer itemCount;
+    private Integer totalItemPrice;
 
-    public Item(String name, Integer price, String info,String itemImage) {
+    public Item(String name, Integer price, String info,String itemImage, Integer itemCount, Integer totalItemPrice) {
         this.name = name;
         this.price = price;
         this.info = info;
         this.itemImage = itemImage;
+        this.itemCount = itemCount;
+        this.totalItemPrice = totalItemPrice;
     }
 
 }
