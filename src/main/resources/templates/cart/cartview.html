@@ -23,20 +23,20 @@
             </tr>
             </thead>
             <tbody>
-            <tr class="cart__list__detail">
-                <td class="select-td"><input type="checkbox" /></td>
+            <tr class="cart__list__detail" th:each="cartItem : ${cartItems}">
+                <td class="select-td">
+                    <input type="checkbox" class="cart-item-checkbox" th:data-item-id="${cartItem.item.itemId}"/>
+                </td>
                 <td class="image-td">
                     <img src="assets/item.png" alt="magic mouse" />
                 </td>
                 <td class="info-td">
-                    <a href="#">컴퓨존</a
-                    ><span class="cart__list__smartstore"> 스마트스토어</span>
-                    <p>[애플] Magic Mouse [MK2E3KH/A]</p>
-                    <span class="price">88,900원</span>
+                    <p th:text="${cartItem.item.name}">[애플] Magic Mouse [MK2E3KH/A]</p>
+                    <span class="price" th:text="${cartItem.item.price}">88,900원</span>
                 </td>
-                <td class="unit-price">88,900원</td>
+                <td class="unit-price" th:text="${cartItem.item.price}">88,900원</td>
                 <td class="cart__list__option">
-                    <p>상품 주문 수량: <span class="quantity">1</span>개</p>
+                    <p>상품 주문 수량: <span class="quantity" th:id="'order-quantity-' + ${cartItem.item.itemId}" >1</span>개</p>
                     <button
                             type="button"
                             class="cart__list__optionbtn"
@@ -46,38 +46,9 @@
                     </button>
                 </td>
                 <td class="total-price-td">
-                    <span class="total-price">88,900원</span>
+                    <span class="total-price" th:text="${cartItem.getTotalPrice()}"></span>
                 </td>
 
-                <td class="delete-td">
-                    <button onclick="deleteRow(this)">삭제</button>
-                </td>
-            </tr>
-            <tr class="cart__list__detail">
-                <td class="select-td"><input type="checkbox" /></td>
-                <td class="image-td">
-                    <img src="assets/item.png" alt="magic mouse" />
-                </td>
-                <td class="info-td">
-                    <a href="#">컴퓨존</a
-                    ><span class="cart__list__smartstore"> 스마트스토어</span>
-                    <p>[애플] Magic Mouse [MK2E3KH/A]</p>
-                    <span class="price">88,900원</span>
-                </td>
-                <td class="unit-price">88,900원</td>
-                <td class="cart__list__option">
-                    <p>상품 주문 수량: <span class="quantity">1</span>개</p>
-                    <button
-                            type="button"
-                            class="cart__list__optionbtn"
-                            onclick="openModal(this)"
-                    >
-                        수량 변경
-                    </button>
-                </td>
-                <td class="total-price-td">
-                    <span class="total-price">88,900원</span>
-                </td>
                 <td class="delete-td">
                     <button onclick="deleteRow(this)">삭제</button>
                 </td>
@@ -86,8 +57,8 @@
         </form>
     </table>
     <div class="cart__mainbtns">
-        <button class="cart__bigorderbtn left">쇼핑 계속하기</button>
-        <button class="cart__bigorderbtn right">주문하기</button>
+        <button class="cart__bigorderbtn left" href="/">쇼핑 계속하기</button>
+        <button class="cart__bigorderbtn right" onclick="createOrder()">주문하기</button>
     </div>
     <div id="quantityModal" class="modal">
         <div class="modal-content">
