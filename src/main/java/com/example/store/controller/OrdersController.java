@@ -3,12 +3,14 @@ package com.example.store.controller;
 import com.example.store.domain.Item;
 import com.example.store.domain.Orders;
 import com.example.store.domain.User;
+import com.example.store.request.kakao.KakaoPaymentRequest;
 import com.example.store.service.orders.OrdersService;
 import com.example.store.service.user.UserService;
+import com.example.store.response.kakao.ReadyResponse;
+import com.example.store.service.KakaoPayService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +28,9 @@ public class OrdersController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private KakaoPayService kakaoPayService;
 
     // 주문 목록 보기
     @GetMapping
@@ -45,9 +50,8 @@ public class OrdersController {
 
     // 바로구매 버튼 클릭 시 처리
     @PostMapping("/buy/now")
-
-    public String buyNow(@RequestParam("itemId") Long itemId, @RequestParam("price") Long price, Model model, @RequestParam(value = "quantity", required = false, defaultValue = "1") int quantity, Principal principal) {
-
+    @ResponseBody
+    public ReadyResponse buyNow(@RequestParam("itemId") Long itemId, @RequestParam("price") Integer price, @RequestParam(value = "quantity", required = false, defaultValue = "1") int quantity, Principal principal) {
         // 현재 사용자 정보 가져오기
         String email = principal.getName();
         User user = userService.getByUsername(email);
@@ -67,8 +71,16 @@ public class OrdersController {
 
         ordersService.createOrder(order);
 
-        // 연동필요: 결제 페이지로 리다이렉트 또는 다른 처리
-        return "redirect:/payment";
+        // 카카오페이 결제 준비
+        ReadyResponse readyResponse = kakaoPayService.ready(KakaoPaymentRequest.builder()
+                .orderId(order.getOrderId())
+                .userId(user.getId())
+                .itemName(item.getName())
+                .quantity(quantity)
+                .totalAmount(price.intValue() * quantity)
+                .build());
+
+        return readyResponse;
     }
 
     // 주문 생성 폼 보기
