@@ -1,6 +1,7 @@
 package com.example.store.controller;
 
 import com.example.store.domain.Cart;
+import com.example.store.domain.CartItem;
 import com.example.store.domain.User;
 import com.example.store.request.cart.CartEdit;
 import com.example.store.service.CartService;
@@ -14,6 +15,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Set;
+
 @Slf4j
 @Controller
 @RequiredArgsConstructor
@@ -25,7 +28,8 @@ public class CartController {
     public String cartList(@AuthenticationPrincipal UserDetails currentUser, Model model){
         User user = userService.getByUsername(currentUser.getUsername());
         Cart cart = cartService.findByUserId(user.getId());
-        model.addAttribute("cart",cart);
+        Set<CartItem> cartItems = cart.getCartItems();
+        model.addAttribute("cartItems",cartItems);
         return "cart/cartview";
     }
 
