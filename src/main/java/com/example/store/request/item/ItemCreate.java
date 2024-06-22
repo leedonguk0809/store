@@ -7,6 +7,6 @@ import lombok.Setter;
 @Setter
 public class ItemCreate {
     private String name;
-    private Long price;
+    private Integer price;
     private String info;
 }

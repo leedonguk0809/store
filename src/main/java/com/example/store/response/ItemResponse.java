@@ -9,12 +9,12 @@ import lombok.Getter;
 public class ItemResponse {
     private Long id;
     private String name;
-    private Long price;
+    private Integer price;
     private String info;
     private String profileImage;
 
     @Builder
-    public ItemResponse(Long id, String name, Long price, String info, String profileImage) {
+    public ItemResponse(Long id, String name, Integer price, String info, String profileImage) {
         this.id = id;
         this.name = name;
         this.price = price;

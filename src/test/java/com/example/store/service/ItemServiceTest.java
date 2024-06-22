@@ -38,7 +38,7 @@ class ItemServiceTest {
     void addItem_shouldAddItemSuccessfully() {
         ItemCreate itemCreate = new ItemCreate();
         itemCreate.setName("Test Item");
-        itemCreate.setPrice(100L);
+        itemCreate.setPrice(100);
         itemCreate.setInfo("Test Info");
 
         itemService.addItem(itemCreate);
@@ -50,7 +50,7 @@ class ItemServiceTest {
     void addItem_shouldThrowInvalidItemException_WhenNameIsNull() {
         ItemCreate itemCreate = new ItemCreate();
         itemCreate.setName(null);
-        itemCreate.setPrice(100L);
+        itemCreate.setPrice(100);
         itemCreate.setInfo("Test Info");
 
         InvalidItemException exception = assertThrows(InvalidItemException.class, () -> itemService.addItem(itemCreate));
@@ -62,7 +62,7 @@ class ItemServiceTest {
     void addItem_shouldThrowInvalidItemException_WhenPriceIsInvalid() {
         ItemCreate itemCreate = new ItemCreate();
         itemCreate.setName("Test Item");
-        itemCreate.setPrice(0L);
+        itemCreate.setPrice(0);
         itemCreate.setInfo("Test Info");
 
         InvalidItemException exception = assertThrows(InvalidItemException.class, () -> itemService.addItem(itemCreate));
@@ -75,7 +75,7 @@ class ItemServiceTest {
         Item item = new Item();
         item.setItemId(1L);
         item.setName("Test Item");
-        item.setPrice(100L);
+        item.setPrice(100);
         item.setInfo("Test Info");
 
         when(itemRepository.findById(anyLong())).thenReturn(item);
@@ -100,13 +100,13 @@ class ItemServiceTest {
         Item item1 = new Item();
         item1.setItemId(1L);
         item1.setName("Test Item 1");
-        item1.setPrice(100L);
+        item1.setPrice(100);
         item1.setInfo("Test Info 1");
 
         Item item2 = new Item();
         item2.setItemId(2L);
         item2.setName("Test Item 2");
-        item2.setPrice(200L);
+        item2.setPrice(200);
         item2.setInfo("Test Info 2");
 
         when(itemRepository.findAll()).thenReturn(List.of(item1, item2));
@@ -121,12 +121,12 @@ class ItemServiceTest {
         Item item = new Item();
         item.setItemId(1L);
         item.setName("Test Item");
-        item.setPrice(100L);
+        item.setPrice(100);
         item.setInfo("Test Info");
 
         ItemCreate itemCreate = new ItemCreate();
         itemCreate.setName("Updated Item");
-        itemCreate.setPrice(150L);
+        itemCreate.setPrice(150);
         itemCreate.setInfo("Updated Info");
 
         when(itemRepository.findById(anyLong())).thenReturn(item);
@@ -142,7 +142,7 @@ class ItemServiceTest {
 
         ItemCreate itemCreate = new ItemCreate();
         itemCreate.setName("Updated Item");
-        itemCreate.setPrice(150L);
+        itemCreate.setPrice(150);
         itemCreate.setInfo("Updated Info");
 
         ItemNotFound exception = assertThrows(ItemNotFound.class, () -> itemService.updateItem(1L, itemCreate));
@@ -155,7 +155,7 @@ class ItemServiceTest {
         Item item = new Item();
         item.setItemId(1L);
         item.setName("Test Item");
-        item.setPrice(100L);
+        item.setPrice(100);
         item.setInfo("Test Info");
 
         when(itemRepository.findById(anyLong())).thenReturn(item);

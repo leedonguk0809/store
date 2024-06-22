@@ -35,7 +35,7 @@ class ItemRepositoryTest {
     void saveAndFindItem() {
         Item item = Item.builder()
                 .name("Test Item")
-                .price(100L)
+                .price(100)
                 .info("Test Info")
                 .build();
 
@@ -50,12 +50,12 @@ class ItemRepositoryTest {
     void findAllItems() {
         Item item1 = Item.builder()
                 .name("Test Item 1")
-                .price(100L)
+                .price(100)
                 .info("Test Info 1")
                 .build();
         Item item2 = Item.builder()
                 .name("Test Item 2")
-                .price(200L)
+                .price(200)
                 .info("Test Info 2")
                 .build();
 
@@ -70,14 +70,14 @@ class ItemRepositoryTest {
     void updateItem() {
         Item item = Item.builder()
                 .name("Test Item")
-                .price(100L)
+                .price(100)
                 .info("Test Info")
                 .build();
 
         itemRepository.save(item);
 
         item.setName("Updated Item");
-        item.setPrice(150L);
+        item.setPrice(150);
         item.setInfo("Updated Info");
         itemRepository.update(item);
 
@@ -91,7 +91,7 @@ class ItemRepositoryTest {
     void deleteItem() {
         Item item = Item.builder()
                 .name("Test Item")
-                .price(100L)
+                .price(100)
                 .info("Test Info")
                 .build();
 

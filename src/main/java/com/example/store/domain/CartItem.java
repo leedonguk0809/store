@@ -1,8 +1,8 @@
 package com.example.store.domain;
 
 
+import com.example.store.request.cart.CartEdit;
 import lombok.Builder;
-import lombok.Data;
 import lombok.Getter;
 
 
@@ -10,11 +10,11 @@ import lombok.Getter;
 public class CartItem {
     private Long id;
     private Long cartId;
-    private Integer itemCount;
+    private int itemCount;
     private Item item;
 
     @Builder
-    public CartItem(Long id, Long cartId, Integer itemCount) {
+    public CartItem(Long id, Long cartId, int itemCount) {
         this.id = id;
         this.cartId = cartId;
         this.itemCount = itemCount;

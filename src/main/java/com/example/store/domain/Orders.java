@@ -19,7 +19,7 @@ public class Orders {
     private Long userId;
 
     @NotNull
-    private Long orderPrice;
+    private Integer orderPrice;
 
     @NotEmpty
     @Size(max = 20)
@@ -41,7 +41,7 @@ public class Orders {
     private List<Item> items;
 
     @Builder
-    public Orders(Long orderId, Long userId, Long orderPrice, String zipcode, String mainAddress, String detailAddress, String orderEnroll, String orderStatus, int totalItemCount) {
+    public Orders(Long orderId, Long userId, Integer orderPrice, String zipcode, String mainAddress, String detailAddress, String orderEnroll, String orderStatus, int totalItemCount) {
         this.orderId = orderId;
         this.userId = userId;
         this.orderPrice = orderPrice;
