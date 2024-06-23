@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS stock
 (
     stock_id BIGINT     NOT NULL AUTO_INCREMENT  ,
     item_id  BIGINT     NOT NULL  ,
-    stock   INT      NOT NULL  ,
+    quantity   INT      NOT NULL  ,
     PRIMARY KEY (stock_id)
     )  ;
 

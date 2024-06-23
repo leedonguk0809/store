@@ -1,372 +1,249 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-    <title>SB Admin 2 - Charts</title>
+  <title>SB Admin 2 - 상품 관리</title>
 
-    <!-- Custom fonts for this template-->
-<!--    <link-->
-<!--      href="vendor/fontawesome-free/css/all.min.css"-->
-<!--      rel="stylesheet"-->
-<!--      type="text/css"-->
-<!--    />-->
-    <link
-      href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-      rel="stylesheet"
-    />
-
-    <!-- Custom styles for this template-->
-    <link href="/css/sb-admin-2.min.css" rel="stylesheet" />
-  </head>
-
-  <body id="page-top">
-    <div id="wrapper">
-      <ul
-        class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
-        id="accordionSidebar"
-      >
-        <a
-          class="sidebar-brand d-flex align-items-center justify-content-center"
-          href="index.html"
-        >
-          <div class="sidebar-brand-text mx-3">스파로스 ADMIN</div>
-        </a>
-
-        <hr class="sidebar-divider my-0" />
-        <hr class="sidebar-divider" />
-
-        <div class="sidebar-heading">매출 조회</div>
-
-        <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item active">
-          <a class="nav-link" href="#">
-            <i class="fas fa-fw fa-chart-area"></i>
-            <span>매출 조회</span></a
-          >
-        </li>
-
-        <li class="nav-item active">
-          <a class="nav-link" href="#">
-            <i class="fas fa-fw fa-chart-area"></i>
-            <span>상품 관리</span></a
-          >
-        </li>
-        <!-- Divider -->
-        <hr class="sidebar-divider" />
-      </ul>
-
-      <div id="content-wrapper" class="d-flex flex-column">
-        <div id="content">
-          <nav
-            class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow"
-          >
-            <!-- Sidebar Toggle (Topbar) -->
-            <button
-              id="sidebarToggleTop"
-              class="btn btn-link d-md-none rounded-circle mr-3"
-            >
-              <i class="fa fa-bars"></i>
-            </button>
-
-            <!-- Topbar Search -->
-            <form
-              class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search"
-            >
-              <div class="input-group">
-                <input
-                  type="text"
-                  class="form-control bg-light border-0 small"
-                  placeholder="Search for..."
-                  aria-label="Search"
-                  aria-describedby="basic-addon2"
-                />
-                <div class="input-group-append">
-                  <button class="btn btn-primary" type="button">
-                    <i class="fas fa-search fa-sm"></i>
-                  </button>
-                </div>
-              </div>
-            </form>
-
-            <!-- Topbar Navbar -->
-            <ul class="navbar-nav ml-auto">
-              <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-              <li class="nav-item dropdown no-arrow d-sm-none">
-                <a
-                  class="nav-link dropdown-toggle"
-                  href="#"
-                  id="searchDropdown"
-                  role="button"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  <i class="fas fa-search fa-fw"></i>
-                </a>
-                <!-- Dropdown - Messages -->
-                <div
-                  class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                  aria-labelledby="searchDropdown"
-                >
-                  <form class="form-inline mr-auto w-100 navbar-search">
-                    <div class="input-group">
-                      <input
-                        type="text"
-                        class="form-control bg-light border-0 small"
-                        placeholder="Search for..."
-                        aria-label="Search"
-                        aria-describedby="basic-addon2"
-                      />
-                      <div class="input-group-append">
-                        <button class="btn btn-primary" type="button">
-                          <i class="fas fa-search fa-sm"></i>
-                        </button>
-                      </div>
-                    </div>
-                  </form>
-                </div>
-              </li>
-
-              <!-- Nav Item - Alerts -->
-              <li class="nav-item dropdown no-arrow mx-1">
-                <a
-                  class="nav-link dropdown-toggle"
-                  href="#"
-                  id="alertsDropdown"
-                  role="button"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  HOME
-                </a>
-                <!-- Dropdown - Alerts -->
-              </li>
-
-              <!-- Nav Item - Messages -->
-
-              <div class="topbar-divider d-none d-sm-block"></div>
-              <!-- Nav Item - User Information -->
-              <li class="nav-item dropdown no-arrow">
-                <a
-                  class="nav-link dropdown-toggle"
-                  href="#"
-                  id="userDropdown"
-                  role="button"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  <span class="mr-2 d-none d-lg-inline text-gray-600 small"
-                    >ADMIN</span
-                  >
-                  <img
-                    class="img-profile rounded-circle"
-                    src="img/undraw_profile.svg"
-                  />
-                </a>
-                <!-- Dropdown - User Information -->
-                <div
-                  class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                  aria-labelledby="userDropdown"
-                >
-                  <a class="dropdown-item" href="#">
-                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Profile
-                  </a>
-                  <a class="dropdown-item" href="#">
-                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Settings
-                  </a>
-                  <a class="dropdown-item" href="#">
-                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Activity Log
-                  </a>
-                  <div class="dropdown-divider"></div>
-                  <a
-                    class="dropdown-item"
-                    href="#"
-                    data-toggle="modal"
-                    data-target="#logoutModal"
-                  >
-                    <i
-                      class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"
-                    ></i>
-                    Logout
-                  </a>
-                </div>
-              </li>
-            </ul>
-          </nav>
-          <!-- End of Topbar -->
-
-          <div class="container-fluid">
-            <!-- Page Heading -->
-            <h1 class="h3 mb-2 text-gray-800">상품 관리</h1>
-            <p class="mb-4">상품 재고, 수정, 삭제 관리</p>
-
-            <!-- DataTales Example -->
-            <div class="card shadow mb-4">
-              <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary"></h6>
-              </div>
-
-              <div class="card-body ">
-                <button
-                  type="button"
-                  class="btn btn-primary btn-dark btn-sm float-right mb-3"
-                >
-                  신규 상품 추가
-                </button>
-                <div class="table-responsive mt-2">
-                  <table
-                    class="table table-bordered"
-                    id="dataTable"
-                    width="100%"
-                    cellspacing="0"
-                  >
-                    <thead>
-                      <tr>
-                        <th>상품 ID</th>
-                        <th>상품명</th>
-                        <th>가격</th>
-                        <th>재고량</th>
-                        <th></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>Tiger Nixon</td>
-                        <td>System Architect</td>
-                        <td>Edinburgh</td>
-                        <td>61</td>
-                        <td>
-                          <a href="" class="collapsed">수정</a>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Garrett Winters</td>
-                        <td>Accountant</td>
-                        <td>Tokyo</td>
-                        <td>63</td>
-                        <td>
-                          <a href="" class="collapsed">수정</a>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Ashton Cox</td>
-                        <td>Junior Technical Author</td>
-                        <td>San Francisco</td>
-                        <td>66</td>
-                        <td>
-                          <a href="" class="collapsed">수정</a>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Cedric Kelly</td>
-                        <td>Senior Javascript Developer</td>
-                        <td>Edinburgh</td>
-                        <td>22</td>
-                        <td>
-                          <a href="" class="collapsed">수정</a>
-                          </div>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- /.container-fluid -->
-        </div>
-        <!-- End of Main Content -->
-
-        <!-- Footer -->
-        <footer class="sticky-footer bg-white">
-          <div class="container my-auto">
-            <div class="copyright text-center my-auto">
-              <span>Copyright &copy; Your Website 2020</span>
-            </div>
-          </div>
-        </footer>
-        <!-- End of Footer -->
-      </div>
-      <!-- End of Content Wrapper -->
-    </div>
-    <!-- End of Page Wrapper -->
-
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-      <i class="fas fa-angle-up"></i>
+  <!-- Custom fonts for this template -->
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+  <link href="/css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="/css/admin-modal.css" rel="stylesheet">
+</head>
+<body id="page-top">
+<div id="wrapper">
+  <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <div class="sidebar-brand-text mx-3">스파로스 ADMIN</div>
     </a>
 
-    <!-- Logout Modal-->
-    <div
-      class="modal fade"
-      id="logoutModal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-            <button
-              class="close"
-              type="button"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">×</span>
-            </button>
+    <hr class="sidebar-divider my-0">
+    <hr class="sidebar-divider">
+    <div class="sidebar-heading">매출 조회</div>
+
+    <li class="nav-item active">
+      <a class="nav-link" href="#">
+        <i class="fas fa-fw fa-chart-area"></i>
+        <span>매출 조회</span>
+      </a>
+    </li>
+
+    <li class="nav-item active">
+      <a class="nav-link" href="#">
+        <i class="fas fa-fw fa-chart-area"></i>
+        <span>상품 관리</span>
+      </a>
+    </li>
+
+    <hr class="sidebar-divider">
+  </ul>
+
+  <div id="content-wrapper" class="d-flex flex-column">
+    <div id="content">
+      <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+          <i class="fa fa-bars"></i>
+        </button>
+
+        <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+          <div class="input-group">
+            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <button class="btn btn-primary" type="button">
+                <i class="fas fa-search fa-sm"></i>
+              </button>
+            </div>
           </div>
-          <div class="modal-body">
-            Select "Logout" below if you are ready to end your current session.
+        </form>
+
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item dropdown no-arrow d-sm-none">
+            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fas fa-search fa-fw"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+              <form class="form-inline mr-auto w-100 navbar-search">
+                <div class="input-group">
+                  <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                  <div class="input-group-append">
+                    <button class="btn btn-primary" type="button">
+                      <i class="fas fa-search fa-sm"></i>
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </li>
+
+          <li class="nav-item dropdown no-arrow mx-1">
+            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              HOME
+            </a>
+          </li>
+
+          <div class="topbar-divider d-none d-sm-block"></div>
+
+          <li class="nav-item dropdown no-arrow">
+            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span class="mr-2 d-none d-lg-inline text-gray-600 small">ADMIN</span>
+              <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
+            </a>
+            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+              <a class="dropdown-item" href="#">
+                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                Profile
+              </a>
+              <a class="dropdown-item" href="#">
+                <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                Settings
+              </a>
+              <a class="dropdown-item" href="#">
+                <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                Activity Log
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                Logout
+              </a>
+            </div>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="container-fluid">
+        <h1 class="h3 mb-2 text-gray-800">상품 관리</h1>
+        <p class="mb-4">상품 재고, 수정, 삭제 관리</p>
+
+        <div class="card shadow mb-4">
+          <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary"></h6>
           </div>
-          <div class="modal-footer">
-            <button
-              class="btn btn-secondary"
-              type="button"
-              data-dismiss="modal"
-            >
-              Cancel
+
+          <div class="card-body">
+            <button id="addProductBtn" type="button" class="btn btn-primary btn-dark btn-sm float-right mb-3">
+              신규 상품 추가
             </button>
-            <a class="btn btn-primary" href="login.html">Logout</a>
+            <div class="table-responsive mt-2">
+              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                <tr>
+                  <th>상품 ID</th>
+                  <th>상품명</th>
+                  <th>가격</th>
+                  <th>재고량</th>
+                  <th></th>
+                </tr>
+                </thead>
+                <tbody id="itemTableBody">
+                <!-- JavaScript에서 데이터 추가 -->
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
+
+      <!-- Modal for Product -->
+      <div id="productModal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <form id="productForm">
+            <div class="form-group">
+              <label for="productName">상품 이름</label>
+              <input type="text" class="form-control" id="productName" name="name" required>
+            </div>
+            <div class="form-group">
+              <label for="productPrice">상품 가격</label>
+              <input type="number" class="form-control" id="productPrice" name="price" required>
+            </div>
+            <div class="form-group">
+              <label for="stockQuantity">재고량</label>
+              <input type="number" class="form-control" id="stockQuantity" name="quantity" required>
+            </div>
+            <div class="form-group">
+              <label for="productDescription">상품 상세 정보</label>
+              <textarea class="form-control" id="productDescription" name="info" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+              <label for="productImage">이미지 업로드</label>
+              <input type="file" class="form-control-file" id="productImage" name="itemImage" accept="image/*" required>
+            </div>
+            <button type="submit" class="btn btn-primary">저장</button>
+          </form>
+        </div>
+      </div>
+      <!-- End of Modal for Product -->
+
+      <!-- Modal for Edit Product -->
+      <div id="editProductModal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <form id="editProductForm">
+            <input type="hidden" id="editProductId" name="itemId">
+            <div class="form-group">
+              <label for="editProductPrice">상품 가격</label>
+              <input type="number" class="form-control" id="editProductPrice" name="price" required>
+            </div>
+            <div class="form-group">
+              <label for="editStockQuantity">재고량</label>
+              <input type="number" class="form-control" id="editStockQuantity" name="quantity" required>
+            </div>
+            <div class="form-group">
+              <label for="editProductDescription">상품 상세 정보</label>
+              <textarea class="form-control" id="editProductDescription" name="info" rows="3" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">수정</button>
+          </form>
+        </div>
+      </div>
+      <!-- End of Modal for Edit Product -->
     </div>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <footer class="sticky-footer bg-white">
+      <div class="container my-auto">
+        <div class="copyright text-center my-auto">
+          <span>Copyright &copy; Your Website 2020</span>
+        </div>
+      </div>
+    </footer>
+  </div>
+</div>
 
-    <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+<a class="scroll-to-top rounded" href="#page-top">
+  <i class="fas fa-angle-up"></i>
+</a>
 
-    <!-- Custom scripts for all pages-->
-    <script src="../../static/js/sb-admin-2.min.js"></script>
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+        <a class="btn btn-primary" href="login.html">Logout</a>
+      </div>
+    </div>
+  </div>
+</div>
 
-    <!-- Page level plugins -->
-    <script src="vendor/chart.js/Chart.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="../../static/js/demo/chart-area-demo.js"></script>
-    <script src="../../static/js/demo/chart-pie-demo.js"></script>
-    <script src="../../static/js/demo/chart-bar-demo.js"></script>
-  </body>
+<script src="/vendor/jquery/jquery.min.js"></script>
+<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="/static/js/sb-admin-2.min.js"></script>
+<script src="/vendor/chart.js/Chart.min.js"></script>
+<script src="/static/js/demo/chart-area-demo.js"></script>
+<script src="/static/js/demo/chart-pie-demo.js"></script>
+<script src="/static/js/demo/chart-bar-demo.js"></script>
+<script src="/js/product-modal.js"></script>
+</body>
 </html>

@@ -56,7 +56,7 @@
     <!-- 특정 ID의 상품을 업데이트하는 SQL -->
     <update id="updateItem">
         UPDATE item
-        SET name = #{name}, price = #{price}, info = #{info}, item_image = #{itemImage}
+        SET price = #{price}, info = #{info}
         WHERE item_id = #{itemId}
     </update>
 

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>상품 추가</title>
+    <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="/css/admin-modal.css" />
+</head>
+<body>
+<div class="container">
+    <h1>상품 추가</h1>
+    <button
+            id="addProductBtn"
+            type="button"
+            class="btn btn-primary btn-dark btn-sm float-right mb-3"
+    >
+        신규 상품 추가
+    </button>
+
+    <!-- 모달 -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <form id="productForm">
+                <div class="form-group">
+                    <label for="productName">상품 이름</label>
+                    <input
+                            type="text"
+                            class="form-control"
+                            id="productName"
+                            name="name"
+                            required
+                    />
+                </div>
+                <div class="form-group">
+                    <label for="productPrice">상품 가격</label>
+                    <input
+                            type="number"
+                            class="form-control"
+                            id="productPrice"
+                            name="price"
+                            required
+                    />
+                </div>
+                <div class="form-group">
+                    <label for="stockQuantity">재고량</label>
+                    <input
+                            type="number"
+                            class="form-control"
+                            id="stockQuantity"
+                            name="stockQuantity"
+                            required
+                    />
+                </div>
+                <div class="form-group">
+                    <label for="productDescription">상품 상세 정보</label>
+                    <textarea
+                            class="form-control"
+                            id="productDescription"
+                            name="info"
+                            rows="3"
+                            required
+                    ></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="productImage">이미지 업로드</label>
+                    <input
+                            type="file"
+                            class="form-control-file"
+                            id="productImage"
+                            name="itemImage"
+                            accept="image/*"
+                            required
+                    />
+                </div>
+                <button type="submit" class="btn btn-primary">저장</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="/js/product.js"></script>
+</body>
+</html>
