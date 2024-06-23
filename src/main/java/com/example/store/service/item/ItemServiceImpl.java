@@ -10,6 +10,7 @@ import com.example.store.request.item.ItemCreate;
 import com.example.store.request.item.ItemSearch;
 import com.example.store.request.item.ItemUpdate;
 import com.example.store.response.ItemResponse;
+import com.example.store.response.ItemStock;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -24,7 +25,7 @@ public class ItemServiceImpl implements ItemService {
     private final FileUploadService fileUploadService;
     private final StockMapper stockMapper;
 
-    public void addItem(ItemCreate itemCreate, MultipartFile itemImage) {
+    public void addItem(ItemCreate itemCreate, MultipartFile itemImage, Integer quantity) {
         validateItemCreate(itemCreate);
         String imagePath = fileUploadService.saveFile(itemImage);
 
@@ -35,6 +36,7 @@ public class ItemServiceImpl implements ItemService {
                 .itemImage(imagePath)
                 .build();
         itemRepository.save(item);
+        stockMapper.initStock(item.getItemId(),quantity);
     }
 
     public ItemDTO getItem(Long itemId) {
@@ -46,11 +48,9 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public List<ItemDTO> getAllItems() {
-        List<Item> items = itemRepository.findAll();
-        return items.stream()
-                .map(ItemDTO::fromEntity)
-                .collect(Collectors.toList());
+    public List<ItemStock> getAllItems() {
+        List<ItemStock> items = itemRepository.findAllWithStock();
+        return items;
     }
 
     @Override
@@ -74,7 +74,7 @@ public class ItemServiceImpl implements ItemService {
         itemUpdate.setInfo(itemUpdate.getInfo());
         itemRepository.update(item);
 
-        stockMapper.updateStock(itemId, itemUpdate.getQuantity());
+        stockMapper.addStock(itemId, itemUpdate.getQuantity());
     }
 
     public void deleteItem(Long itemId) {

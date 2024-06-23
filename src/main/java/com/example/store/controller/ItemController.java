@@ -4,6 +4,7 @@ import com.example.store.dto.ItemDTO;
 import com.example.store.request.item.ItemCreate;
 import com.example.store.request.item.ItemUpdate;
 import com.example.store.response.ApiResponse;
+import com.example.store.response.ItemStock;
 import com.example.store.service.item.ItemService;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -22,21 +23,22 @@ public class ItemController {
 
     @GetMapping("/admin")
     public String getAdminPage(Model model) {
-        List<ItemDTO> items = itemService.getAllItems();
+        List<ItemStock> items = itemService.getAllItems();
         model.addAttribute("items", items);
-        return "admin";
+        return "admin/itemAdmin";
     }
     @PostMapping
     public ApiResponse<Void> addItem(
                                      @RequestParam("name") String name,
                                      @RequestParam("price") Integer price,
                                      @RequestParam("info") String info,
+                                     @RequestParam("quantity") Integer quantity,
                                      @RequestParam("itemImage") MultipartFile itemImage) {
         ItemCreate itemCreate = new ItemCreate();
         itemCreate.setName(name);
         itemCreate.setPrice(price);
         itemCreate.setInfo(info);
-        itemService.addItem(itemCreate, itemImage);
+        itemService.addItem(itemCreate, itemImage,quantity);
         return ApiResponse.of(true, "상품이 성공적으로 추가되었습니다.", null);
     }
 
@@ -46,7 +48,7 @@ public class ItemController {
     }
 
     @GetMapping
-    public List<ItemDTO> getAllItems() {
+    public List<ItemStock> getAllItems() {
         return itemService.getAllItems();
     }
 
@@ -63,6 +65,4 @@ public class ItemController {
         itemService.deleteItem(itemId);
         return ApiResponse.of(true, "상품이 성공적으로 삭제되었습니다.", null);
     }
-
-
 }

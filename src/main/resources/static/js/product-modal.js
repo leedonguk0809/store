@@ -34,6 +34,8 @@ document.getElementById('addProductBtn').addEventListener('click', () => {
 async function fetchItems() {
     const response = await fetch('/items');
     const items = await response.json();
+
+
     const itemTableBody = document.getElementById('itemTableBody');
     itemTableBody.innerHTML = '';
     items.forEach(item => {
@@ -68,9 +70,6 @@ document.getElementById('editProductForm').addEventListener('submit', async func
         info: formData.get('info')
     };
 
-
-
-
     const response = await fetch(`/items/${itemId}`, {
         method: 'PATCH',
         headers: {
@@ -92,7 +91,7 @@ document.getElementById('editProductForm').addEventListener('submit', async func
 document.getElementById('productForm').addEventListener('submit', async function(event) {
     event.preventDefault();
     const formData = new FormData(this);
-
+    console.log(formData);
     const response = await fetch('/items', {
         method: 'POST',
         body: formData

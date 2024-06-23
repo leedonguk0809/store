@@ -2,6 +2,7 @@ package com.example.store.repository.item;
 
 import com.example.store.domain.Item;
 import com.example.store.repository.mapper.ItemMapper;
+import com.example.store.response.ItemStock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -29,6 +30,11 @@ public class ItemRepositoryImpl implements ItemRepository {
     @Override
     public List<Item> findAll() {
         return itemMapper.findAllItems();
+    }
+
+    @Override
+    public List<ItemStock> findAllWithStock() {
+        return itemMapper.findAllWithStock();
     }
 
     @Override

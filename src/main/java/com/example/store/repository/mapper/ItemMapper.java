@@ -1,6 +1,7 @@
 package com.example.store.repository.mapper;
 
 import com.example.store.domain.Item;
+import com.example.store.response.ItemStock;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -13,6 +14,8 @@ public interface ItemMapper {
     Item findItemById(@Param("itemId") Long itemId);
 
     List<Item> findAllItems();
+
+    List<ItemStock> findAllWithStock();
 
     List<Item> findByPage(@Param("size") int size, @Param("offset") long offset,
                           @Param("asc") boolean asc, @Param("keyword") String keyword);
