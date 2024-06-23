@@ -1,0 +1,164 @@
+@font-face {
+    font-family: "GmarketSansMedium";
+    src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff")
+    format("woff");
+    font-weight: 200;
+    font-style: normal;
+}
+* {
+    font-family: "GmarketSansMedium";
+    margin: 0 auto;
+    text-decoration: none;
+}
+
+.order-wrapper img {
+    display: block;
+    width: 50%;
+    height: 80px;
+    margin: auto;
+}
+
+input {
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+}
+
+.order-container {
+    display: flex;
+    width: 80%;
+    flex-direction: column;
+    margin-top: 30px;
+}
+
+.order-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.order-total-info-box {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.8);
+    padding-bottom: 10px;
+    align-items: center;
+}
+
+.info-label {
+    width: 100%;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.info-value {
+    width: 100%;
+    display: flex;
+    justify-content: right;
+    text-align: right;
+}
+
+.order-total-count {
+    width: 100%;
+    color: gray;
+}
+
+.order-total-price {
+    width: 100%;
+}
+
+.order-total-price span {
+    color: red;
+    margin-right: 10px;
+}
+
+.order-info-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+.order-info-table th,
+.order-info-table td {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.6);
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+.order-info-table th {
+    font-weight: bold;
+}
+
+.order-info-td {
+    margin-top: 10px;
+    padding-top: 10px;
+}
+
+.order-info-table td img {
+    width: auto;
+    height: 120px;
+    display: block;
+    margin: auto;
+    margin-bottom: 10px;
+}
+
+.info-detail {
+    width: 100%;
+    font-size: 12px;
+    justify-content: right;
+    text-align: right;
+    color: gray;
+}
+
+.delivery-info-box {
+    padding-top: 10px;
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 20px;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+}
+
+.delivery-input-box {
+    width: 100%;
+    border-top: 2px solid rgba(0, 0, 0, 1);
+    padding-top: 10px;
+}
+
+.order-summary-box {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.form-group {
+    gap: 10px;
+}
+
+.summary-label {
+    width: 100%;
+    text-align: left;
+}
+
+.summary-value {
+    width: 50%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: right;
+}
+
+.order-button-box {
+    margin-top: 40px;
+    margin-bottom: 30px;
+    width: 30%;
+    display: flex;
+    gap: 30px;
+}
+
+.btn {
+    width: 100%;
+}

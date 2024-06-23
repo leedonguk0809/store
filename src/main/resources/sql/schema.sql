@@ -12,7 +12,7 @@ CREATE TABLE  IF NOT EXISTS cart_item
     item_id      BIGINT NOT NULL ,
     cart_id      BIGINT NOT NULL ,
     item_count   INT    NOT NULL,
-    PRIMARY KEY (item_id,cart_id)
+    PRIMARY KEY (cart_item_id)
     )  ;
 
 CREATE TABLE IF NOT EXISTS item
@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS stock
 (
     stock_id BIGINT     NOT NULL AUTO_INCREMENT  ,
     item_id  BIGINT     NOT NULL  ,
-    stock   INT      NOT NULL  ,
+    quantity   INT      NOT NULL  ,
     PRIMARY KEY (stock_id)
     )  ;
 
@@ -37,13 +37,14 @@ CREATE TABLE IF NOT EXISTS orders
 (
     order_id       BIGINT      NOT NULL AUTO_INCREMENT  ,
     user_id        BIGINT      NOT NULL  ,
-    total_price    BIGINT      NOT NULL  ,
+    total_price    BIGINT      NULL  ,
     order_enroll   DATETIME        NULL      ,
-    zipcode        VARCHAR(20) NOT NULL  ,
-    main_address   VARCHAR(50) NOT NULL  ,
-    detail_address VARCHAR(50) NOT NULL  ,
+    zipcode        VARCHAR(20)  NULL  ,
+    main_address   VARCHAR(50)  NULL  ,
+    detail_address VARCHAR(50)  NULL  ,
     tid             VARCHAR(255)  NULL,
     order_status   VARCHAR(50) NOT NULL  ,
+    total_item_count INT NULL,
     PRIMARY KEY (order_id)
     )  ;
 
@@ -53,6 +54,7 @@ CREATE TABLE IF NOT EXISTS order_item
     order_id      BIGINT NOT NULL  ,
     item_id       BIGINT NOT NULL   ,
     item_count INT NOT NULL,
+    total_item_price INT NULL,
     PRIMARY KEY (order_item_id)
     )  ;
 
@@ -93,49 +95,38 @@ CREATE TABLE IF NOT EXISTS user_roles (
                                           user_id BIGINT NOT NULL,
                                           role VARCHAR(50) NOT NULL
     );
-
-ALTER TABLE order_item
-    ADD CONSTRAINT FK_order_TO_order_item
-        FOREIGN KEY (order_id)
-            REFERENCES orders (order_id);
-
-ALTER TABLE order_item
-    ADD CONSTRAINT FK_item_TO_order_item
-        FOREIGN KEY (item_id)
-            REFERENCES item (item_id);
-
-ALTER TABLE cart_item
-    ADD CONSTRAINT FK_item_TO_cart_item
-        FOREIGN KEY (item_id)
-            REFERENCES item (item_id);
-
-ALTER TABLE cart_item
-    ADD CONSTRAINT FK_cart_TO_cart_item
-        FOREIGN KEY (cart_id)
-            REFERENCES carts (cart_id);
-
+-- carts 테이블과 user 테이블 간의 외래키 제약 조건 추가
 ALTER TABLE carts
-    ADD CONSTRAINT FK_user_TO_carts
-        FOREIGN KEY (user_id)
-            REFERENCES user (user_id);
+    ADD CONSTRAINT fk_carts_user FOREIGN KEY (user_id) REFERENCES user(user_id);
 
+-- cart_item 테이블과 carts 테이블 간의 외래키 제약 조건 추가
+ALTER TABLE cart_item
+    ADD CONSTRAINT fk_cart_item_cart FOREIGN KEY (cart_id) REFERENCES carts(cart_id) ON DELETE CASCADE;
+
+-- cart_item 테이블과 item 테이블 간의 외래키 제약 조건 추가
+ALTER TABLE cart_item
+    ADD CONSTRAINT fk_cart_item_item FOREIGN KEY (item_id) REFERENCES item(item_id);
+
+-- orders 테이블과 user 테이블 간의 외래키 제약 조건 추가
 ALTER TABLE orders
-    ADD CONSTRAINT FK_user_TO_order
-        FOREIGN KEY (user_id)
-            REFERENCES user (user_id);
+    ADD CONSTRAINT fk_orders_user FOREIGN KEY (user_id) REFERENCES user(user_id);
 
+-- order_item 테이블과 orders 테이블 간의 외래키 제약 조건 추가
+ALTER TABLE order_item
+    ADD CONSTRAINT fk_order_item_order FOREIGN KEY (order_id) REFERENCES orders(order_id);
+
+-- order_item 테이블과 item 테이블 간의 외래키 제약 조건 추가
+ALTER TABLE order_item
+    ADD CONSTRAINT fk_order_item_item FOREIGN KEY (item_id) REFERENCES item(item_id);
+
+-- payment 테이블과 orders 테이블 간의 외래키 제약 조건 추가
 ALTER TABLE payment
-    ADD CONSTRAINT FK_order_TO_payment
-        FOREIGN KEY (order_id)
-            REFERENCES orders (order_id);
+    ADD CONSTRAINT fk_payment_order FOREIGN KEY (order_id) REFERENCES orders(order_id);
 
-ALTER TABLE stock
-    ADD CONSTRAINT FK_item_TO_stock
-        FOREIGN KEY (item_id)
-            REFERENCES item (item_id);
+-- payment 테이블과 user 테이블 간의 외래키 제약 조건 추가
+ALTER TABLE payment
+    ADD CONSTRAINT fk_payment_user FOREIGN KEY (user_id) REFERENCES user(user_id);
 
-
+-- user_roles 테이블과 user 테이블 간의 외래키 제약 조건 추가
 ALTER TABLE user_roles
-    ADD CONSTRAINT FK_user_TO_user_roles
-        FOREIGN KEY (user_id) REFERENCES user(user_id)
-            ON DELETE CASCADE;
+    ADD CONSTRAINT fk_user_roles_user FOREIGN KEY (user_id) REFERENCES user(user_id);

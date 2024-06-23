@@ -34,7 +34,7 @@ div {
 
 /* 녹색 텍스트 */
 .green {
-    color: #24855b;
+    color: #C69760;
 }
 
 .wrap {
@@ -109,7 +109,7 @@ div {
 .summaryContainer .number {
     font-size: 19px;
     font-weight: bold;
-    color: #24855b;
+    color: #C69760;
 }
 /* 텍스트 */
 .summaryContainer .item > div:nth-child(2) {

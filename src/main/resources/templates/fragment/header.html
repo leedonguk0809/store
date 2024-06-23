@@ -19,14 +19,14 @@
         </div>
         <div class="nav">
             <div class="logo-box">
-                <a href="/"><img class="main-logo" src="/assets/spa.png" alt="" /></a>
+                <a href="/"><img class="main-logo" src="/assets/main-logo.png" alt="" /></a>
             </div>
             <div class="search-box">
                 <div class="search-input-box">
                     <label>
-                        <input class="search-input" type="text" />
+                        <input class="search-input" th:name="keyword" type="text" />
                     </label>
-                    <button class="search-btn"></button>
+                    <button class="search-btn" onclick="search()"></button>
                 </div>
             </div>
             <div class="nav-menu-box">

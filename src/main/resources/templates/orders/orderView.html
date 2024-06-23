@@ -1,0 +1,144 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/orderView.css">
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+    />
+    <script src="/js/orderHandler.js"></script>
+    <title>Document</title>
+</head>
+<body>
+<div class="order-container">
+    <div th:replace="fragment/header :: headerFragment"></div>
+    <div class="order-wrapper mt-lg-2" id="order-wrapper" th:attr="data-user-id=${user.id}">
+        <div class="order-total-info-box" id="order-info" th:attr="data-order-id=${order.id}" >
+            <div class="info-label" id="order-name" th:attr="data-order-name=${orderName}">주문 제품 정보</div>
+            <div class="info-value">
+                <div class="order-total-count" th:id="total-count" th:attr="data-total-count=${order.totalItemCount}"
+                    ><span th:text="${order.totalItemCount}">10</span>개</div>
+                <div class="order-total-price"><span class="price" th:text="${order.getOrderPrice()}">34,000</span>원</div>
+            </div>
+        </div>
+
+        <table class="order-info-table">
+            <thead>
+                <tr>
+                    <th>제품 정보</th>
+                    <th>제품 수량</th>
+                    <th>제품 금액</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="orderItem : ${order.getOrderItems()}" class="order-info-td">
+                    <td>
+                        <img th:src="${orderItem.item.itemImage}" alt="제품 이미지" />
+                        <div th:text="${orderItem.item.name}">제품 이름</div>
+                    </td>
+                    <td th:text="${orderItem.count} + '개'">1개</td>
+                    <td th:text="${orderItem.getOrderPrice()} + '원'">1,300,000원</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="delivery-info-box">
+            <div class="info-label deli-label">배송 정보</div>
+            <form class="delivery-input-box">
+                <!-- 이름 입력 -->
+                <div class="form-group  mt-5">
+                    <label for="name">이름 *</label>
+                    <input type="text" class="form-control mt-2" id="name" placeholder="이름을 입력하세요">
+                </div>
+
+                <!-- 이메일 입력 -->
+                <div class="form-group  mt-md-3">
+                    <label for="email">이메일 주소</label>
+                    <input type="email" class="form-control mt-2" id="email" placeholder="이메일 주소를 입력하세요">
+                </div>
+
+                <!-- 전화번호 입력 -->
+                <div class="form-group  mt-md-3">
+                    <label for="phone">전화번호 *</label>
+                    <input type="tel" class="form-control mt-2" id="phone" placeholder="전화번호를 입력하세요">
+                </div>
+
+                <!-- 주소 입력 -->
+                <div class="form-group  mt-md-3">
+                    <label for="zipcode">우편번호 *</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control mt-2" id="zipcode" placeholder="우편번호 입력">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary mt-2" type="button" onclick="findAddr()">우편번호 찾기</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group mt-md-3">
+                    <label for="main-address">주소 * </label>
+                    <input type="text" class="form-control mt-2" id="main-address" placeholder="주소 입력">
+                </div>
+
+                <div class="form-group  mt-md-3">
+                    <label for="detail-Address">상세 주소 *</label>
+                    <input type="text" class="form-control mt-2" id="detail-address" placeholder="상세 주소 입력">
+                </div>
+            </form>
+        </div>
+
+
+        <div class="order-summary-box">
+            <div class="summary-label">총 주문금액</div>
+            <div class="summary-value" id="total-amount" th:attr="data-total-amount=${order.orderPrice}" th:text="${order.orderPrice} + '원'"></div>
+        </div>
+
+        <div class="order-button-box">
+            <button class="btn btn-dark cancel">취소</button>
+            <button class="btn btn-light payment" onclick="createOrder()">결제</button>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+
+<script>
+    function findAddr() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+
+                var addr = ''; // 주소 변수
+                var extraAddr = ''; // 참고항목 변수
+
+                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                    addr = data.roadAddress;
+                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                    addr = data.jibunAddress;
+                }
+
+                if(data.userSelectedType === 'R'){
+                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                        extraAddr += data.bname;
+                    }
+                    if(data.buildingName !== '' && data.apartment === 'Y'){
+                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                    }
+                    if(extraAddr !== ''){
+                        extraAddr = ' (' + extraAddr + ')';
+                    }
+                    document.getElementById("detail-address").value = extraAddr;
+                } else {
+                    document.getElementById("detail-address").value = '';
+                }
+                document.getElementById('zipcode').value = data.zonecode;
+                document.getElementById("main-address").value = addr;
+                document.getElementById("detail-address").focus();
+            }
+        }).open();
+    }
+</script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+</html>

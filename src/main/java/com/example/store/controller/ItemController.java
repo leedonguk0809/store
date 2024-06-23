@@ -1,12 +1,20 @@
 package com.example.store.controller;
 
 import com.example.store.dto.ItemDTO;
+import com.example.store.request.item.ItemAdd;
 import com.example.store.request.item.ItemCreate;
 import com.example.store.service.item.ItemService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequestMapping("/items")
 public class ItemController {
@@ -40,4 +48,5 @@ public class ItemController {
     public void deleteItem(@PathVariable Long itemId) {
         itemService.deleteItem(itemId);
     }
+
 }

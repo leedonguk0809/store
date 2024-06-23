@@ -3,9 +3,9 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.example.store.repository.mapper.OrdersMapper">
-    <resultMap id="orderResultMap" type="com.example.store.domain.Orders">
-        <id property="orderId" column="order_id"/>
+<mapper namespace="com.example.store.repository.mapper.OrderMapper">
+    <resultMap id="orderResultMap" type="com.example.store.domain.Order">
+        <id property="id" column="order_id"/>
         <result property="userId" column="user_id"/>
         <result property="orderPrice" column="order_price"/>
         <result property="zipcode" column="zipcode"/>
@@ -14,66 +14,101 @@
         <result property="orderEnroll" column="order_enroll"/>
         <result property="orderStatus" column="order_status"/>
         <result property="totalItemCount" column="total_item_count"/>
-        <collection property="items" ofType="com.example.store.domain.Item">
-            <id property="itemId" column="item_id"/>
-            <result property="name" column="name"/>
-            <result property="price" column="price"/>
-            <result property="info" column="info"/>
+        <result property="tid" column="tid"/>
+
+        <collection property="orderItems" ofType="OrderItem">
+            <id property="orderItemId" column="order_item_id"/>
+            <result property="orderId" column="order_id"/>
+            <result property="count" column="item_count"/>
+            <association property="item" javaType="Item">
+                <id property="itemId" column="item_id"/>
+                <result property="name" column="name"/>
+                <result property="price" column="price"/>
+                <result property="info" column="info"/>
+                <result property="itemImage" column="item_image"/>
+            </association>
         </collection>
     </resultMap>
 
-    <select id="findAll" resultMap="orderResultMap">
-        SELECT orders.*, item.*, order_item.item_count, order_item.total_item_price
-        FROM orders
-                 LEFT JOIN order_item ON orders.order_id = order_item.order_id
-                 LEFT JOIN item ON order_item.item_id = item.item_id
+    <select id="findByUserId" resultMap="orderResultMap">
+        SELECT
+            o.order_id,
+            o.user_id,
+            o.total_price,
+            o.zipcode,
+            o.main_address ,
+            o.detail_address ,
+            o.order_enroll ,
+            o.order_status ,
+            o.total_item_count,
+            o.tid,
+            oi.order_item_id,
+            oi.order_id,
+            oi.item_count,
+            i.item_id,
+            i.name,
+            i.price,
+            i.info,
+            i.item_image
+        FROM
+            orders o LEFT JOIN order_item oi ON o.order_id = oi.order_id
+                     LEFT JOIN item i ON oi.item_id = i.item_id
+        WHERE o.user_id = ${userId} AND (o.order_status='READY' or o.order_status='APPROVE')
     </select>
 
-    <select id="findById" parameterType="long" resultMap="orderResultMap">
-        SELECT orders.*, item.*, order_item.item_count, order_item.total_item_price
-        FROM orders
-                 LEFT JOIN order_item ON orders.order_id = order_item.order_id
-                 LEFT JOIN item ON order_item.item_id = item.item_id
-        WHERE orders.order_id = #{orderId}
+    <select id="findById" resultMap="orderResultMap">
+        SELECT
+            o.order_id,
+            o.user_id,
+            o.total_price,
+            o.zipcode,
+            o.main_address ,
+            o.detail_address ,
+            o.order_enroll ,
+            o.order_status ,
+            o.total_item_count,
+            o.tid,
+            oi.order_item_id,
+            oi.order_id,
+            oi.item_count,
+            i.item_id,
+            i.name,
+            i.price,
+            i.info,
+            i.item_image
+        FROM
+            orders o LEFT JOIN order_item oi ON o.order_id = oi.order_id
+                     LEFT JOIN item i ON oi.item_id = i.item_id
+        WHERE o.order_id = ${orderId}
     </select>
 
-    <select id="findByUserId" parameterType="long" resultMap="orderResultMap">
-        SELECT orders.*, item.*, order_item.item_count, order_item.total_item_price
-        FROM orders
-                 LEFT JOIN order_item ON orders.order_id = order_item.order_id
-                 LEFT JOIN item ON order_item.item_id = item.item_id
-        WHERE orders.user_id = #{userId}
-    </select>
-
-    <insert id="insertOrder" parameterType="com.example.store.domain.Orders">
-        INSERT INTO orders (user_id, total_price, zipcode, main_address, detail_address, order_enroll, order_status, total_item_count)
-        VALUES (#{userId}, #{orderPrice}, #{zipcode}, #{mainAddress}, #{detailAddress}, #{orderEnroll}, #{orderStatus}, #{totalItemCount})
+    <insert id="save" keyProperty="id" useGeneratedKeys="true">
+       INSERT INTO orders (user_id,total_price,order_enroll,order_status,total_item_count)
+       VALUES (#{order.userId},#{order.orderPrice},#{order.orderEnroll},#{order.orderStatus},#{order.totalItemCount})
     </insert>
 
-    <insert id="insertOrderItem" parameterType="com.example.store.domain.Item">
-        INSERT INTO order_item (order_id, item_id, item_count, total_item_price)
-        VALUES (#{orderId}, #{itemId}, #{itemCount}, #{totalItemPrice})
-    </insert>
-
-    <update id="updateOrder" parameterType="com.example.store.domain.Orders">
+    <update id="updateAddress">
         UPDATE orders
-        SET user_id = #{userId}, order_price = #{orderPrice}, zipcode = #{zipcode}, main_address = #{mainAddress}, detail_address = #{detailAddress}, order_enroll = #{orderEnroll}, order_status = #{orderStatus}, total_item_count = #{totalItemCount}
+        SET zipcode=#{zipcode}, main_address=#{mainAddress}, detail_address=#{detailAddress}
         WHERE order_id = #{orderId}
     </update>
 
-    <update id="updateOrderStatus">
+
+    <update id="updateOrderStatusById">
         UPDATE orders
-        SET order_status=#{status}
+        SET order_status = #{orderStatus}
         WHERE order_id = #{orderId}
     </update>
 
-    <update id="updateOrderTid">
+    <update id="updateTotalPrice">
         UPDATE orders
-        SET tid=#{tid}
+        SET total_price = #{totalPrice}
         WHERE order_id = #{orderId}
     </update>
 
-    <delete id="deleteOrder" parameterType="long">
-        DELETE FROM orders WHERE order_id = #{orderId}
-    </delete>
+    <update id="updateTidById">
+        UPDATE orders
+        SET tid = #{tid}
+        WHERE order_id = #{orderId}
+    </update>
 </mapper>

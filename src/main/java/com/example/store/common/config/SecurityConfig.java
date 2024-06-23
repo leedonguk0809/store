@@ -20,6 +20,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -28,6 +29,12 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices;
 import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.util.List;
+
 import static org.springframework.boot.autoconfigure.security.servlet.PathRequest.toH2Console;
 
 @Slf4j
@@ -57,7 +64,8 @@ public class SecurityConfig {
     public SecurityFilterChain  securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .headers()
-                .frameOptions().sameOrigin()
+                .frameOptions()
+                .sameOrigin()
                 .and()
                 .authorizeRequests()
                 .anyRequest().permitAll()
@@ -70,15 +78,17 @@ public class SecurityConfig {
                 .logoutUrl("/auth/logout")
                 .logoutSuccessUrl("/") // 메인 화면의 URL로 설정
                 .invalidateHttpSession(true)
-                .deleteCookies("JSESSIONID","remember-me")
+                .deleteCookies("JSESSIONID","rememberMe")
                 .logoutSuccessHandler((request, response, authentication) -> {
                     response.sendRedirect("/"); // 추가적인 로그아웃 성공 핸들러 설정
                 })
                 .and()
                 .rememberMe((rememberMe) -> rememberMe
-                        .rememberMeParameter("remember-me")
+                        .rememberMeParameter("rememberMe")
                         .alwaysRemember(false)
                         .tokenValiditySeconds(2592000)
+                        .key("uniqueAndSecretKey")
+                        .rememberMeServices(rememberMeServices())
                 )
                 .addFilterAfter(usernamePasswordAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
                 .csrf(AbstractHttpConfigurer::disable)
@@ -98,7 +108,7 @@ public class SecurityConfig {
 
     @Bean
     public TokenBasedRememberMeServices rememberMeServices() {
-        TokenBasedRememberMeServices rememberMeServices = new TokenBasedRememberMeServices("remember-me", userDetailsService(userRepository));
+        TokenBasedRememberMeServices rememberMeServices = new TokenBasedRememberMeServices("rememberMe", userDetailsService(userRepository));
         rememberMeServices.setAlwaysRemember(false);
         rememberMeServices.setTokenValiditySeconds(2592000);
         return rememberMeServices;

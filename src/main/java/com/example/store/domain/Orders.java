@@ -29,7 +29,6 @@ public class Orders {
     @Size(max = 50)
     private String mainAddress;
 
-    @NotEmpty
     @Size(max = 50)
     private String detailAddress;
 

@@ -1,12 +1,10 @@
-package com.example.store.service;
+package com.example.store.service.cart;
 
 import com.example.store.domain.Cart;
 import com.example.store.domain.CartItem;
-import com.example.store.domain.Item;
 import com.example.store.exception.cart.CartNotFoundException;
 import com.example.store.repository.mapper.CartItemMapper;
 import com.example.store.repository.mapper.CartMapper;
-import com.example.store.repository.mapper.ItemMapper;
 import com.example.store.request.cart.CartEdit;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

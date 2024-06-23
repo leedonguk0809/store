@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>주문 상세 정보</title>
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/font.css">
+    <style>
+        .container {
+            max-width: 900px;
+            margin-top: 50px;
+        }
+        .card {
+            margin-bottom: 20px;
+        }
+        .card-header {
+            background-color: #c69760;
+            color: #fff;
+        }
+
+        .table th,
+        .table td {
+            vertical-align: middle;
+        }
+        .btn-custom {
+            background-color: #c69760;
+            color: #fff;
+            border: none;
+        }
+        .btn-custom:hover {
+            background-color: #b38656;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+<div class="mt-5 container">
+    <h2 class="mb-4">주문 상세 정보</h2>
+    <div class="card">
+        <div class="card-header">
+            주문 번호: <span th:text="${order.id}">12345</span>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">주문 정보</h5>
+            <p class="card-text">
+                <strong>주문 날짜:</strong>
+                <span
+                        th:text="${order.orderEnroll}"
+                >2024-06-23 14:00</span
+                >
+            </p>
+            <p class="card-text">
+                <strong>총 금액:</strong>
+                <span th:text="${order.orderPrice}">100000</span>원
+            </p>
+            <p class="card-text">
+                <strong>주문 상태:</strong>
+                <span th:text="${order.orderStatus == 'READY' ? '결제 대기' : '결제 완료'}"
+                >결제 완료</span
+                >
+            </p>
+
+            <h5 class="card-title mt-4">배송 정보</h5>
+            <p class="card-text">
+                <strong>우편번호:</strong>
+                <span th:text="${order.zipcode}">12345</span>
+            </p>
+            <p class="card-text">
+                <strong>주소:</strong>
+                <span th:text="${order.mainAddress}">서울특별시 강남구</span>
+                <span th:text="${order.detailAddress}">테헤란로 123</span>
+            </p>
+
+            <h5 class="card-title mt-4">주문한 상품 목록</h5>
+            <table class="table table-bordered">
+                <thead class="table-light">
+                <tr>
+                    <th scope="col">상품명</th>
+                    <th scope="col">수량</th>
+                    <th scope="col">단가</th>
+                    <th scope="col">총 가격</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="item : ${order.orderItems}">
+                    <td th:text="${item.item.name}">상품명</td>
+                    <td th:text="${item.count}">1</td>
+                    <td th:text="${item.item.price}">10000</td>
+                    <td th:text="${item.item.price * item.count}">10000</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <h5 class="card-title mt-4">결제 정보</h5>
+            <p class="card-text">
+                <strong>결제 방법:</strong>
+                <span th:text="${payment != null} ? ${payment.paymentMethod} : '결제 정보 없음'">카드</span>
+            </p>
+            <p class="card-text">
+                <strong>결제일:</strong>
+                <span th:text="${payment != null} ? ${payment.approvedAt} : '결제 정보 없음'">2024-06-23 15:00</span>
+            </p>
+            <p class="card-text">
+                <strong>TID:</strong>
+                <span th:text="${payment != null} ? ${payment.tid} : '결제 정보 없음'">T1234567890</span>
+            </p>
+        </div>
+    </div>
+    <a href="/orders" class="btn btn-custom">뒤로가기</a>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -69,6 +69,4 @@
         DELETE FROM item
     </delete>
 
-
-
 </mapper>

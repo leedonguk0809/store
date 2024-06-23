@@ -1,4 +1,4 @@
-package com.example.store.service;
+package com.example.store.service.cart;
 
 import com.example.store.domain.Cart;
 import com.example.store.request.cart.CartEdit;

@@ -16,7 +16,7 @@ public class Cart {
     private Long id;
     private Long userId;
     private int totalPrice;
-    private Set<CartItem> cartItems = new HashSet<>();
+    private List<CartItem> cartItems;
     @Builder
     public Cart(Long id, Long userId, int totalPrice) {
         this.id = id;

@@ -2,11 +2,11 @@ package com.example.store.service;
 
 import com.example.store.domain.Cart;
 import com.example.store.domain.CartItem;
-import com.example.store.domain.User;
 import com.example.store.exception.cart.CartNotFoundException;
 import com.example.store.repository.mapper.CartItemMapper;
 import com.example.store.repository.mapper.CartMapper;
 import com.example.store.request.cart.CartEdit;
+import com.example.store.service.cart.CartService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

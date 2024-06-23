@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class KakaoController {
     private final KakaoPayService payService;
-    @GetMapping("/ready")
+    @GetMapping("/pay/ready")
         public String ready(@ModelAttribute KakaoPaymentRequest kakaoPaymentRequest, Model model) {
         ReadyResponse readyResponse = payService.ready(kakaoPaymentRequest);
         model.addAttribute("response", readyResponse);

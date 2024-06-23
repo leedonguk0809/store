@@ -11,14 +11,17 @@ import lombok.Setter;
 public class OrderItem {
     private Long orderItemId;
     private Long orderId;
-    private Long itemId;
     private Integer count;
+    private Item item;
 
     @Builder
-    public OrderItem(Long orderItemId, Long orderId, Long itemId, Integer count) {
+    public OrderItem(Long orderItemId, Long orderId, Integer count) {
         this.orderItemId = orderItemId;
         this.orderId = orderId;
-        this.itemId = itemId;
         this.count = count;
+    }
+
+    public Integer getOrderPrice(){
+        return count*item.getPrice();
     }
 }
