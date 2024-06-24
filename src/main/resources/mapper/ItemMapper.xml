@@ -13,6 +13,15 @@
         <result property="itemImage" column="item_image" />
     </resultMap>
 
+    <resultMap id="itemStockResult" type="com.example.store.response.ItemStock">
+        <id property="itemId" column="item_id" />
+        <result property="name" column="name" />
+        <result property="price" column="price" />
+        <result property="info" column="info" />
+        <result property="quantity" column="quantity" />
+        <result property="itemImage" column="item_image" />
+    </resultMap>
+
     <!-- 새로운 상품을 삽입하는 SQL -->
     <insert id="insertItem" useGeneratedKeys="true" keyProperty="itemId">
         INSERT INTO item (name, price, info,item_image)
@@ -28,6 +37,12 @@
     <select id="findAllItems" resultMap="itemResultMap">
         SELECT * FROM item
     </select>
+
+    <select id="findAllWithStock" resultMap="itemStockResult">
+        SELECT i.item_id, i.name, i.price, s.quantity, i.item_image
+        FROM item i LEFT JOIN stock s ON i.item_id=s.item_id
+    </select>
+
 
     <select id="findByPage" resultMap="itemResultMap">
         SELECT *
@@ -56,7 +71,7 @@
     <!-- 특정 ID의 상품을 업데이트하는 SQL -->
     <update id="updateItem">
         UPDATE item
-        SET name = #{name}, price = #{price}, info = #{info}, item_image = #{itemImage}
+        SET price = #{price}, info = #{info}
         WHERE item_id = #{itemId}
     </update>
 
