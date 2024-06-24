@@ -13,11 +13,14 @@
         <div class="grid-container">
             <div th:each="item : ${Items}" class="grid-item">
                 <div class="item-image">
-                    <a th:href="@{|/item/detail/${item.id}|}"><img th:src="${item.profileImage}" alt="" /></a>
+                    <a th:href="@{|/item/detail/${item.id}|}">
+                        <img th:if="${item.profileImage != null}" th:src="${item.profileImage}" alt="" />
+                        <img th:if="${item.profileImage == null}" src="/assets/item/default.png"></img>
+                    </a>
                 </div>
                 <div class="item-details">
                     <div class="item-name" th:text="${item.name}">테스트 상품</div>
-                    <div class="item-price" th:text="${item.price}">90000원</div>
+                    <div class="item-price" th:text="${item.price}">90000<span>원</span></div>
                 </div>
             </div>
         </div>

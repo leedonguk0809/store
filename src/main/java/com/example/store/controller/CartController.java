@@ -51,7 +51,7 @@ public class CartController {
     }
 
     @ResponseBody
-    @PatchMapping("/cart/edit")
+    @PostMapping("/cart/edit")
     public String cartItemEdit(@RequestBody CartEdit cartEdit,Model model){
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = userService.getByUsername(username);

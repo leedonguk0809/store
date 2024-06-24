@@ -77,7 +77,7 @@ public class MainController {
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/admin-view")
     public String getApprove(){
-        return "admin/itemCreate";
+        return "admin/itemAdmin";
     }
 
     @GetMapping("/orders/error")

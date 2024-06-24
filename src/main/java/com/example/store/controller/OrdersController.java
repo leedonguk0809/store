@@ -51,7 +51,7 @@ public class OrdersController {
         return ResponseEntity.ok(address);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('COMMON') or hasRole('ADMIN') " )
     @GetMapping("/orders/view")
     public String getOrderView(Long orderId, Model model){
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -65,7 +65,7 @@ public class OrdersController {
         return "orders/orderView";
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('COMMON')")
     @GetMapping("/orders")
     public String getOrderList(Model model){
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -76,7 +76,7 @@ public class OrdersController {
         return "orders/orderList";
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('COMMON')")
     @GetMapping("/orders/{orderId}")
     public String getOrderDetail(@PathVariable Long orderId, Model model){
         String username = SecurityContextHolder.getContext().getAuthentication().getName();

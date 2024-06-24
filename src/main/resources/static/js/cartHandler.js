@@ -5,11 +5,11 @@ function openModal(button) {
     var tr = button.closest('.cart__list__detail');
     var itemId = tr.querySelector('[data-item-id]').getAttribute('data-item-id');
     console.log('Item ID:', itemId);
-    document.getElementById('modalItemId').value = itemId;
+    //document.getElementById('modalItemId').value = itemId;
 
     currentRow = button.closest("tr");
-    var currentQuantity = currentRow.querySelector(".quantity").textContent;
-    document.getElementById("modalQuantity").value = currentQuantity;
+    // var currentQuantity = currentRow.querySelector(".quantity").textContent;
+    currentQuantity = document.getElementById(`order-quantity-${itemId}`).value;
     modal.style.display = "block";
 }
 
@@ -27,7 +27,7 @@ function changeQuantity(amount) {
 }
 
 function applyQuantity() {
-    var itemId = document.getElementById('modalItemId').value;
+    var itemId = parseInt(tr.querySelector('[data-item-id]').getAttribute('data-item-id'));
 
     var newQuantity = document.getElementById("modalQuantity").value;
     var quantityElement = currentRow.querySelector(".quantity");
@@ -75,7 +75,7 @@ function deleteRow(button) {
 function closeModal(itemId,newQuantity) {
     modal.style.display = "none";
     fetch('/cart/edit', {
-        method: 'PATCH',
+        method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
