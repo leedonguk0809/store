@@ -78,18 +78,19 @@
         WHERE user_id=#{userId}
     </delete>
 
-    <delete id="deleteCartItemsByItemIds" parameterType="java.util.List">
-        DELETE FROM cart_item
-        WHERE cart_item_id IN (
-        SELECT ci.cart_item_id
+    <delete id="deleteCartItemsByItemIds" parameterType="java.util.Map">
+         <![CDATA[
+            DELETE ci
         FROM cart_item ci
-        LEFT JOIN item i ON ci.item_id = i.item_id
-        WHERE i.item_id IN
-        <foreach collection="list" item="item" open="(" close=")" separator=",">
-            #{item}
-        </foreach>
-        )
+        JOIN item i ON ci.item_id = i.item_id
+        WHERE i.item_id IN (
+            <foreach collection="list" item="itemId" open="(" close=")" separator=",">
+            #{itemId}
+            </foreach>
+            )
+            ]]>
     </delete>
+
 
     <delete id="deleteItem">
         DELETE ci

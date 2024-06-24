@@ -14,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -50,6 +51,7 @@ public class OrdersController {
         return ResponseEntity.ok(address);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/orders/view")
     public String getOrderView(Long orderId, Model model){
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -63,6 +65,7 @@ public class OrdersController {
         return "orders/orderView";
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/orders")
     public String getOrderList(Model model){
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -73,6 +76,7 @@ public class OrdersController {
         return "orders/orderList";
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/orders/{orderId}")
     public String getOrderDetail(@PathVariable Long orderId, Model model){
         String username = SecurityContextHolder.getContext().getAuthentication().getName();

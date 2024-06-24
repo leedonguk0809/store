@@ -95,38 +95,50 @@ CREATE TABLE IF NOT EXISTS user_roles (
                                           user_id BIGINT NOT NULL,
                                           role VARCHAR(50) NOT NULL
     );
--- carts 테이블과 user 테이블 간의 외래키 제약 조건 추가
-ALTER TABLE carts
-    ADD CONSTRAINT fk_carts_user FOREIGN KEY (user_id) REFERENCES user(user_id);
-
--- cart_item 테이블과 carts 테이블 간의 외래키 제약 조건 추가
-ALTER TABLE cart_item
-    ADD CONSTRAINT fk_cart_item_cart FOREIGN KEY (cart_id) REFERENCES carts(cart_id) ON DELETE CASCADE;
-
--- cart_item 테이블과 item 테이블 간의 외래키 제약 조건 추가
-ALTER TABLE cart_item
-    ADD CONSTRAINT fk_cart_item_item FOREIGN KEY (item_id) REFERENCES item(item_id);
-
--- orders 테이블과 user 테이블 간의 외래키 제약 조건 추가
 ALTER TABLE orders
-    ADD CONSTRAINT fk_orders_user FOREIGN KEY (user_id) REFERENCES user(user_id);
+    ADD CONSTRAINT FK_orders_users
+        FOREIGN KEY (user_id)
+            REFERENCES user (user_id);
 
--- order_item 테이블과 orders 테이블 간의 외래키 제약 조건 추가
+-- order_item 테이블
 ALTER TABLE order_item
-    ADD CONSTRAINT fk_order_item_order FOREIGN KEY (order_id) REFERENCES orders(order_id);
+    ADD CONSTRAINT FK_order_item_orders
+        FOREIGN KEY (order_id)
+            REFERENCES orders (order_id),
+    ADD CONSTRAINT FK_order_item_item
+    FOREIGN KEY (item_id)
+    REFERENCES item (item_id);
 
--- order_item 테이블과 item 테이블 간의 외래키 제약 조건 추가
-ALTER TABLE order_item
-    ADD CONSTRAINT fk_order_item_item FOREIGN KEY (item_id) REFERENCES item(item_id);
+-- cart_item 테이블
+ALTER TABLE cart_item
+    ADD CONSTRAINT FK_cart_item_item
+        FOREIGN KEY (item_id)
+            REFERENCES item (item_id),
+    ADD CONSTRAINT FK_cart_item_carts
+    FOREIGN KEY (cart_id)
+    REFERENCES carts (cart_id);
 
--- payment 테이블과 orders 테이블 간의 외래키 제약 조건 추가
+-- carts 테이블
+ALTER TABLE carts
+    ADD CONSTRAINT FK_carts_users
+        FOREIGN KEY (user_id)
+            REFERENCES user (user_id);
+
+-- payment 테이블
 ALTER TABLE payment
-    ADD CONSTRAINT fk_payment_order FOREIGN KEY (order_id) REFERENCES orders(order_id);
+    ADD CONSTRAINT FK_payment_orders
+        FOREIGN KEY (order_id)
+            REFERENCES orders (order_id);
 
--- payment 테이블과 user 테이블 간의 외래키 제약 조건 추가
-ALTER TABLE payment
-    ADD CONSTRAINT fk_payment_user FOREIGN KEY (user_id) REFERENCES user(user_id);
+-- stock 테이블
+ALTER TABLE stock
+    ADD CONSTRAINT FK_stock_item
+        FOREIGN KEY (item_id)
+            REFERENCES item (item_id);
 
--- user_roles 테이블과 user 테이블 간의 외래키 제약 조건 추가
+-- user_roles 테이블
 ALTER TABLE user_roles
-    ADD CONSTRAINT fk_user_roles_user FOREIGN KEY (user_id) REFERENCES user(user_id);
+    ADD CONSTRAINT FK_user_roles_user
+        FOREIGN KEY (user_id)
+            REFERENCES user (user_id)
+            ON DELETE CASCADE;

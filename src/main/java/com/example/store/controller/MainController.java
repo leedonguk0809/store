@@ -9,6 +9,7 @@ import com.example.store.response.Paging;
 import com.example.store.service.item.ItemService;
 import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -73,6 +74,7 @@ public class MainController {
         return "main";
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/admin-view")
     public String getApprove(){
         return "admin/itemCreate";

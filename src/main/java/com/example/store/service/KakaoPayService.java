@@ -145,7 +145,7 @@ public class KakaoPayService {
                     .map(orderItem -> orderItem.getItem().getItemId())
                     .collect(Collectors.toList());
 
-            cartMapper.deleteCartItemsByItemIds(orderItemIdList);
+            //cartMapper.deleteCartItemsByItemIds(orderItemIdList);
 
             log.info("{} [KakaoPayment APPROVE SUCCESS] {}", Date.from(Instant.now()),approveResponse);
 

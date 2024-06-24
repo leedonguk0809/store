@@ -37,3 +37,47 @@ const addCart = () => {
             console.error('오류 발생:', error);
         });
 }
+
+
+const createOrder = () => {
+
+    let itemId= parseInt(document.getElementById("cartItemId").value);
+    let totalPrice= parseInt(document.getElementById("total-price").innerText);
+    let quantity= parseInt(document.getElementById("quantity").value);
+
+    const data = {
+        totalPrice:totalPrice,
+        totalCount:quantity,
+        itemCountList:[
+            {
+                itemId:itemId,
+                count:quantity,
+            }
+        ]
+    }
+
+    console.log(data);
+
+    fetch("/orders", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Success:', data);
+            window.location.href = `/orders/view?orderId=${data.id}`;
+            // 성공 시 추가 작업을 수행할 수 있음
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            // 오류 처리를 수행할 수 있음
+        });
+}

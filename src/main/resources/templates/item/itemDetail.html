@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>상품 상세</title>
+    <title>농수산 쇼핑몰</title>
     <link rel="stylesheet" href="/css/detail.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/js/itemDetailHandler.js" defer></script>
@@ -68,12 +68,10 @@
                 </div>
             </div>
             <div class="order-actions">
-                <form action="/orders/buy/now" method="post" class="inline-form">
-                    <input type="hidden" name="itemId" th:value="${item.itemId}">
-                    <input type="hidden" name="price" th:value="${item.price}">
-                    <input type="hidden" name="quantity" value="1" class="quantity-input">
-                    <button class="order-btn" type="submit">바로 구매</button>
-                </form>
+                <input type="hidden" name="itemId" th:value="${item.itemId}">
+                <input type="hidden" name="price" th:value="${item.price}">
+                <input type="hidden" name="quantity" value="1" class="quantity-input">
+                <button class="order-btn" type="submit" onclick="createOrder()">바로 구매</button>
                 <input type="hidden" name="itemId" id="cartItemId" th:value="${item.itemId}">
                 <input type="hidden" name="quantity" id="cartQuantity" value="1" class="quantity-input">
                 <button class="cart-btn" onclick="addCart()" type="submit">장바구니</button>
