@@ -74,7 +74,7 @@ public class ItemServiceImpl implements ItemService {
         itemUpdate.setInfo(itemUpdate.getInfo());
         itemRepository.update(item);
 
-        stockMapper.addStock(itemId, itemUpdate.getQuantity());
+        stockMapper.editStock(itemId, itemUpdate.getQuantity());
     }
 
     public void deleteItem(Long itemId) {

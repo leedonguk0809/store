@@ -1,7 +1,7 @@
 const getMain = () => {
-    window.location.replace("/");
+    window.parent.location.href = "/";
 }
 
 const getMyOrder = () => {
-    window.location.replace("/my-page");
+    window.parent.location.href = "/my_page";
 }

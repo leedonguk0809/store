@@ -27,8 +27,7 @@ function changeQuantity(amount) {
 }
 
 function applyQuantity() {
-    var itemId = parseInt(tr.querySelector('[data-item-id]').getAttribute('data-item-id'));
-
+    var itemId = currentRow.querySelector('[data-item-id]').getAttribute('data-item-id');
     var newQuantity = document.getElementById("modalQuantity").value;
     var quantityElement = currentRow.querySelector(".quantity");
     quantityElement.textContent = newQuantity;

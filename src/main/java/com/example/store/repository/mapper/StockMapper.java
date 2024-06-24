@@ -16,6 +16,9 @@ public interface StockMapper {
     @Update("UPDATE stock SET quantity = quantity - #{quantity} WHERE item_id = #{itemId} AND quantity >= #{quantity}")
     int updateStock(@Param("itemId") Long itemId, @Param("quantity") int quantity);
 
+    @Update("UPDATE stock SET quantity = #{quantity} WHERE item_id = #{itemId}")
+    int editStock(@Param("itemId") Long itemId, @Param("quantity") int quantity);
+
     @Update("UPDATE stock SET quantity = quantity + #{quantity} WHERE item_id = #{itemId}")
     int addStock(@Param("itemId") Long itemId, @Param("quantity") int quantity);
 }
