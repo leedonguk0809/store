@@ -19,4 +19,11 @@ public class CartItem {
         this.cartId = cartId;
         this.itemCount = itemCount;
     }
+
+    public int getTotalPrice(){
+        if (item == null) {
+            return 0;
+        }
+        return itemCount*item.getPrice();
+    }
 }

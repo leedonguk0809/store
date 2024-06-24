@@ -95,7 +95,7 @@
     padding: 10px; /* 예시로 버튼에 패딩 추가 */
     margin-left: 10px; /* 버튼 사이의 간격을 주기 위한 마진 */
     cursor: pointer; /* 마우스 커서를 포인터로 변경 */
-    background-color: #f9bb00;
+    background-color: #C69760;
     color: rgba(255, 255, 255);
     font-weight: 600;
     font-size: 12px;
@@ -162,7 +162,7 @@
 
 .address-box .search-address-btn {
     height: 100%;
-    background-color: #f9bb00;
+    background-color: #C69760;
     color: rgba(255, 255, 255);
     font-weight: 600;
     font-size: 12px;
@@ -172,7 +172,7 @@
     margin-top: 20px;
     margin-bottom: 30px;
     width: 100%;
-    background-color: #f9bb00;
+    background-color: #C69760;
     color: rgba(255, 255, 255);
     height: 45px;
     border: none;

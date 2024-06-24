@@ -1,17 +1,105 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>농수산 쇼핑몰</title>
+    <link rel="stylesheet" href="/css/mypage.css" />
 </head>
 <body>
-  <div th:replace="fragment/header :: headerFragment"></div>
-  <div>마이 페이지</div>
-  <div class="name" th:text="${user.name}"></div>
-  <div class="price" th:text="${user.email}"></div>
-  <div class="description" th:text="${user.telNumber}"></div>
-  <div class="description" th:text="${user.zipcode}"></div>
-  <div class="description" th:text="${user.mainAddress}"></div>
-  <div class="description" th:text="${user.userStatus}"></div>
+<div class="mypage-container">
+    <div th:replace="fragment/header :: headerFragment"></div>
+    <div class="wrap">
+        <div class="greenContainer">
+            <div class="user-info">
+                <div class="user-name" th:text="${user.name}">김도도</div>
+                <div class="user-grade" th:text="${user.userStatus}">GOLD 등급</div>
+                <a class="user-edit" href="">사용자 정보 수정</a>
+            </div>
+        </div>
+        <div class="summaryContainer">
+            <div class="item">
+                <div class="number">0</div>
+                <div>단골상점</div>
+            </div>
+            <div class="item">
+                <div class="number">0</div>
+                <div>상품후기</div>
+            </div>
+            <div class="item">
+                <div class="number">0</div>
+                <div>적립금 POINT</div>
+            </div>
+        </div>
+        <div class="listContainer">
+            <a href="/orders" class="item">
+                <div class="icon">ii</div>
+                <div class="text">주문목록</div>
+                <div class="right">></div>
+            </a>
+            <a href="#" class="item">
+                <div class="icon">ii</div>
+                <div class="text">상품후기</div>
+                <div class="right">></div>
+            </a>
+            <a href="#" class="item">
+                <div class="icon">ii</div>
+                <div class="text">상품문의</div>
+                <div class="right">></div>
+            </a>
+            <a href="#" class="item">
+                <div class="icon">ii</div>
+                <div class="text">단골상점</div>
+                <div class="right">></div>
+            </a>
+            <a href="#" class="item">
+                <div class="icon">ii</div>
+                <div class="text">찜한상품</div>
+                <div class="right">></div>
+            </a>
+        </div>
+        <div class="listContainer">
+            <a href="#" class="item">
+                <div class="icon">ii</div>
+                <div class="text">
+                    <span>내지갑</span>
+                    <span class="smallLight">
+              <span>|</span>
+              <span>보유 적립금</span>
+            </span>
+                </div>
+                <div class="right">
+                    <span class="blct">175 BLCT</span>
+                    >
+                </div>
+            </a>
+            <a href="#" class="item">
+                <div class="icon">ii</div>
+                <div class="text">알림</div>
+                <div class="right">></div>
+            </a>
+            <a href="#" class="item">
+                <div class="icon">ii</div>
+                <div class="text">설정</div>
+                <div class="right">></div>
+            </a>
+        </div>
+        <div class="infoContainer">
+            <a href="#" class="item">
+                <div>icon</div>
+                <div>공지사항</div>
+            </a>
+            <a href="#" class="item">
+                <div>icos</div>
+                <div>이용안내</div>
+            </a>
+            <a href="#" class="item">
+                <div>icon</div>
+                <div>고객센터</div>
+            </a>
+        </div>
+    </div>
+</div>
 </body>
 </html>

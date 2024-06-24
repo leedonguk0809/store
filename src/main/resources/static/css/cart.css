@@ -1,0 +1,295 @@
+@font-face {
+    font-family: "GmarketSansMedium";
+    src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff")
+    format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    font-family: "GmarketSansMedium";
+    margin: 0 auto;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+.cart-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.cart-wrapper {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+}
+
+.cart-wrapper img {
+
+}
+
+p,
+span {
+    margin: 0;
+}
+
+a {
+    color: black;
+}
+
+.cart-wrapper img {
+    display: block;
+    width: 60%;
+    height: 80px;
+    margin: auto;
+}
+
+table {
+    table-layout: fixed;
+    border-top: solid 1.5px black;
+    border-collapse: collapse;
+    width: 70%;
+    font-size: 14px;
+}
+
+th,
+td {
+    width: auto; /* 셀 너비 자동 설정을 해제 */
+    padding: 15px 0px;
+    border-bottom: 1px solid lightgrey;
+    text-align: center;
+    justify-content: center;
+}
+
+thead {
+    text-align: center;
+    font-weight: bold;
+    white-space: nowrap; /* Prevent text wrapping */
+}
+
+thead th,
+thead td {
+    padding: 10px;
+    white-space: nowrap; /* Prevent text wrapping */
+}
+
+tbody {
+    font-size: 12px;
+}
+
+td {
+    padding: 15px 0px;
+    border-bottom: 1px solid lightgrey;
+    text-align: center;
+    justify-content: center;
+}
+
+.cart__list__detail td {
+    max-width: 200px; /* 예시로 각 셀의 최대 너비 설정 */
+    overflow: hidden; /* 셀 내용이 넘칠 경우 숨김 처리 */
+    text-overflow: ellipsis; /* 셀 내용이 넘칠 경우 생략 부호(...) 표시 */
+    white-space: nowrap; /* 셀 내용이 줄 바꿈되지 않도록 설정 */
+}
+
+.select-td {
+    width: 5%;
+}
+
+.unit-price {
+    width: 10%;
+}
+
+.total-price-td {
+    width: 15%;
+}
+.cart__list__option {
+    width: 15%;
+}
+
+.delete-td {
+    width: 7%;
+}
+
+.cart__list__detail :nth-child(1),
+.cart__list__detail :nth-child(2),
+.cart__list__detail :nth-child(4),
+.cart__list__detail :nth-child(5),
+.cart__list__detail :nth-child(6),
+.cart__list__detail :nth-child(7) {
+    border-left: 2px solid whitesmoke;
+    text-align: center;
+}
+
+.cart__list__detail :nth-child(5) button {
+    background-color: #C69760;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 4px 8px;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.cart__list__detail :nth-child(7) button {
+    background-color: lightgray;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    padding: 6px 8px;
+    font-size: 10px;
+    margin-top: 5px;
+}
+
+.price {
+    font-weight: bold;
+}
+
+.cart__mainbtns {
+    width: 420px;
+    height: 200px;
+    padding-top: 40px;
+    display: block;
+    margin: auto;
+}
+
+.unit-price {
+    width: 100px;
+}
+
+.quantity-control {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.quantity-control button {
+    width: 30px;
+    height: 30px;
+}
+
+.cart__bigorderbtn {
+    width: 200px;
+    height: 50px;
+    font-size: 16px;
+    margin: auto;
+    border-radius: 5px;
+}
+
+.cart__bigorderbtn.left {
+    background-color: white;
+    border: 1px lightgray solid;
+}
+
+.cart__bigorderbtn.right {
+    background-color: #C69760;
+    color: white;
+    border: none;
+}
+
+/* 모달 창 디자인 */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 60px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 400px;
+    justify-content: center;
+}
+
+.quantity-control {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px; /* 전체 width 조정 */
+}
+
+.quantity-btn {
+    flex: 0 0 30px; /* 버튼 너비 고정 */
+    height: 30px; /* 버튼 높이 */
+    border: 1px solid lightgray; /* 테두리 추가 */
+    background-color: white; /* 배경색 */
+    cursor: pointer;
+}
+
+.quantity-btn.left {
+    border-top-left-radius: 5px; /* 좌측 버튼 좌측 둥글게 */
+    border-bottom-left-radius: 5px; /* 좌측 버튼 좌측 둥글게 */
+}
+
+.quantity-btn.right {
+    border-top-right-radius: 5px; /* 우측 버튼 우측 둥글게 */
+    border-bottom-right-radius: 5px; /* 우측 버튼 우측 둥글게 */
+}
+
+.quantity-submit-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.quantity-cancel {
+    margin-top: 10px;
+    display: flex;
+    border-radius: 5px;
+    justify-content: center;
+    width: 70%;
+    background-color: lightgray;
+    color: black;
+    border: none;
+}
+
+.quantity-submit {
+    margin-top: 10px;
+    display: flex;
+    border-radius: 5px;
+    justify-content: center;
+    width: 70%;
+    background-color: #C69760;
+    color: white;
+    border: none;
+}
+
+#modalQuantity {
+    flex: 1; /* 나머지 공간 차지 */
+    height: 30px; /* 입력 필드 높이 */
+    border: 1px solid lightgray; /* 테두리 추가 */
+    background-color: white; /* 배경색 */
+    text-align: center; /* 가운데 정렬 */
+    font-size: 14px; /* 폰트 크기 */
+    box-sizing: border-box; /* 입력 필드의 패딩과 테두리 포함 */
+    border-left: none; /* 입력 필드 왼쪽 테두리 없앰 */
+    border-right: none; /* 입력 필드 오른쪽 테두리 없앰 */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}

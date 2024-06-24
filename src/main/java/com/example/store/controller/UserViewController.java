@@ -30,7 +30,7 @@ public class UserViewController {
     }
 
     @GetMapping("/mypage")
-    @PreAuthorize("hasRole('COMMON')")
+    @PreAuthorize("hasRole('COMMON') or hasRole('ADMIN')")
     public String getMain(Model model){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();

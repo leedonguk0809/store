@@ -3,56 +3,28 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>상품 상세</title>
+    <title>농수산 쇼핑몰</title>
     <link rel="stylesheet" href="/css/detail.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/js/itemDetailHandler.js" defer></script>
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+    />
     <style>
-        .order-actions {
-            display: flex;
-            justify-content: space-between;
-        }
-        .order-actions .inline-form {
-            display: inline-block;
-        }
-        .order-btn {
-            width: 200px;
-            height: 50px;
-            background-color: #f0c14b;
-            border: 1px solid #a88734;
-            text-align: center;
-            line-height: 50px;
-            font-weight: bold;
-        }
-        .cart-btn {
-            width: 200px;
-            height: 50px;
-            background-color: #000;
-            color: #fff;
-            border: 1px solid #a88734;
-            text-align: center;
-            line-height: 50px;
-            font-weight: bold;
-        }
-        .button-box {
-            display: flex;
-            align-items: center;
-        }
-        .order-count {
-            width: 50px;
-            text-align: center;
-        }
+
     </style>
 </head>
 <body>
 <div class="item-detail-container">
     <div th:replace="fragment/header :: headerFragment"></div>
-    <div class="top-name-box">
-        <h2 th:text="${item.name}">스파로스 아카데미 부산 캠퍼스</h2>
-        <div class="item-top-name">스파로스 아카데미 부산</div>
+    <div class="top-name-box mt-3">
+        <h3 th:text="${item.name}">스파로스 아카데미 부산 캠퍼스</h3>
+        <div class="item-top-name" th:text="${item.name}">스파로스 아카데미 부산</div>
     </div>
     <div class="item-detail-box">
         <div class="item-image-box">
-            <img src="" alt="" />
+            <img th:src="${item.itemImage}" alt="" />
         </div>
         <div class="item-short-box">
             <div class="detail-box item-name-box">
@@ -86,27 +58,23 @@
                 <div class="label-box">주문 수량</div>
                 <div class="value-box order-count-box">
                     <div class="button-box">
-                        <button class="order-btn" type="button" id="decrease-quantity">-</button>
+                        <button class="btn btn-outline-secondary" type="button" id="decrease-quantity">-</button>
                         <input type="text" id="quantity" class="order-count" value="1" readonly>
-                        <button class="order-btn" type="button" id="increase-quantity">+</button>
+                        <button class="btn btn-outline-secondary" type="button" id="increase-quantity">+</button>
                     </div>
-                    <div class="total-price-box">
+                    <div class="total-price-box mt-3">
                         <span id="total-price" th:text="${item.price}">10000</span> 원
                     </div>
                 </div>
             </div>
             <div class="order-actions">
-                <form action="/orders/buy/now" method="post" class="inline-form">
-                    <input type="hidden" name="itemId" th:value="${item.itemId}">
-                    <input type="hidden" name="price" th:value="${item.price}">
-                    <input type="hidden" name="quantity" value="1" class="quantity-input">
-                    <button class="order-btn" type="submit">바로 구매</button>
-                </form>
-                <form action="/cart/add" method="post" class="inline-form">
-                    <input type="hidden" name="itemId" th:value="${item.itemId}">
-                    <input type="hidden" name="quantity" value="1" class="quantity-input">
-                    <button class="cart-btn" type="submit">장바구니</button>
-                </form>
+                <input type="hidden" name="itemId" th:value="${item.itemId}">
+                <input type="hidden" name="price" th:value="${item.price}">
+                <input type="hidden" name="quantity" value="1" class="quantity-input">
+                <button class="order-btn" type="submit" onclick="createOrder()">바로 구매</button>
+                <input type="hidden" name="itemId" id="cartItemId" th:value="${item.itemId}">
+                <input type="hidden" name="quantity" id="cartQuantity" value="1" class="quantity-input">
+                <button class="cart-btn" onclick="addCart()" type="submit">장바구니</button>
             </div>
         </div>
     </div>
@@ -119,13 +87,10 @@
                 <div class="description-tag">상품 Q&A</div>
                 <div class="description-tag">배송/교환/반품/환불</div>
             </div>
-            <div class="description" th:text="${item.info}">
-                안녕하세요 이건 내용 입니다. 안녕하세요 이건 내용 입니다. 안녕하세요
-                이건 내용 입니다. 안녕하세요 이건 내용 입니다. 안녕하세요 이건 내용
-                입니다. 안녕하세요 이건 내용 입니다. 안녕하세요 이건 내용 입니다.
-                안녕하세요 이건 내용 입니다. 안녕하세요 이건 내용 입니다. 안녕하세요
-                이건 내용 입니다. 안녕하세요 이건 내용 입니다. 안녕하세요 이건 내용
-                입니다.
+            <div class="description">
+                <div class="desc-image">
+                    <img th:src="${item.info}" alt="" />
+                </div>
             </div>
         </div>
     </div>

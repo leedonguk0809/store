@@ -17,6 +17,7 @@
                 <result property="name" column="name"/>
                 <result property="price" column="price"/>
                 <result property="info" column="info"/>
+                <result property="itemImage" column="item_image"/>
             </association>
         </collection>
     </resultMap>
@@ -71,4 +72,30 @@
         INSERT INTO carts (user_id)
         VALUES (#{cart.userId})
     </insert>
+
+    <delete id="deleteAll">
+        DELETE FROM carts
+        WHERE user_id=#{userId}
+    </delete>
+
+    <delete id="deleteCartItemsByItemIds" parameterType="java.util.Map">
+         <![CDATA[
+            DELETE ci
+        FROM cart_item ci
+        JOIN item i ON ci.item_id = i.item_id
+        WHERE i.item_id IN (
+            <foreach collection="list" item="itemId" open="(" close=")" separator=",">
+            #{itemId}
+            </foreach>
+            )
+            ]]>
+    </delete>
+
+
+    <delete id="deleteItem">
+        DELETE ci
+        FROM cart_item ci
+        JOIN carts c ON ci.cart_id = c.cart_id
+        WHERE c.user_id = #{userId} AND ci.item_id = #{itemId}
+    </delete>
 </mapper>

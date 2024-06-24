@@ -1,5 +1,7 @@
 package com.example.store.controller;
 
+import com.example.store.common.config.UserPrincipal;
+import com.example.store.domain.CartItem;
 import com.example.store.dto.ItemDTO;
 import com.example.store.request.item.ItemSearch;
 import com.example.store.response.ItemResponse;
@@ -7,9 +9,12 @@ import com.example.store.response.Paging;
 import com.example.store.service.item.ItemService;
 import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.parameters.P;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -69,14 +74,19 @@ public class MainController {
         return "main";
     }
 
-    @GetMapping("/pay-view")
-    public String getPayView(){
-        return "payment/payment";
-    }
-
-
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/admin-view")
     public String getApprove(){
-        return "admin/itemAdmin";
+        return "admin/itemCreate";
+    }
+
+    @GetMapping("/orders/error")
+    public String showErrorPage(Model model) {
+        if (model.containsAttribute("errorMessage")) {
+            String errorMessage = (String) model.asMap().get("errorMessage");
+            model.addAttribute("errorMessage", errorMessage);
+        }
+
+        return "orders/StockEmpty";
     }
 }

@@ -28,6 +28,7 @@ public class ItemResponse {
                 .name(item.getName())
                 .price(item.getPrice())
                 .info(item.getInfo())
+                .profileImage(item.getItemImage())
                 .build();
     }
 }

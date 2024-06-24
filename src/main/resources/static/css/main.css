@@ -11,14 +11,21 @@
     text-decoration: none;
 }
 
+.main-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-family: "GmarketSansMedium";
+
+}
+
 .grid-container {
+    max-height: 600px;
     margin-top: 30px;
     display: grid;
-    grid-template-columns: repeat(
-    4,
-    min-content
+    grid-template-columns: repeat(4, min-content);
   ); /* 각 열의 크기를 내부 컨텐츠의 최소 크기에 맞춤 */
-    gap: 20px;
+    gap: 5px;
     justify-content: center; /* 그리드 아이템 사이의 간격 */
 }
 
@@ -34,7 +41,7 @@
     display: flex; /* 내부 요소를 가운데 정렬하기 위해 flex 사용 */
     justify-content: center; /* 가로 방향 가운데 정렬 */
     align-items: center; /* 세로 방향 가운데 정렬 */
-    height: 70%; /* 상단 이미지 영역의 높이 설정 */
+    height: 60%; /* 상단 이미지 영역의 높이 설정 */
     overflow: hidden; /* 내용이 넘칠 경우 잘리는 부분 숨김 */
 }
 
@@ -67,33 +74,37 @@
     text-overflow: ellipsis; /* 텍스트가 넘치면 ...으로 대체 */
 }
 
-.page-box{
-    width:100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.page-box {
+    width: 100%;
+    height: auto;
+    background-color: transparent;
+    padding: 10px;
+    box-sizing: border-box;
+    z-index: 1000; /* 다른 요소 위로 */
+    position: fixed; /* 화면 상단에 고정 */
+    bottom: 0; /* 화면 하단에 */
 }
 
 .pagination {
-    width: 100%;
     display: flex;
     list-style-type: none;
     padding: 0;
     justify-content: center;
+    margin: 0;
 }
 
 .pagination li {
     margin: 0 5px;
 }
-
 .pagination a {
     display: block;
-    padding: 10px;
+    padding: 5px 10px;
     text-decoration: none;
     color: #333;
     background-color: #fff;
     border: 1px solid #ccc;
     transition: background-color 0.3s ease;
+    font-size: 14px;
 }
 
 .pagination a:hover {

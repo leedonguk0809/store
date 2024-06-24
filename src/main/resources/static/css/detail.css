@@ -105,6 +105,7 @@
 .button-box {
     width: 100%;
     display: flex;
+    align-items: center;
     justify-content: space-between;
     margin-top: 20px;
 }
@@ -141,7 +142,7 @@
     font-size: 16px;
     height: 100%;
     color: rgba(255, 255, 255, 1);
-    background-color: #f9bb00;
+    background-color: #C69760;
 }
 
 .cart-btn {
@@ -185,4 +186,64 @@
     word-wrap: break-word; /* 오래된 브라우저 지원을 위한 속성 */
     word-break: break-word; /* 글자 내 단어 단위 줄 바꿈 처리 */
     white-space: pre-wrap; /* 공백 유지 처리 */
+}
+
+.order-actions {
+    display: flex;
+    justify-content: space-between;
+}
+.order-actions .inline-form {
+    display: inline-block;
+}
+.order-btn {
+    width: 200px;
+    height: 50px;
+    background-color: #C69760;
+    border: none;
+    text-align: center;
+    line-height: 50px;
+    font-weight: bold;
+}
+.cart-btn {
+    width: 200px;
+    height: 50px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    text-align: center;
+    line-height: 50px;
+    font-weight: bold;
+}
+.button-box {
+    display: flex;
+    align-items: center;
+}
+.order-count {
+    width: 50px;
+    text-align: center;
+}
+
+.button-box button {
+    height: 30px; /* 원하는 높이로 설정 */
+    padding: 6px 12px; /* 원하는 패딩 설정 */
+    border: none;
+}
+
+.button-box input {
+    height: 30px; /* 버튼과 동일한 높이로 설정 */
+    padding: 6px 12px; /* 원하는 패딩 설정 */
+    border: none;
+}
+
+.order-count-box{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#total-price{
+    font-size: 16px;
+    color: black;
+    font-weight: 400;
+    line-height: 140%;
 }
