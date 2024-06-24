@@ -32,6 +32,25 @@ import java.util.List;
 @Slf4j
 @ControllerAdvice
 public class ExceptionController {
+    @ExceptionHandler(StoreException.class)
+    public ModelAndView storeException(StoreException e, RedirectAttributes redirectAttributes) {
+        int statusCode = e.getStatusCode();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        ErrorResponse body = ErrorResponse.builder()
+                .code(String.valueOf(statusCode))
+                .message(e.getMessage())
+                .validation(e.getValidation())
+                .build();
+        log.error("HTTP Status {} [StoreException : {}]", statusCode ,e.getMessage());
+        if (auth != null && auth.isAuthenticated()) {
+            // 인증 정보가 유효한 경우 인증 정보를 유지하면서 메인 화면으로 리다이렉트
+            SecurityContextHolder.getContext().setAuthentication(auth);
+            ModelAndView modelAndView = new ModelAndView("redirect:/");
+            return modelAndView;
+        }
+        return new ModelAndView("redirect:/");
+    }
 
     @ResponseBody
     @ResponseStatus(HttpStatus.BAD_REQUEST)
@@ -47,26 +66,6 @@ public class ExceptionController {
         }
 
         return response;
-    }
-
-    @ExceptionHandler(StoreException.class)
-    public ModelAndView storeException(StoreException e, RedirectAttributes redirectAttributes) {
-        int statusCode = e.getStatusCode();
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-
-        ErrorResponse body = ErrorResponse.builder()
-                .code(String.valueOf(statusCode))
-                .message(e.getMessage())
-                .validation(e.getValidation())
-                .build();
-        log.error("HTTP Status {} [StoreException : {}]", statusCode ,e.getMessage());
-        if (auth != null && auth.isAuthenticated()) {
-            // 인증 정보가 유효한 경우 인증 정보를 유지하면서 메인 화면으로 리다이렉트
-            SecurityContextHolder.getContext().setAuthentication(auth);
-            ModelAndView modelAndView = new ModelAndView("redirect:/orders/StockEmpty");
-            return modelAndView;
-        }
-        return new ModelAndView("redirect:/orders/StockEmpty");
     }
 
     @ExceptionHandler(StockIsEmpty.class)
