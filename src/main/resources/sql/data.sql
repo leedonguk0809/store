@@ -1,86 +1,39 @@
-INSERT INTO item (item_id,name, price, info, item_image)
-VALUES (1,'Sample Item1', 10000,'This is a sample item', '/assets/item.png');
+INSERT INTO item (item_id, name, price, info, item_image) VALUES (1, '해풍맞은 고흥 햇 황도 복숭아', 13700, '/assets/item/1d.jpg', '/assets/item/1.jpg');
+INSERT INTO item (item_id, name, price, info, item_image) VALUES (2, '해수고구마 찰밤 고구마', 18000, '/assets/item/2d.jpg', '/assets/item/2.jpg');
+INSERT INTO item (item_id, name, price, info, item_image) VALUES (3, '고슬고슬 신동진쌀 20KG', 57500, '/assets/item/3d.jpg', '/assets/item/3.png');
+INSERT INTO item (item_id, name, price, info, item_image) VALUES (4, '친황경 무농약 블루베리 생과', 24500, '/assets/item/5d.jpg', '/assets/item/5.jpg');
+INSERT INTO item (item_id, name, price, info, item_image) VALUES (5, '청자골옥토쌀 10KG', 31000, '/assets/item/6d.jpg', '/assets/item/6.jpg');
+INSERT INTO item (item_id, name, price, info, item_image) VALUES (6, '우리콩 서리태', 14600, '/assets/item/7d.jpg', '/assets/item/7.jpg');
+INSERT INTO item (item_id, name, price, info, item_image) VALUES (7, '자연애포고농원 동고 500G', 50000, '/assets/item/8d.jpg', '/assets/item/8.jpg');
+INSERT INTO item (item_id, name, price, info, item_image) VALUES (8, '화순 알뜰 잡속 선물 세트', 8600, '/assets/item/9d.gif', '/assets/item/9.jpg');
+INSERT INTO item (item_id, name, price, info, item_image) VALUES (9, '미풍양식 상등급 신동진 쌀 10KG', 33000, '/assets/item/10d.jpg', '/assets/item/10.png');
+INSERT INTO item (item_id, name, price, info, item_image) VALUES (10, '세척 꿀고구마', 13000, '/assets/item/11d.jpg', '/assets/item/11.jpg');
+INSERT INTO item (item_id, name, price, info, item_image) VALUES (11, '무안 햇 볕 마늘', 22000, '/assets/item/12d.jpg', '/assets/item/12.jpg');
+INSERT INTO item (item_id, name, price, info, item_image) VALUES (12, '진상 완숙토마토', 8600, '/assets/item/13d.jpg', '/assets/item/13.jpg');
+INSERT INTO item (item_id, name, price, info, item_image) VALUES (13, '청년 동부가 생산한 찰진 쌀 20KG', 30000, '/assets/item/14d.jpg', '/assets/item/14.jpg');
+INSERT INTO item (item_id, name, price, info, item_image) VALUES (14, '전남 햇 꿀 고구마', 17000, '/assets/item/15d.jpg', '/assets/item/15.jpg');
+INSERT INTO item (item_id, name, price, info, item_image) VALUES (15, '새싹삼 새싹인삼', 59000, '/assets/item/19d.jpg', '/assets/item/19.jpg');
+INSERT INTO item (item_id, name, price, info, item_image) VALUES (16, '햇마늘쫑 1KG', 5900, '/assets/item/20d.jpg', '/assets/item/20.png');
+INSERT INTO item (item_id, name, price, info, item_image) VALUES (17, '보석 찰보리', 12000, '/assets/item/21d.jpg', '/assets/item/21.png');
+INSERT INTO item (item_id, name, price, info, item_image) VALUES (18, '수확 담양 햇 건여주', 16300, '/assets/item/22d.jpg', '/assets/item/22.jpg');
+INSERT INTO item (item_id, name, price, info, item_image) VALUES (19, '표고버섯 백화고 500G', 42500, '/assets/item/23d.jpg', '/assets/item/23.jpg');
+INSERT INTO item (item_id, name, price, info, item_image) VALUES (20, '새청무 20KG', 12000, '/assets/item/24d.jpg', '/assets/item/24.jpg');
+INSERT INTO item (item_id, name, price, info, item_image) VALUES (21, '고구마+감자+밤호박 삼종 세트', 15500, '/assets/item/25d.jpg', '/assets/item/25.jpg');
+INSERT INTO item (item_id, name, price, info, item_image) VALUES (22, '나주 참송이버섯', 31000, '/assets/item/26d.jpg', '/assets/item/26.jpg');
+INSERT INTO item (item_id, name, price, info, item_image) VALUES (23, '유기농 학이머문쌀 20KG', 28000, '/assets/item/27d.jpg', '/assets/item/27.jpg');
+INSERT INTO item (item_id, name, price, info, item_image) VALUES (24, '기운찬 신동진쌀 10KG', 16000, '/assets/item/28d.jpg', '/assets/item/28.jpg');
+INSERT INTO item (item_id, name, price, info, item_image) VALUES (25, '천년의 미소쌀 10KG', 15000, '/assets/item/29d.jpg', '/assets/item/29.jpg');
+INSERT INTO item (item_id, name, price, info, item_image) VALUES (26, '녹차미인보성쌀 4KG', 11500, '/assets/item/30d.jpg', '/assets/item/30.jpg');
+INSERT INTO item (item_id, name, price, info, item_image) VALUES (27, '무안 햇 양파', 7500, '/assets/item/31d.jpg', '/assets/item/31.jpg');
+INSERT INTO item (item_id, name, price, info, item_image) VALUES (29, '순수올곡 잡곡세트', 22000, '/assets/item/32d.jpg', '/assets/item/32.jpg');
+INSERT INTO item (item_id, name, price, info, item_image) VALUES (30, '달콤통통 팥(적두)', 13000, '/assets/item/33d.jpg', '/assets/item/33.jpg');
+INSERT INTO item (item_id, name, price, info, item_image) VALUES (31, '우렁이쌀 바지런한 햅쌀', 18000, '/assets/item/34d.jpg', '/assets/item/34.jpg');
+INSERT INTO item (item_id, name, price, info, item_image) VALUES (32, '별마늘 햇마늘 통마늘', 9200, '/assets/item/35d.jpg', '/assets/item/35.jpg');
+INSERT INTO item (item_id, name, price, info, item_image) VALUES (33, '두백 감자 중사이즈 10KG', 16500, '/assets/item/36d.jpg', '/assets/item/36.jpg');
+INSERT INTO item (item_id, name, price, info, item_image) VALUES (34, '하이아미쌀 5KG', 15000, '/assets/item/37d.jpg', '/assets/item/37.jpg');
+INSERT INTO item (item_id, name, price, info, item_image) VALUES (35, '자연미 그린미', 15000, '/assets/item/38d.jpg', '/assets/item/38.jpg');
+INSERT INTO item (item_id, name, price, info, item_image) VALUES (36, '건강 잡곡 5종 선물세트', 20000, '/assets/item/39d.jpg', '/assets/item/39.jpg');
+INSERT INTO item (item_id, name, price, info, item_image) VALUES (37, '완숙 찰토마토 특품', 14000, '/assets/item/40d.jpg', '/assets/item/40.jpg');
 
-INSERT INTO stock (item_id,quantity)
-VALUES (1,10);
-
-INSERT INTO item (item_id,name, price, info, item_image)
-VALUES (2,'Sample Item2', 20000,'This is a sample item', '/assets/item.png');
-
-INSERT INTO stock (item_id,quantity)
-VALUES (2,10);
-
-INSERT INTO item (item_id,name, price, info, item_image)
-VALUES (3,'Sample Item3', 30000,'This is a sample item', '/assets/item.png');
-
-INSERT INTO stock (item_id,quantity)
-VALUES (3,10);
-
-INSERT INTO item (item_id,name, price, info, item_image)
-VALUES (4,'Sample Item4', 30000,'This is a sample item', NULL);
-
-INSERT INTO stock (item_id,quantity)
-VALUES (4,10);
-
-INSERT INTO carts (user_id,total_price)
-VALUES (1,0);
-
-INSERT INTO cart_item (item_id,cart_id,item_count)
-VALUES (1,1,1);
-INSERT INTO cart_item (item_id,cart_id,item_count)
-VALUES (2,1,1);
-INSERT INTO cart_item (item_id,cart_id,item_count)
-VALUES (3,1,1);
-INSERT INTO cart_item (item_id,cart_id,item_count)
-VALUES (4,1,1);
-
-
-INSERT INTO orders (user_id, total_price, order_enroll, zipcode, main_address, detail_address, tid, order_status)
-VALUES (1, 60000,'2024-06-21 14:30:00', '12345', '123 Main St', 'Apt 101', NULL, 'READY');
-
-INSERT INTO order_item (order_id, item_id,item_count)
-VALUES (1, 1,1), (1, 2,1), (1, 3,1);
---
--- --
--- INSERT INTO item (name, price, info, item_image) VALUES ('상품 1', 10000, '내용1', '/assets/item.png');
--- INSERT INTO item (name, price, info, item_image) VALUES ('상품 2', 10000, '내용2', '/assets/item.png');
--- INSERT INTO item (name, price, info, item_image) VALUES ('상품 3', 10000, '내용3', '/assets/item.png');
--- INSERT INTO item (name, price, info, item_image) VALUES ('상품 4', 10000, '내용4', '/assets/item.png');
--- INSERT INTO item (name, price, info, item_image) VALUES ('상품 5', 10000, '내용5', '/assets/item.png');
--- INSERT INTO item (name, price, info, item_image) VALUES ('상품 6', 10000, '내용6', '/assets/item.png');
--- INSERT INTO item (name, price, info, item_image) VALUES ('상품 7', 10000, '내용7', '/assets/item.png');
--- INSERT INTO item (name, price, info, item_image) VALUES ('상품 8', 10000, '내용8', '/assets/item.png');
--- INSERT INTO item (name, price, info, item_image) VALUES ('상품 9', 10000, '내용9', '/assets/item.png');
--- INSERT INTO item (name, price, info, item_image) VALUES ('상품 10', 10000, '내용10', '/assets/item.png');
--- INSERT INTO item (name, price, info, item_image) VALUES ('상품 11', 10000, '내용11', '/assets/item.png');
--- INSERT INTO item (name, price, info, item_image) VALUES ('상품 12', 10000, '내용12', '/assets/item.png');
--- INSERT INTO item (name, price, info, item_image) VALUES ('상품 13', 10000, '내용13', '/assets/item.png');
--- INSERT INTO item (name, price, info, item_image) VALUES ('상품 14', 10000, '내용14', '/assets/item.png');
--- INSERT INTO item (name, price, info, item_image) VALUES ('상품 15', 10000, '내용15', '/assets/item.png');
--- INSERT INTO item (name, price, info, item_image) VALUES ('상품 16', 10000, '내용16', '/assets/item.png');
--- INSERT INTO item (name, price, info, item_image) VALUES ('상품 17', 10000, '내용17', '/assets/item.png');
--- INSERT INTO item (name, price, info, item_image) VALUES ('상품 18', 10000, '내용18', '/assets/item.png');
--- INSERT INTO item (name, price, info, item_image) VALUES ('상품 19', 1900, '내용19', '/assets/item.png');
--- INSERT INTO item (name, price, info, item_image) VALUES ('상품 20', 10000, '내용20', '/assets/item.png');
---
---
--- INSERT INTO item (name, price, info, item_image) VALUES ('제목-1', 100, '내용1', NULL);
--- INSERT INTO item (name, price, info, item_image) VALUES ('제목-2', 200, '내용2', NULL);
--- INSERT INTO item (name, price, info, item_image) VALUES ('제목-3', 300, '내용3', NULL);
--- INSERT INTO item (name, price, info, item_image) VALUES ('제목-4', 400, '내용4', NULL);
--- INSERT INTO item (name, price, info, item_image) VALUES ('제목-5', 500, '내용5', NULL);
--- INSERT INTO item (name, price, info, item_image) VALUES ('제목-6', 600, '내용6', NULL);
--- INSERT INTO item (name, price, info, item_image) VALUES ('제목-7', 700, '내용7', NULL);
--- INSERT INTO item (name, price, info, item_image) VALUES ('제목-8', 800, '내용8', NULL);
--- INSERT INTO item (name, price, info, item_image) VALUES ('제목-9', 900, '내용9', NULL);
--- INSERT INTO item (name, price, info, item_image) VALUES ('제목-10', 1000, '내용10', NULL);
--- INSERT INTO item (name, price, info, item_image) VALUES ('제목-11', 1100, '내용11', NULL);
--- INSERT INTO item (name, price, info, item_image) VALUES ('제목-12', 1200, '내용12', NULL);
--- INSERT INTO item (name, price, info, item_image) VALUES ('제목-13', 1300, '내용13', NULL);
--- INSERT INTO item (name, price, info, item_image) VALUES ('제목-14', 1400, '내용14', NULL);
--- INSERT INTO item (name, price, info, item_image) VALUES ('제목-15', 1500, '내용15', NULL);
--- INSERT INTO item (name, price, info, item_image) VALUES ('제목-16', 1600, '내용16', NULL);
--- INSERT INTO item (name, price, info, item_image) VALUES ('제목-17', 1700, '내용17', NULL);
--- INSERT INTO item (name, price, info, item_image) VALUES ('제목-18', 1800, '내용18', NULL);
--- INSERT INTO item (name, price, info, item_image) VALUES ('제목-19', 1900, '내용19', NULL);
--- INSERT INTO item (name, price, info, item_image) VALUES ('제목-20', 2000, '내용20', NULL);
+INSERT INTO stock (item_id, quantity)
+SELECT item_id, 300 FROM item;
