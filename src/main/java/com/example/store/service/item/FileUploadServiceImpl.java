@@ -13,7 +13,7 @@ import java.nio.file.Paths;
 @Service
 public class FileUploadServiceImpl implements FileUploadService {
 
-    private static final String UPLOAD_DIR = System.getProperty("user.dir") + "/uploads/";
+    private static final String UPLOAD_DIR = System.getProperty("user.dir") + "/src/main/resources/static/assets/item";
 
     @Override
     public String saveFile(MultipartFile file) {

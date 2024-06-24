@@ -27,7 +27,7 @@ public class ItemServiceImpl implements ItemService {
 
     public void addItem(ItemCreate itemCreate, MultipartFile itemImage, Integer quantity) {
         validateItemCreate(itemCreate);
-        String imagePath = fileUploadService.saveFile(itemImage);
+        String imagePath = "/assets/item/" + fileUploadService.saveFile(itemImage);
 
         Item item = Item.builder()
                 .name(itemCreate.getName())
